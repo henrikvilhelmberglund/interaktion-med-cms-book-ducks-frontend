@@ -1,6 +1,9 @@
 {
-	"name": "sveltekit-unocss-template",
-	"version": "0.0.5",
+	"name": "interaktion-med-cms-book-ducks-frontend",
+	"author": {
+		"name": "Henrik Berglund"
+	},
+	"version": "0.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
