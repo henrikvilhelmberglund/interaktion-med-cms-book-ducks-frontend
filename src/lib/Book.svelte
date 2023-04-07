@@ -21,7 +21,7 @@
 		function onEsc(event) {
 			if (event.key === "Escape") {
 				console.log("pressed esc - closing!");
-        expanded = false;
+				expanded = false;
 			}
 		}
 
@@ -36,12 +36,12 @@
 		document.body.addEventListener("click", onClick);
 		document.body.addEventListener("keydown", onEsc);
 		return {
-      update(newCallbackFunction) {
-        callbackFunction = newCallbackFunction;
+			update(newCallbackFunction) {
+				callbackFunction = newCallbackFunction;
 			},
 			destroy() {
-        document.body.removeEventListener("click", onClick);
-        document.body.removeEventListener("keydown", onEsc);
+				document.body.removeEventListener("click", onClick);
+				document.body.removeEventListener("keydown", onEsc);
 			},
 		};
 	}
@@ -62,19 +62,26 @@
 	{#if expanded}
 		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
-		<div class="flex">
-			<div use:clickOutside class="z-100 fixed left-0 top-0 bg-slate-200">
-				<img src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
-        <div class="absolute left-[50%] top-[2%] w-[95%] translate-x-[-50%]">
-          <h2 class="font-c text-center text-7xl font-bold text-black">{title}</h2>
-          <h3 class="translate-y-[10%] text-center text-4xl">{author}</h3>
-        </div>
-        <p>{title} was released in {release_date}.</p>
-				<p>Page count: {page_count}</p>
-				<p>Average rating: {average_rating}</p>
-			</div>
-			<div>
-				{@html DOMPurify.sanitize(marked.parse(synopsis))}
+		<div use:clickOutside class="z-100 fixed left-0 top-0 bg-slate-200">
+			<div class="flex">
+				<img class="w-min" src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
+				<div class="absolute left-[50%] top-[2%] w-[95%] translate-x-[-50%]">
+					<h2 class="font-c text-center text-7xl font-bold text-black">{title}</h2>
+					<h3 class="translate-y-[10%] text-center text-4xl">{author}</h3>
+				</div>
+				<div class="p-4">
+					<p>
+						Average rating: {average_rating}
+					</p>
+					<ul>
+						<li>{title} was released in {release_date}.</li>
+						<li>Page count: {page_count}</li>
+					</ul>
+				</div>
+				<div
+					class="font-e absolute right-0 top-12 translate-x-[120%] bg-[#F9D8A7] p-4 py-8 text-lg">
+					{@html DOMPurify.sanitize(marked.parse(synopsis))}
+				</div>
 			</div>
 		</div>
 	{/if}
