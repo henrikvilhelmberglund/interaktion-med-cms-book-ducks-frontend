@@ -1,0 +1,4 @@
+
+Todo:
+  ☐ Create font selector thingy in Strapi (for each book)
+  ☐ Come up with a way to change the text location per book (maybe in Strapi as well)
