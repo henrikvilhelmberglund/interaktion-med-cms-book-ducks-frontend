@@ -14,22 +14,30 @@
 	console.log(cover_image);
 	let cover_image_alt = book.attributes.cover_image;
 	let synopsis = book.attributes.synopsis;
+
+	let expanded = false;
 </script>
 
-<article class="relative border-red border-1 w-72">
-  <img src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
-	<div class="absolute left-[50%] translate-x-[-50%] w-[80%] top-[2%]">
-    <h2 class="text-center text-3xl">{title}</h2>
+<article class="relative w-72">
+	<button on:click={() => (expanded = !expanded)}>
+		<img src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
+	</button>
+	<div class="absolute left-[50%] top-[2%] w-[85%] translate-x-[-50%]">
+		<h2 class="font-c text-center text-4xl font-bold text-black">{title}</h2>
 		<h3 class="translate-y-[10%] text-center text-xl">{author}</h3>
 	</div>
-	<div class="flex">
-		<p>{release_date}</p>
-		<p>{page_count}</p>
-		<p>{average_rating}</p>
-	</div>
-	<div>
-		{@html DOMPurify.sanitize(marked.parse(synopsis))}
-	</div>
+	{#if expanded}
+		<div class="fixed inset-0 !m-0 bg-white" />
+
+		<div class="flex">
+			<p>{release_date}</p>
+			<p>{page_count}</p>
+			<p>{average_rating}</p>
+		</div>
+		<div>
+			{@html DOMPurify.sanitize(marked.parse(synopsis))}
+		</div>
+	{/if}
 </article>
 
 <style>
