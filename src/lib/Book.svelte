@@ -54,7 +54,7 @@
 			event.stopPropagation();
 		}}>
 		<img src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
-		<div class="absolute left-[50%] top-[2%] translate-x-[-50%] md:w-full">
+		<div class="absolute w-full left-[50%] top-[2%] translate-x-[-50%] md:w-full">
 			<h2 class="font-c text-center text-4xl font-bold text-black">{title}</h2>
 			<h3 class="translate-y-[10%] text-center text-xl">{author}</h3>
 		</div>
@@ -65,15 +65,15 @@
 		<div use:clickOutside class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min">
 			<div class="w-full md:w-[512px]">
 				<div
-					class="absolute left-0 top-[2%] translate-x-0 pt-0 md:left-[50%] md:w-full md:translate-x-[-50%] md:p-12 md:pt-12">
+					class="absolute w-full  left-0 top-[2%] translate-x-0 pt-0 md:left-[50%] md:w-full md:translate-x-[-50%] md:p-12 md:pt-12">
 					<img
 						class="absolute md:min-w-[512px] md:translate-x-0"
 						src="http://127.0.0.1:1337{cover_image}"
 						alt={cover_image_alt} />
-					<h2 class="font-c sticky text-center text-6xl font-bold text-black md:pt-4 md:text-6xl">
+					<h2 class="font-c sticky pt-4 text-center text-5xl font-bold text-black md:pt-4 md:text-6xl">
 						{title}
 					</h2>
-					<h3 class="translate-y-[10%] text-center text-3xl md:text-3xl">{author}</h3>
+					<h3 class="translate-y-[10%] text-center text-2xl md:text-3xl">{author}</h3>
 				</div>
 			</div>
 			<div
