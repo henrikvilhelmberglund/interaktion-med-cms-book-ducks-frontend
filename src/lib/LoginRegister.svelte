@@ -124,6 +124,12 @@
 						class="disabled:hover-bg-blue-400 mt-4 rounded bg-blue-400 p-2 hover:bg-blue-300 disabled:opacity-25"
 						>Log in</button>
 				{:else if mode === "register"}
+        <input
+          bind:value={registerEmail}
+          placeholder="Email"
+          id="email"
+          class="rounded border p-2"
+          type="email" />
 					<input
 						bind:value={registerUsername}
 						placeholder="Username"
@@ -131,12 +137,6 @@
 						class="rounded border p-2"
 						type="text" />
 
-					<input
-						bind:value={registerEmail}
-						placeholder="Email"
-						id="email"
-						class="rounded border p-2"
-						type="email" />
 					<input
 						bind:value={registerPassword}
 						placeholder="Password"
