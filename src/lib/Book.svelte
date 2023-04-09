@@ -55,7 +55,7 @@
 		}}>
 		<img src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
 	</button>
-	<div class="absolute left-[50%] top-[2%] w-[95%] translate-x-[-50%]">
+	<div class="absolute left-[50%] top-[2%] md:w-full translate-x-[-50%]">
 		<h2 class="font-c text-center text-4xl font-bold text-black">{title}</h2>
 		<h3 class="translate-y-[10%] text-center text-xl">{author}</h3>
 	</div>
@@ -63,11 +63,16 @@
 		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
 		<div use:clickOutside class="z-100 fixed left-0 top-0 bg-slate-200">
-			<div class="flex">
-				<img class="w-min" src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
-				<div class="absolute left-[50%] top-[2%] w-[95%] translate-x-[-50%]">
-					<h2 class="font-c text-center text-7xl font-bold text-black">{title}</h2>
-					<h3 class="translate-y-[10%] text-center text-4xl">{author}</h3>
+			<div class="flex md:w-[512px]">
+				<div class="absolute left-[50%] top-[2%] translate-x-[-50%] md:w-full">
+					<img
+						class="absolute md:min-w-[512px]"
+						src="http://127.0.0.1:1337{cover_image}"
+						alt={cover_image_alt} />
+					<h2 class="font-c sticky text-center font-bold text-black md:pt-4 md:text-6xl">
+						{title}
+					</h2>
+					<h3 class="translate-y-[10%] text-center text-3xl">{author}</h3>
 				</div>
 				<div class="p-4">
 					<p>
