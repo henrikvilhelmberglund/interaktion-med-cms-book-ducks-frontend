@@ -16,9 +16,11 @@
 <main class="[&>*]:m-4">
 	<h1 class="text-3xl">Book Ducks</h1>
 
-	{#each Object.values(books) as book}
-		<Book {book} />
-	{/each}
+	<div class="flex flex-wrap justify-center gap-4 md:justify-start">
+		{#each Object.values(books) as book}
+			<Book {book} />
+		{/each}
+	</div>
 </main>
 
 <Footer />
