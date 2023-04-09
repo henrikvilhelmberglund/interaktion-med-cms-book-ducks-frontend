@@ -65,9 +65,9 @@
 		<div use:clickOutside class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min">
 			<div class="w-full md:w-[512px]">
 				<div
-					class="absolute top-[2%] translate-x-0 p-12 pt-0 md:left-[50%] md:w-full md:translate-x-[-50%] md:pt-12">
+					class="absolute left-0 top-[2%] translate-x-0 pt-0 md:left-[50%] md:w-full md:translate-x-[-50%] md:p-12 md:pt-12">
 					<img
-						class="absolute min-w-[400px] translate-x-[-25%] md:min-w-[512px] md:translate-x-0"
+						class="absolute md:min-w-[512px] md:translate-x-0"
 						src="http://127.0.0.1:1337{cover_image}"
 						alt={cover_image_alt} />
 					<h2 class="font-c sticky text-center text-6xl font-bold text-black md:pt-4 md:text-6xl">
@@ -77,11 +77,12 @@
 				</div>
 			</div>
 			<div
-				class="font-e translate-y-100 absolute right-0 top-12 bg-[#F9D8A7] p-4 py-8 text-lg md:translate-x-[120%] md:translate-y-0">
+				class="font-e translate-y-175 absolute right-0 top-12 bg-[#F9D8A7] p-4 py-8 text-lg md:translate-x-[120%] md:translate-y-0 md:translate-y-0">
 				<h3 class="text-2xl">Synopsis</h3>
 				{@html DOMPurify.sanitize(marked.parse(synopsis))}
 			</div>
-			<div class="bottom-0 bg-slate-300 p-4 pb-12 md:fixed md:w-[512px]">
+			<div
+				class="translate-y-160 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0">
 				<p>
 					Average rating: {average_rating}
 				</p>
