@@ -14,9 +14,9 @@
 </script>
 
 <main class="[&>*]:m-4">
-	<h1 class="text-3xl">Book Ducks</h1>
+	<h1 class="text-3xl flex justify-center">Book Ducks</h1>
 
-	<div class="flex flex-wrap justify-center gap-4 md:justify-start">
+	<div class="flex flex-wrap justify-end gap-4 md:justify-start">
 		{#each Object.values(books) as book}
 			<Book {book} />
 		{/each}
