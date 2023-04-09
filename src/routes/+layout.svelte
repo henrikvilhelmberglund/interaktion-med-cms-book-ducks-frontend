@@ -1,5 +1,5 @@
 <script>
-	import "@unocss/reset/antfu.css";
+	import "@unocss/reset/tailwind.css";
 </script>
 
 <slot />
