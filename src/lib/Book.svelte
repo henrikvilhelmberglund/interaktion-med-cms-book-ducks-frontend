@@ -54,17 +54,17 @@
 			event.stopPropagation();
 		}}>
 		<img src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
+		<div class="absolute left-[50%] top-[2%] translate-x-[-50%] md:w-full">
+			<h2 class="font-c text-center text-4xl font-bold text-black">{title}</h2>
+			<h3 class="translate-y-[10%] text-center text-xl">{author}</h3>
+		</div>
 	</button>
-	<div class="absolute left-[50%] top-[2%] md:w-full translate-x-[-50%]">
-		<h2 class="font-c text-center text-4xl font-bold text-black">{title}</h2>
-		<h3 class="translate-y-[10%] text-center text-xl">{author}</h3>
-	</div>
 	{#if expanded}
 		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
-		<div use:clickOutside class="z-100 fixed left-0 top-0 bg-slate-200">
-			<div class="flex md:w-[512px]">
-				<div class="absolute left-[50%] top-[2%] translate-x-[-50%] md:w-full">
+		<div use:clickOutside class="z-100 absolute left-0 top-0 bg-slate-200 p-12 md:fixed">
+			<div class="w-full md:w-[512px]">
+				<div class="absolute left-[50%] top-[2%] translate-x-[-50%] p-12 md:w-full">
 					<img
 						class="absolute md:min-w-[512px]"
 						src="http://127.0.0.1:1337{cover_image}"
@@ -74,19 +74,18 @@
 					</h2>
 					<h3 class="translate-y-[10%] text-center text-3xl">{author}</h3>
 				</div>
-				<div class="p-4">
-					<p>
-						Average rating: {average_rating}
-					</p>
-					<ul>
-						<li>{title} was released in {release_date}.</li>
-						<li>Page count: {page_count}</li>
-					</ul>
-				</div>
-				<div
-					class="font-e absolute right-0 top-12 translate-x-[120%] bg-[#F9D8A7] p-4 py-8 text-lg">
-					{@html DOMPurify.sanitize(marked.parse(synopsis))}
-				</div>
+			</div>
+			<div class="font-e absolute right-0 top-12 translate-x-[120%] bg-[#F9D8A7] p-4 py-8 text-lg">
+				{@html DOMPurify.sanitize(marked.parse(synopsis))}
+			</div>
+			<div class="fixed bottom-0 p-4 pb-12">
+				<p>
+					Average rating: {average_rating}
+				</p>
+				<ul>
+					<li>{title} was released in {release_date}.</li>
+					<li>Page count: {page_count}</li>
+				</ul>
 			</div>
 		</div>
 	{/if}
