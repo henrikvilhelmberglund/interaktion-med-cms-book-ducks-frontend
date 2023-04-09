@@ -62,23 +62,26 @@
 	{#if expanded}
 		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
-		<div use:clickOutside class="z-100 absolute left-0 top-0 bg-slate-200 p-12 md:fixed">
+		<div use:clickOutside class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min">
 			<div class="w-full md:w-[512px]">
-				<div class="absolute left-[50%] top-[2%] translate-x-[-50%] p-12 md:w-full">
+				<div
+					class="absolute top-[2%] translate-x-0 p-12 pt-0 md:left-[50%] md:w-full md:translate-x-[-50%] md:pt-12">
 					<img
-						class="absolute md:min-w-[512px]"
+						class="absolute min-w-[400px] translate-x-[-25%] md:min-w-[512px] md:translate-x-0"
 						src="http://127.0.0.1:1337{cover_image}"
 						alt={cover_image_alt} />
-					<h2 class="font-c sticky text-center font-bold text-black md:pt-4 md:text-6xl">
+					<h2 class="font-c sticky text-center text-6xl font-bold text-black md:pt-4 md:text-6xl">
 						{title}
 					</h2>
-					<h3 class="translate-y-[10%] text-center text-3xl">{author}</h3>
+					<h3 class="translate-y-[10%] text-center text-3xl md:text-3xl">{author}</h3>
 				</div>
 			</div>
-			<div class="font-e absolute right-0 top-12 translate-x-[120%] bg-[#F9D8A7] p-4 py-8 text-lg">
+			<div
+				class="font-e translate-y-100 absolute right-0 top-12 bg-[#F9D8A7] p-4 py-8 text-lg md:translate-x-[120%] md:translate-y-0">
+				<h3 class="text-2xl">Synopsis</h3>
 				{@html DOMPurify.sanitize(marked.parse(synopsis))}
 			</div>
-			<div class="fixed bottom-0 p-4 pb-12">
+			<div class="bottom-0 bg-slate-300 p-4 pb-12 md:fixed md:w-[512px]">
 				<p>
 					Average rating: {average_rating}
 				</p>
