@@ -1,0 +1,9 @@
+# Projektrapport (VG)
+## Vilka är Strapi CMS främsta styrkor?
+
+## Vilka är Strapi CMS svagheter?
+
+## Vad hade varit orsaker att använda ett annat CMS än Strapi i detta projekt, och vilka CMS du hade kunnat använda dig av istället? Ge minst tre exempel. (T.ex Exempel 1:"Om jag hade velat utöka projektet med X funktionalitet, hade CMS Y lämpat sig bättre p.g.a inbyggda funktionalitet etc.")?
+
+## Hur har din erfarenhet varit med att jobba med Strapi i detta projekt?
+
