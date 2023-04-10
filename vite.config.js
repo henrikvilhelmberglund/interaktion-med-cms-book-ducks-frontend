@@ -1,7 +1,7 @@
 import { sveltekit } from "@sveltejs/kit/vite";
 import UnoCSS from "unocss/vite";
 import presetUno from "@unocss/preset-uno";
-import presetWebFonts from "@unocss/preset-web-fonts";
+import { presetWebFonts } from "unocss";
 import presetIcons from "@unocss/preset-icons";
 import transformerDirectives from "@unocss/transformer-directives";
 import { defineConfig } from "vite";
