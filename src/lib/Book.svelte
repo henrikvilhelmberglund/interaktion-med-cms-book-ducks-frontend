@@ -14,6 +14,49 @@
 	console.log(cover_image);
 	let cover_image_alt = book.attributes.cover_image;
 	let synopsis = book.attributes.synopsis;
+	let title_font = book.attributes.font_component?.title_font;
+	let author_font = book.attributes.font_component?.author_font;
+	let y_offset = `top-[${book.attributes.font_component?.y_offset}%]`;
+	let font_weight = book.attributes.font_component?.font_weight;
+
+	const fonts = {
+		a: "Playfair Display",
+		b: "Lora",
+		c: "Cormorant",
+		d: "Merriweather",
+		e: "EB Garamond",
+		f: "Abril Fatface",
+		g: "Roboto Slab",
+		h: "Montserrat",
+		i: "Bitter",
+		j: "Crimson Text",
+		k: "Alegreya Sans",
+		l: "Asap",
+		m: "Domine",
+		n: "Fanwood Text",
+		o: "Gentium Book Basic",
+		p: "Quattrocento Sans",
+		q: "Tinos",
+		r: "Vollkorn",
+	};
+
+	let titleFontKey = null;
+	let authorFontKey = null;
+
+	for (const key in fonts) {
+		if (fonts[key] === title_font) {
+			titleFontKey = key;
+			break;
+		}
+	}
+	for (const key in fonts) {
+		if (fonts[key] === author_font) {
+			authorFontKey = key;
+			break;
+		}
+	}
+
+	// console.log(titleFontKey);
 
 	let expanded = false;
 
@@ -54,26 +97,27 @@
 			event.stopPropagation();
 		}}>
 		<img src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
-		<div class="absolute w-full left-[50%] top-[2%] translate-x-[-50%] md:w-full">
-			<h2 class="font-c text-center text-4xl font-bold text-black">{title}</h2>
-			<h3 class="translate-y-[10%] text-center text-xl">{author}</h3>
+		<div
+			class="absolute left-[50%] font-{font_weight} {y_offset} w-full translate-x-[-50%] md:w-full">
+			<h2 class="font-{titleFontKey} text-center text-4xl text-black">{title}</h2>
+			<h3 class="font-{authorFontKey} text-center text-xl">{author}</h3>
 		</div>
 	</button>
 	{#if expanded}
 		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
 		<div use:clickOutside class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min">
-			<div class="w-full md:w-[512px]">
+			<div class="h-[690px] w-full md:w-[512px]">
+				<img
+					class="absolute md:min-w-[512px] md:translate-x-0"
+					src="http://127.0.0.1:1337{cover_image}"
+					alt={cover_image_alt} />
 				<div
-					class="absolute w-full  left-0 top-[2%] translate-x-0 pt-0 md:left-[50%] md:w-full md:translate-x-[-50%] md:p-12 md:pt-12">
-					<img
-						class="absolute md:min-w-[512px] md:translate-x-0"
-						src="http://127.0.0.1:1337{cover_image}"
-						alt={cover_image_alt} />
-					<h2 class="font-c sticky pt-4 text-center text-5xl font-bold text-black md:pt-4 md:text-6xl">
+					class="absolute left-0 font-{font_weight} {y_offset} w-full translate-x-0 pt-0 md:left-[50%] md:w-full md:translate-x-[-50%] md:p-12 md:pt-12">
+					<h2 class="font-{titleFontKey} pt-4 text-center text-5xl text-black md:pt-4 md:text-6xl">
 						{title}
 					</h2>
-					<h3 class="translate-y-[10%] text-center text-2xl md:text-3xl">{author}</h3>
+					<h3 class="font-{authorFontKey} text-center text-2xl md:text-3xl">{author}</h3>
 				</div>
 			</div>
 			<div
