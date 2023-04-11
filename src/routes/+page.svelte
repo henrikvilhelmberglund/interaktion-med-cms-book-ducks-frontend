@@ -4,6 +4,7 @@
 	import { getBooks } from "$lib/api";
 	import { fly } from "svelte/transition";
 	import Footer from "$lib/Footer.svelte";
+	import Header from "$lib/Header.svelte";
 	import Book from "$lib/Book.svelte";
 	import LoginRegister from "$lib/LoginRegister.svelte";
 
@@ -26,6 +27,7 @@
 	});
 </script>
 
+<Header {myUser}/>
 <button
 	on:click={() => {
 		sessionStorage.removeItem("token");
