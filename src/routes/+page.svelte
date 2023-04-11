@@ -26,6 +26,13 @@
 	});
 </script>
 
+<button
+	on:click={() => {
+		sessionStorage.removeItem("token");
+		location.reload();
+	}}
+	class="absolute right-4 rounded bg-blue-400 p-2 hover:bg-blue-300">Clear token</button>
+
 <main class="[&>*]:m-4">
 	{#if myUser.hasOwnProperty("user") && showLoginPopup}
 		<div
