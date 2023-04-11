@@ -99,7 +99,7 @@
 		<img src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
 		<div
 			class="absolute left-[50%] font-{font_weight} {y_offset} w-full translate-x-[-50%] md:w-full">
-			<h2 class="font-{titleFontKey} text-center text-4xl text-black">{title}</h2>
+			<h2 class="font-{titleFontKey} text-center text-3xl text-black">{title}</h2>
 			<h3 class="font-{authorFontKey} text-center text-xl">{author}</h3>
 		</div>
 	</button>
@@ -114,7 +114,7 @@
 					alt={cover_image_alt} />
 				<div
 					class="absolute left-0 font-{font_weight} {y_offset} w-full translate-x-0 pt-0 md:left-[50%] md:w-full md:translate-x-[-50%] md:p-12 md:pt-12">
-					<h2 class="font-{titleFontKey} pt-4 text-center text-5xl text-black md:pt-4 md:text-6xl">
+					<h2 class="font-{titleFontKey} pt-4 text-center text-5xl text-black md:pt-4 md:text-5xl">
 						{title}
 					</h2>
 					<h3 class="font-{authorFontKey} text-center text-2xl md:text-3xl">{author}</h3>
