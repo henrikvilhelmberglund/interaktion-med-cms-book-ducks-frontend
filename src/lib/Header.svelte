@@ -3,14 +3,13 @@
 	export let myUser;
 </script>
 
-<header class="flex justify-end bg-slate-800 p-6">
+<header class="flex items-center justify-end bg-slate-800 p-6">
 	{#if myUser.hasOwnProperty("user")}
-		<p>{myUser.user.username}</p>
+		<p class="mr-4 text-white">{myUser.user.username}</p>
 	{:else}
-		<p>login stuff here</p>
-
-		<LoginRegister bind:myUser />
+		<p class="mr-4 text-white">Not logged in</p>
 	{/if}
+	<LoginRegister bind:myUser />
 </header>
 
 <style>
