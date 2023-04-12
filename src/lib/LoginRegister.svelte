@@ -1,6 +1,7 @@
 <script>
 	import { fly } from "svelte/transition";
 	import { onMount } from "svelte";
+	import { clickOutside } from "$lib/actions";
 
 	onMount(async () => {
 		let token = sessionStorage.getItem("token");
@@ -17,6 +18,7 @@
 	});
 
 	export let myUser = {};
+	let showLogin;
 	let error = false;
 	let inputUsername;
 	let inputPassword;
@@ -92,96 +94,106 @@
 	}
 </script>
 
-{#if !Object.keys(myUser).length || error}
-	<div class="flex flex-col items-center">
-		<button
-			on:click={() => (mode === "login" ? (mode = "register") : (mode = "login"))}
-			class="mb-4 rounded-md bg-blue-500 p-2 hover:bg-blue-400"
-			>Switch to {mode === "login" ? "register" : "login"}</button>
-		<form action="">
-			<div class="rounded-lg bg-slate-300 p-6 [&>*]:m-2 [&>*]:p-2">
-				<h1 class="text-3xl">{mode === "login" ? "Login" : "Register"}</h1>
+<button
+	on:click={() => (showLogin = !showLogin)}
+	class="mb-4 rounded-md bg-blue-500 p-2 hover:bg-blue-400">Login</button>
 
-				{#if mode === "login"}
-					<input
-						bind:value={inputUsername}
-						placeholder="Username or email"
-						id="username"
-						class="rounded border p-2"
-						type="text" />
-					<input
-						bind:value={inputPassword}
-						on:input={() => (error = false)}
-						placeholder="Password"
-						id="password"
-						class="rounded border p-2"
-						type="password" />
-					<button
-						on:click={async () => {
-							myUser = await login();
-						}}
-						disabled={!inputUsername || !inputPassword}
-						class="disabled:hover-bg-blue-400 mt-4 rounded bg-blue-400 p-2 hover:bg-blue-300 disabled:opacity-25"
-						>Log in</button>
-				{:else if mode === "register"}
-        <input
-          bind:value={registerEmail}
-          placeholder="Email"
-          id="email"
-          class="rounded border p-2"
-          type="email" />
-					<input
-						bind:value={registerUsername}
-						placeholder="Username"
-						id="username"
-						class="rounded border p-2"
-						type="text" />
+{#if showLogin}
+	{#if !Object.keys(myUser).length || error}
+		<div
+			use:clickOutside={() => {
+				showLogin = false;
+			}}
+			class="z-100 absolute flex flex-col items-center">
+			<button
+				on:click={() => (mode === "login" ? (mode = "register") : (mode = "login"))}
+				class="mb-4 rounded-md bg-blue-500 p-2 hover:bg-blue-400"
+				>Switch to {mode === "login" ? "register" : "login"}</button>
+			<form action="">
+				<div class="rounded-lg bg-slate-300 p-6 [&>*]:m-2 [&>*]:p-2">
+					<h1 class="text-3xl">{mode === "login" ? "Login" : "Register"}</h1>
 
-					<input
-						bind:value={registerPassword}
-						placeholder="Password"
-						id="password"
-						class="rounded border p-2"
-						type="password" />
-					<button
-						on:click={async () => {
-							try {
-								await register();
-								successfullyRegistered = true;
-								setTimeout(() => {
-									successfullyRegistered = false;
-								}, 3000);
-							} catch (error) {
-								console.log(error);
-							}
-						}}
-						disabled={!registerUsername || !registerEmail || !registerPassword}
-						class="disabled:hover-bg-blue-400 mt-4 rounded bg-blue-400 p-2 hover:bg-blue-300 disabled:opacity-25"
-						>Register</button>
-				{/if}
-			</div>
-		</form>
-		{#if error}
-			<div class="mt-4 rounded-lg bg-red-500 p-4" transition:fly={{ y: 20 }}>
-				{#if typeof error === "string"}
-					<p class="">{error}</p>
-					<p class="">Please try again.</p>
-				{:else}
-					{#each Object.values(error) as errorObject}
-						{#each errorObject as errorMessage}
-							<p class="">{errorMessage.message}</p>
+					{#if mode === "login"}
+						<input
+							bind:value={inputUsername}
+							placeholder="Username or email"
+							id="username"
+							class="rounded border p-2"
+							type="text" />
+						<input
+							bind:value={inputPassword}
+							on:input={() => (error = false)}
+							placeholder="Password"
+							id="password"
+							class="rounded border p-2"
+							type="password" />
+						<button
+							on:click={async () => {
+								myUser = await login();
+							}}
+							disabled={!inputUsername || !inputPassword}
+							class="disabled:hover-bg-blue-400 mt-4 rounded bg-blue-400 p-2 hover:bg-blue-300 disabled:opacity-25"
+							>Log in</button>
+					{:else if mode === "register"}
+						<input
+							bind:value={registerEmail}
+							placeholder="Email"
+							id="email"
+							class="rounded border p-2"
+							type="email" />
+						<input
+							bind:value={registerUsername}
+							placeholder="Username"
+							id="username"
+							class="rounded border p-2"
+							type="text" />
+
+						<input
+							bind:value={registerPassword}
+							placeholder="Password"
+							id="password"
+							class="rounded border p-2"
+							type="password" />
+						<button
+							on:click={async () => {
+								try {
+									await register();
+									successfullyRegistered = true;
+									setTimeout(() => {
+										successfullyRegistered = false;
+									}, 3000);
+								} catch (error) {
+									console.log(error);
+								}
+							}}
+							disabled={!registerUsername || !registerEmail || !registerPassword}
+							class="disabled:hover-bg-blue-400 mt-4 rounded bg-blue-400 p-2 hover:bg-blue-300 disabled:opacity-25"
+							>Register</button>
+					{/if}
+				</div>
+			</form>
+			{#if error}
+				<div class="mt-4 rounded-lg bg-red-500 p-4" transition:fly={{ y: 20 }}>
+					{#if typeof error === "string"}
+						<p class="">{error}</p>
+						<p class="">Please try again.</p>
+					{:else}
+						{#each Object.values(error) as errorObject}
+							{#each errorObject as errorMessage}
+								<p class="">{errorMessage.message}</p>
+							{/each}
 						{/each}
-					{/each}
-					<p class="">Please try again.</p>
-				{/if}
-			</div>
-		{/if}
-		{#if successfullyRegistered}
-			<div class="mt-4 rounded-lg bg-green-500 p-4" transition:fly={{ y: 20 }}>
-				<p class="">Successfully registered new user {registerUsername}!</p>
-			</div>
-		{/if}
-	</div>
+						<p class="">Please try again.</p>
+					{/if}
+				</div>
+			{/if}
+			{#if successfullyRegistered}
+				<div class="mt-4 rounded-lg bg-green-500 p-4" transition:fly={{ y: 20 }}>
+					<p class="">Successfully registered new user {registerUsername}!</p>
+				</div>
+			{/if}
+		</div>
+	{/if}
 {/if}
 
 <style>

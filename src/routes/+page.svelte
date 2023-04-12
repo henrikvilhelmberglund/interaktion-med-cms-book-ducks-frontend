@@ -6,7 +6,6 @@
 	import Footer from "$lib/Footer.svelte";
 	import Header from "$lib/Header.svelte";
 	import Book from "$lib/Book.svelte";
-	import LoginRegister from "$lib/LoginRegister.svelte";
 
 	let books = [];
 	let myUser = {};
@@ -27,7 +26,7 @@
 	});
 </script>
 
-<Header {myUser}/>
+<Header bind:myUser/>
 <button
 	on:click={() => {
 		sessionStorage.removeItem("token");
@@ -46,7 +45,7 @@
 	{/if}
 	<h1 class="flex justify-center text-3xl">Book Ducks</h1>
 
-	<LoginRegister bind:myUser />
+
 	<div class="flex flex-wrap justify-end gap-4 md:justify-start">
 		{#each Object.values(books) as book}
 			<Book {book} />

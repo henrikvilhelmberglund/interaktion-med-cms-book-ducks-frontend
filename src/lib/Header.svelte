@@ -1,4 +1,5 @@
 <script>
+	import LoginRegister from "$lib/LoginRegister.svelte";
 	export let myUser;
 </script>
 
@@ -7,6 +8,8 @@
 		<p>{myUser.user.username}</p>
 	{:else}
 		<p>login stuff here</p>
+
+		<LoginRegister bind:myUser />
 	{/if}
 </header>
 
