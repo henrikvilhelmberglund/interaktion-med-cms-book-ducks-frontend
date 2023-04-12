@@ -64,11 +64,15 @@
 
 <article class="relative w-72">
 	<button
+  class="hover:(outline-2 outline-black outline-solid rounded-sm)"
 		on:click={() => {
 			expanded = true;
 			event.stopPropagation();
 		}}>
-		<img src="http://127.0.0.1:1337{cover_image}" alt={cover_image_alt} />
+		<img
+			class="shadow-xl shadow-black/80"
+			src="http://127.0.0.1:1337{cover_image}"
+			alt={cover_image_alt} />
 		<div
 			class="absolute left-[50%] font-{font_weight} {y_offset} w-full translate-x-[-50%] md:w-full">
 			<h2 class="font-{titleFontKey} text-center text-3xl text-black">{title}</h2>
@@ -83,7 +87,7 @@
 			class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min">
 			<div class="h-[690px] w-full md:w-[512px]">
 				<img
-					class="absolute md:min-w-[512px] md:translate-x-0"
+					class="absolute shadow-xl shadow-black/80 md:min-w-[512px] md:translate-x-0"
 					src="http://127.0.0.1:1337{cover_image}"
 					alt={cover_image_alt} />
 				<div
