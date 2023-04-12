@@ -29,7 +29,22 @@
 	let registerPassword;
 	let registerEmail;
 
+	let showLoginPopup = false;
+
 	let successfullyRegistered = false;
+
+	// set from actual functions instead
+	// $: {
+	//   if (myUser.hasOwnProperty("user")) {
+	//     showLoginPopup = true;
+	//     setTimeout(() => {
+	//       showLoginPopup = false;
+	//     }, 1500);
+	//   }
+	// }
+	function nicefyError(string) {
+		return `${string[0].toUpperCase()}${string.slice(1)}.`;
+	}
 
 	async function login() {
 		try {
@@ -45,6 +60,7 @@
 				let data = await res.json();
 				console.log(JSON.stringify(data.error));
 				error = data.error.message;
+				error = nicefyError(error);
 				throw new Error(error);
 			}
 			let data = await res.json();
@@ -80,7 +96,9 @@
 			});
 			if (res.status === 400) {
 				let data = await res.json();
-				error = data.error.details;
+				error = data.error.message;
+        console.log(error)
+				error = nicefyError(error);
 				inputPassword = "";
 				// throw error;
 				throw new Error(error);
@@ -94,9 +112,17 @@
 	}
 </script>
 
-<button
-	on:click={() => (showLogin = !showLogin)}
-	class="mb-4 rounded-md bg-blue-500 p-2 hover:bg-blue-400">Login</button>
+{#if !Object.keys(myUser).length}
+	<button on:click={() => (showLogin = true)} class="rounded-md bg-blue-500 p-2 hover:bg-blue-400"
+		>Login</button>
+{:else}
+	<button
+		on:click={() => {
+			sessionStorage.removeItem("token");
+			location.reload();
+		}}
+		class="rounded bg-blue-400 p-2 hover:bg-blue-300">Log out</button>
+{/if}
 
 {#if showLogin}
 	{#if !Object.keys(myUser).length || error}
@@ -104,7 +130,7 @@
 			use:clickOutside={() => {
 				showLogin = false;
 			}}
-			class="z-100 absolute flex flex-col items-center">
+			class="z-100 absolute flex flex-col items-center pt-48">
 			<button
 				on:click={() => (mode === "login" ? (mode = "register") : (mode = "login"))}
 				class="mb-4 rounded-md bg-blue-500 p-2 hover:bg-blue-400"
@@ -130,6 +156,10 @@
 						<button
 							on:click={async () => {
 								myUser = await login();
+								showLoginPopup = true;
+								setTimeout(() => {
+									showLoginPopup = false;
+								}, 2000);
 							}}
 							disabled={!inputUsername || !inputPassword}
 							class="disabled:hover-bg-blue-400 mt-4 rounded bg-blue-400 p-2 hover:bg-blue-300 disabled:opacity-25"
@@ -157,11 +187,11 @@
 						<button
 							on:click={async () => {
 								try {
-									await register();
+									myUser = await register();
 									successfullyRegistered = true;
 									setTimeout(() => {
 										successfullyRegistered = false;
-									}, 3000);
+									}, 2000);
 								} catch (error) {
 									console.log(error);
 								}
@@ -173,7 +203,7 @@
 				</div>
 			</form>
 			{#if error}
-				<div class="mt-4 rounded-lg bg-red-500 p-4" transition:fly={{ y: 20 }}>
+				<div class="absolute top-[424px] mt-4 rounded-lg bg-red-500 p-4" transition:fly={{ y: 20 }}>
 					{#if typeof error === "string"}
 						<p class="">{error}</p>
 						<p class="">Please try again.</p>
@@ -187,11 +217,21 @@
 					{/if}
 				</div>
 			{/if}
-			{#if successfullyRegistered}
-				<div class="mt-4 rounded-lg bg-green-500 p-4" transition:fly={{ y: 20 }}>
-					<p class="">Successfully registered new user {registerUsername}!</p>
-				</div>
-			{/if}
+		</div>
+	{/if}
+	{#if successfullyRegistered}
+		<div
+			class="z-100 absolute left-[50%] top-0 mt-4 translate-x-[-50%] rounded-lg bg-green-500 p-4"
+			transition:fly={{ y: 20 }}>
+			<p class="">Successfully registered new user {registerUsername}!</p>
+		</div>
+	{/if}
+	{#if showLoginPopup}
+		<div
+			id="login-popup"
+			class="z-100 absolute left-[50%] top-0 mt-4 translate-x-[-50%] rounded-lg bg-green-500 p-4"
+			transition:fly={{ y: 20 }}>
+			<p>Successfully logged in as {myUser.user?.username}!</p>
 		</div>
 	{/if}
 {/if}
