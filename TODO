@@ -1,4 +1,6 @@
 
 Todo:
-  ☐ Create font selector thingy in Strapi (for each book)
-  ☐ Come up with a way to change the text location per book (maybe in Strapi as well)
+  ✔ Create font selector thingy in Strapi (for each book) @done(23-04-12 11:24)
+  ✔ Come up with a way to change the text location per book (maybe in Strapi as well) @done(23-04-12 11:24)
+  ☐ Use https://github.com/Dunqing/unocss-preset-theme with lightmode/darkmode for each theme and set vars for "custom" light and dark theme using JS
+
