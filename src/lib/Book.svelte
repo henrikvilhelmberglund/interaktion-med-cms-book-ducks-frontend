@@ -1,5 +1,6 @@
 <script>
 	import { base } from "$app/paths";
+	import { clickOutside } from "$lib/actions";
 	import DOMPurify from "dompurify";
 	import { marked } from "marked";
 
@@ -59,35 +60,6 @@
 	// console.log(titleFontKey);
 
 	let expanded = false;
-
-	function clickOutside(element) {
-		function onEsc(event) {
-			if (event.key === "Escape") {
-				console.log("pressed esc - closing!");
-				expanded = false;
-			}
-		}
-
-		function onClick(event) {
-			if (!element.contains(event.target)) {
-				console.log("clicked outside of modal - closing!");
-				expanded = false;
-			} else {
-				console.log("clicked in modal");
-			}
-		}
-		document.body.addEventListener("click", onClick);
-		document.body.addEventListener("keydown", onEsc);
-		return {
-			update(newCallbackFunction) {
-				callbackFunction = newCallbackFunction;
-			},
-			destroy() {
-				document.body.removeEventListener("click", onClick);
-				document.body.removeEventListener("keydown", onEsc);
-			},
-		};
-	}
 </script>
 
 <article class="relative w-72">
@@ -106,7 +78,9 @@
 	{#if expanded}
 		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
-		<div use:clickOutside class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min">
+		<div
+			use:clickOutside={() => (expanded = false)}
+			class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min">
 			<div class="h-[690px] w-full md:w-[512px]">
 				<img
 					class="absolute md:min-w-[512px] md:translate-x-0"
