@@ -1,13 +1,19 @@
 <script>
-	import { myUser } from "./stores";
+	import { updateUserRating } from "./api";
+	import { myUser, userRatingObject } from "./stores";
 	import { fly } from "svelte/transition";
+
 	export let average_rating;
-	export let id;
+	export let book_id;
 	let showPleaseLoginPopup = false;
 	let timeout;
+	let newRating = 0;
 	// 127.0.0.1:1337/api/books?populate[ratings][populate][0]=user
+	// 127.0.0.1:1337/api/users/me?populate[ratings][populate][0]=books
 
-	function starPressed(i) {
+	console.log($myUser);
+	console.table($userRatingObject);
+	async function starPressed(i) {
 		if (!Object.keys($myUser).length) {
 			if (timeout) clearTimeout(timeout);
 			showPleaseLoginPopup = true;
@@ -16,8 +22,17 @@
 			}, 1500);
 			return;
 		}
-		let half_stars = i + 1;
-		console.log(half_stars);
+		newRating = i + 1;
+
+		if ($userRatingObject) {
+			await updateUserRating($userRatingObject, book_id, newRating);
+			$userRatingObject[book_id].userRating = newRating;
+			// user rating exists - update it
+		} else {
+			// no user rating - create it
+		}
+    // TODO
+    // update book's average rating here too
 	}
 </script>
 
@@ -39,7 +54,7 @@
 				xmlns="http://www.w3.org/2000/svg"
 				width="12"
 				height="24"
-        class:star-hover={!Object.keys($myUser).length}
+				class:star-hover={Object.keys($myUser).length}
 				class:-scale-x-100={i % 2 !== 0}
 				class:fill-orange-400={average_rating > i}
 				class:fill-slate-400={average_rating <= i}>
