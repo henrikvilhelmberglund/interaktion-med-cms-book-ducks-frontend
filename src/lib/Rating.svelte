@@ -1,5 +1,6 @@
 <script>
 	export let average_rating;
+  export let id;
 	// 127.0.0.1:1337/api/books?populate[ratings][populate][0]=user
 </script>
 

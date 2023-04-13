@@ -4,7 +4,7 @@
 	import DOMPurify from "dompurify";
 	import { marked } from "marked";
 	import Rating from "./Rating.svelte";
-	import { updateAverageRatingNonAuth } from "./api";
+	import { updateAverageRating } from "./api";
 
 	export let book;
 	console.log(book);
@@ -127,10 +127,10 @@
 				<button
 					on:click={() => {
 						console.log("did something");
-						updateAverageRatingNonAuth(id, newRating);
+						updateAverageRating(id, newRating);
 					}}
 					class="btn">Update ratings</button>
-				<Rating {average_rating} />
+				<Rating {id} {average_rating} />
 				<ul>
 					<li>{title} was released in {release_date}.</li>
 					<li>Page count: {page_count}</li>

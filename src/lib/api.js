@@ -5,10 +5,10 @@ export const getBooks = async () => {
 	return data;
 };
 
-export const updateAverageRatingNonAuth = async (id, newRating) => {
+export const updateAverageRating = async (id, newRating) => {
 	const average_rating = newRating;
 	console.log(average_rating);
-	const data = await sendRequestNonAuth("PUT", `http://127.0.0.1:1337/api/books/${id}`, {
+	const data = await sendRequest("PUT", `http://127.0.0.1:1337/api/books/${id}`, {
 		data: {
 			average_rating: average_rating,
 		},
