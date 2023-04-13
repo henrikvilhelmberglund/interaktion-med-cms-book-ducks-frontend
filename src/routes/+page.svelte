@@ -9,15 +9,31 @@
 
 	let books = [];
 	let myUser = {};
+	let showNetworkError = false;
 
 	onMount(async () => {
-		books = await getBooks();
-		console.log(books);
+		try {
+			books = await getBooks();
+			console.log(books);
+		} catch (error) {
+			if (error === "network error") {
+				showNetworkError = true;
+			}
+			console.log(error);
+			throw error;
+		}
 	});
 </script>
 
-<Header bind:myUser/>
+<Header bind:myUser />
 <main class="[&>*]:m-4">
+	{#if showNetworkError}
+		<div class="flex justify-center">
+			<p class="rounded bg-red-400 p-2 text-2xl">
+				It seems like the Strapi server is not running. Please start it and try again!
+			</p>
+		</div>
+	{/if}
 	<div class="flex flex-wrap justify-end gap-4 md:justify-start">
 		{#each Object.values(books) as book}
 			<Book {book} />

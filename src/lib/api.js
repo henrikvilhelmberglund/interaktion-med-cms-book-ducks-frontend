@@ -43,6 +43,10 @@ export const sendRequestNonAuth = async (method, url, data = null) => {
 		});
 		return response.data.data;
 	} catch (e) {
+		if (e.code === "ERR_NETWORK") {
+			throw "network error";
+		}
+		console.log("code:" + e.code);
 		console.error(e);
 		throw e.request;
 	}
