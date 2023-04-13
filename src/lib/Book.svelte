@@ -122,7 +122,7 @@
 			<div
 				class="translate-y-160 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0">
 				<p>
-					Average rating: {average_rating}
+					Average rating: {average_rating ?? "This book has not been rated yet."}
 				</p>
 				<button
 					on:click={() => {
