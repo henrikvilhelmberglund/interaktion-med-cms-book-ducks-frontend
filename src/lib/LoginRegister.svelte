@@ -2,18 +2,43 @@
 	import { fly } from "svelte/transition";
 	import { onMount } from "svelte";
 	import { clickOutside } from "$lib/actions";
-	import { myUser, token } from "./stores";
+	import { myUser, token, userRatingObject } from "./stores";
+
+	function setUserRatingObject() {
+		$myUser.user.ratings.forEach((rating) => {
+			console.log(rating);
+			if (rating.books[0].id) {
+				// 	console.log(rating.half_stars);
+				$userRatingObject[rating.books[0].id] = {
+					rating_id: rating.id,
+					userRating: rating.half_stars,
+				};
+				console.log(
+					`${$myUser.user.username} has rated ${rating.books[0].title} with ${
+						$userRatingObject[rating.books[0].id].userRating
+					}`
+				);
+			} else {
+				console.log("uh what");
+			}
+		});
+	}
 
 	onMount(async () => {
 		if ($token) {
-			let res = await fetch("http://127.0.0.1:1337/api/users/me?populate=*", {
-				headers: {
-					Authorization: `Bearer ${$token}`,
-				},
-			});
+			let res = await fetch(
+				"http://127.0.0.1:1337/api/users/me?populate[ratings][populate][0]=books",
+				{
+					headers: {
+						Authorization: `Bearer ${$token}`,
+					},
+				}
+			);
 			let data = await res.json();
+			console.log(data);
 			$myUser.user = data;
 		}
+		setUserRatingObject();
 	});
 
 	let showLogin;
