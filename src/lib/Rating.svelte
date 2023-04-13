@@ -14,6 +14,7 @@
 			timeout = setTimeout(() => {
 				showPleaseLoginPopup = false;
 			}, 1500);
+			return;
 		}
 		let half_stars = i + 1;
 		console.log(half_stars);
@@ -38,6 +39,7 @@
 				xmlns="http://www.w3.org/2000/svg"
 				width="12"
 				height="24"
+        class:star-hover={!Object.keys($myUser).length}
 				class:-scale-x-100={i % 2 !== 0}
 				class:fill-orange-400={average_rating > i}
 				class:fill-slate-400={average_rating <= i}>
