@@ -3,22 +3,38 @@
 	import { clickOutside } from "$lib/actions";
 	import DOMPurify from "dompurify";
 	import { marked } from "marked";
+	import Rating from "./Rating.svelte";
+	import { updateAverageRatingNonAuth } from "./api";
 
 	export let book;
 	console.log(book);
+	let id = book.id;
+	console.log(id);
 	let title = book.attributes.title;
 	let author = book.attributes.author;
 	let page_count = book.attributes.page_count;
 	let average_rating = book.attributes.average_rating;
 	let release_date = book.attributes.release_date;
 	let cover_image = book.attributes.cover_image.data.attributes.url;
-	console.log(cover_image);
+	// console.log(cover_image);
 	let cover_image_alt = book.attributes.cover_image;
 	let synopsis = book.attributes.synopsis;
 	let title_font = book.attributes.font_component?.title_font;
 	let author_font = book.attributes.font_component?.author_font;
 	let y_offset = `top-[${book.attributes.font_component?.y_offset}%]`;
 	let font_weight = book.attributes.font_component?.font_weight;
+	let ratings = book.attributes.ratings.data;
+	let newRating = 0;
+	if (ratings) {
+		Object.values(ratings).forEach((rating) => {
+			// console.log(`${title} has ${rating.attributes.half_stars} half stars`);
+			console.log(rating);
+			newRating += rating.attributes.half_stars;
+		});
+		newRating /= Math.round(ratings.length);
+	}
+
+	// $: average
 
 	const fonts = {
 		a: "Playfair Display",
@@ -64,7 +80,7 @@
 
 <article class="relative w-72">
 	<button
-  class="hover:(outline-2 outline-black outline-solid rounded-sm)"
+		class="hover:(outline-2 outline-solid rounded-sm) outline-black"
 		on:click={() => {
 			expanded = true;
 			event.stopPropagation();
@@ -108,6 +124,13 @@
 				<p>
 					Average rating: {average_rating}
 				</p>
+				<button
+					on:click={() => {
+						console.log("did something");
+						updateAverageRatingNonAuth(id, newRating);
+					}}
+					class="btn">Update ratings</button>
+				<Rating {average_rating} />
 				<ul>
 					<li>{title} was released in {release_date}.</li>
 					<li>Page count: {page_count}</li>
