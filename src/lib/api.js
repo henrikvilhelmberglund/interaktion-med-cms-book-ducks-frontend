@@ -1,8 +1,19 @@
 import axios from "axios";
 
 export const getBooks = async () => {
-  const data = await sendRequestNonAuth("GET", "http://127.0.0.1:1337/api/books?populate=*");
-  return data;
+	const data = await sendRequestNonAuth("GET", "http://127.0.0.1:1337/api/books?populate=*");
+	return data;
+};
+
+export const updateAverageRatingNonAuth = async (id, newRating) => {
+	const average_rating = newRating;
+	console.log(average_rating);
+	const data = await sendRequestNonAuth("PUT", `http://127.0.0.1:1337/api/books/${id}`, {
+		data: {
+			average_rating: average_rating,
+		},
+	});
+	return data;
 };
 
 export const sendRequest = async (method, url, data = null) => {
