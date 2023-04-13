@@ -2,22 +2,20 @@
 	import { fly } from "svelte/transition";
 	import { onMount } from "svelte";
 	import { clickOutside } from "$lib/actions";
+	import { myUser, token } from "./stores";
 
 	onMount(async () => {
-		let token = sessionStorage.getItem("token");
-		if (token) {
-			let res = await fetch("http://127.0.0.1:1337/api/users/me?populate=deep,3", {
+		if ($token) {
+			let res = await fetch("http://127.0.0.1:1337/api/users/me?populate=*", {
 				headers: {
-					Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+					Authorization: `Bearer ${$token}`,
 				},
 			});
 			let data = await res.json();
-			myUser.user = data;
+			$myUser.user = data;
 		}
-		// myUser = JSON.parse(sessionStorage.getItem("userData"));
 	});
 
-	export let myUser = {};
 	let showLogin;
 	let error = false;
 	let inputUsername;
@@ -67,8 +65,8 @@
 
 			// session storage
 
-			sessionStorage.setItem("token", data.jwt);
-			// sessionStorage.setItem("userData", JSON.stringify(data));
+			$myUser = data;
+			$token = data.jwt;
 
 			console.log(data);
 
@@ -97,7 +95,7 @@
 			if (res.status === 400) {
 				let data = await res.json();
 				error = data.error.message;
-        console.log(error)
+				console.log(error);
 				error = nicefyError(error);
 				inputPassword = "";
 				// throw error;
@@ -105,6 +103,8 @@
 			}
 			let data = await res.json();
 			error = false;
+			$myUser = data;
+			$token = data.jwt;
 			return data;
 		} catch (e) {
 			throw e;
@@ -112,20 +112,20 @@
 	}
 </script>
 
-{#if !Object.keys(myUser).length}
+{#if !Object.keys($myUser).length}
 	<button on:click={() => (showLogin = true)} class="rounded-md bg-blue-500 p-2 hover:bg-blue-400"
 		>Login</button>
 {:else}
 	<button
 		on:click={() => {
-			sessionStorage.removeItem("token");
+			$token = null;
 			location.reload();
 		}}
 		class="rounded bg-blue-400 p-2 hover:bg-blue-300">Log out</button>
 {/if}
 
 {#if showLogin}
-	{#if !Object.keys(myUser).length || error}
+	{#if !Object.keys($myUser).length || error}
 		<div
 			use:clickOutside={() => {
 				showLogin = false;
@@ -155,7 +155,7 @@
 							type="password" />
 						<button
 							on:click={async () => {
-								myUser = await login();
+								await login();
 								showLoginPopup = true;
 								setTimeout(() => {
 									showLoginPopup = false;
@@ -187,7 +187,7 @@
 						<button
 							on:click={async () => {
 								try {
-									myUser = await register();
+									await register();
 									successfullyRegistered = true;
 									setTimeout(() => {
 										successfullyRegistered = false;
@@ -231,7 +231,7 @@
 			id="login-popup"
 			class="z-100 absolute left-[50%] top-0 mt-4 translate-x-[-50%] rounded-lg bg-green-500 p-4"
 			transition:fly={{ y: 20 }}>
-			<p>Successfully logged in as {myUser.user?.username}!</p>
+			<p>Successfully logged in as {$myUser.user?.username}!</p>
 		</div>
 	{/if}
 {/if}

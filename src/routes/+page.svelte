@@ -8,7 +8,6 @@
 	import Book from "$lib/Book.svelte";
 
 	let books = [];
-	let myUser = {};
 	let showNetworkError = false;
 
 	onMount(async () => {
@@ -25,7 +24,7 @@
 	});
 </script>
 
-<Header bind:myUser />
+<Header />
 <main class="[&>*]:m-4">
 	{#if showNetworkError}
 		<div class="flex justify-center">

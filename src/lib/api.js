@@ -1,4 +1,6 @@
 import axios from "axios";
+import { token } from "./stores";
+import { get } from 'svelte/store'
 
 export const getBooks = async () => {
 	const data = await sendRequestNonAuth("GET", "http://127.0.0.1:1337/api/books?populate=*");
@@ -19,7 +21,7 @@ export const updateAverageRating = async (id, newRating) => {
 export const sendRequest = async (method, url, data = null) => {
 	try {
 		const headers = {
-			Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+			Authorization: `Bearer ${get(token)}`,
 		};
 		const response = await axios({
 			method,
