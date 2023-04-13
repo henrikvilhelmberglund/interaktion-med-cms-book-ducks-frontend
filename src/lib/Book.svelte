@@ -5,11 +5,12 @@
 	import { marked } from "marked";
 	import Rating from "./Rating.svelte";
 	import { updateAverageRating } from "./api";
+	import { myUser, userRatingObject } from "./stores";
 
 	export let book;
-	console.log(book);
-	let id = book.id;
-	console.log(id);
+	// console.log(book);
+	let book_id = book.id;
+	// console.log(id);
 	let title = book.attributes.title;
 	let author = book.attributes.author;
 	let page_count = book.attributes.page_count;
@@ -24,15 +25,21 @@
 	let y_offset = `top-[${book.attributes.font_component?.y_offset}%]`;
 	let font_weight = book.attributes.font_component?.font_weight;
 	let ratings = book.attributes.ratings.data;
-	let newRating = 0;
-	if (ratings) {
-		Object.values(ratings).forEach((rating) => {
-			// console.log(`${title} has ${rating.attributes.half_stars} half stars`);
-			console.log(rating);
-			newRating += rating.attributes.half_stars;
-		});
-		newRating /= Math.round(ratings.length);
-	}
+	console.log(ratings);
+	let ratingChanged = false;
+	let newAverageRating = 0;
+
+	// console.log($myUser.user?.ratings.filter((a) => a.books.id === id));
+	// console.log(title);
+	// console.log(userHasRated);
+	// if (ratings) {
+	// 	Object.values(ratings).forEach((rating) => {
+	// 		// console.log(`${title} has ${rating.attributes.half_stars} half stars`);
+	// 		console.log(rating);
+	// 		newRating += rating.attributes.half_stars;
+	// 	});
+	// 	newRating /= Math.round(ratings.length);
+	// }
 
 	// $: average
 
@@ -121,16 +128,22 @@
 			</div>
 			<div
 				class="translate-y-160 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0">
+				{#key ratingChanged}
+					<p>
+						Your rating: {$userRatingObject[book_id]?.userRating ??
+							"You haven't rated this book yet."}
+					</p>
+				{/key}
 				<p>
 					Average rating: {average_rating ?? "This book has not been rated yet."}
 				</p>
 				<button
 					on:click={() => {
 						console.log("did something");
-						updateAverageRating(id, newRating);
+						updateAverageRating(book_id, newAverageRating);
 					}}
 					class="btn">Update ratings</button>
-				<Rating {id} {average_rating} />
+				<Rating {book_id} {average_rating} />
 				<ul>
 					<li>{title} was released in {release_date}.</li>
 					<li>Page count: {page_count}</li>
