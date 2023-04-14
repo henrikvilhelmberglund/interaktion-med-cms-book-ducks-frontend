@@ -3,22 +3,38 @@
 	import { clickOutside } from "$lib/actions";
 	import DOMPurify from "dompurify";
 	import { marked } from "marked";
+	import Rating from "./Rating.svelte";
+	import { updateAverageRating } from "./api";
+	import { bookExpanded, myUser, userRatingObject } from "./stores";
 
 	export let book;
-	console.log(book);
+	// console.log(book);
+	let book_id = book.id;
+	// console.log(id);
 	let title = book.attributes.title;
 	let author = book.attributes.author;
 	let page_count = book.attributes.page_count;
 	let average_rating = book.attributes.average_rating;
 	let release_date = book.attributes.release_date;
 	let cover_image = book.attributes.cover_image.data.attributes.url;
-	console.log(cover_image);
+	// console.log(cover_image);
 	let cover_image_alt = book.attributes.cover_image;
 	let synopsis = book.attributes.synopsis;
 	let title_font = book.attributes.font_component?.title_font;
 	let author_font = book.attributes.font_component?.author_font;
 	let y_offset = `top-[${book.attributes.font_component?.y_offset}%]`;
 	let font_weight = book.attributes.font_component?.font_weight;
+	let ratings = book.attributes.ratings.data;
+	let usersWhoRated = book.attributes.ratings.data.length;
+	if (ratings.length) console.log(ratings);
+	let ratingChanged = false;
+
+	// console.log($myUser.user?.ratings.filter((a) => a.books.id === id));
+	// console.log(title);
+	// console.log(userHasRated);
+	// if (ratings) {
+
+	// $: average
 
 	const fonts = {
 		a: "Playfair Display",
@@ -58,15 +74,13 @@
 	}
 
 	// console.log(titleFontKey);
-
-	let expanded = false;
 </script>
 
 <article class="relative w-72">
 	<button
-  class="hover:(outline-2 outline-black outline-solid rounded-sm)"
+		class="hover:(outline-2 outline-solid rounded-sm) outline-black"
 		on:click={() => {
-			expanded = true;
+			$bookExpanded[book_id] = true;
 			event.stopPropagation();
 		}}>
 		<img
@@ -79,11 +93,11 @@
 			<h3 class="font-{authorFontKey} text-center text-xl">{author}</h3>
 		</div>
 	</button>
-	{#if expanded}
+	{#if $bookExpanded[book_id]}
 		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
 		<div
-			use:clickOutside={() => (expanded = false)}
+			use:clickOutside={() => ($bookExpanded = {})}
 			class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min">
 			<div class="h-[690px] w-full md:w-[512px]">
 				<img
@@ -105,9 +119,20 @@
 			</div>
 			<div
 				class="translate-y-160 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0">
+				{#key ratingChanged}
+					{#if $myUser.username}
+						<p>
+							Your rating: {$userRatingObject[book_id]?.userRating !== undefined
+								? $userRatingObject[book_id]?.userRating / 2
+								: "You haven't rated this book yet."}
+						</p>
+					{/if}
+				{/key}
 				<p>
-					Average rating: {average_rating}
+					Average rating: {average_rating / 2 ?? "This book has not been rated yet."}
+					{usersWhoRated ? `(${usersWhoRated} users)` : ""}
 				</p>
+				<Rating {book_id} bind:average_rating bind:usersWhoRated />
 				<ul>
 					<li>{title} was released in {release_date}.</li>
 					<li>Page count: {page_count}</li>
