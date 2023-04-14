@@ -27,9 +27,8 @@
 
 	onMount(async () => {
 		if ($token) {
-			await getCurrentUserAndRatings();
+			$myUser = await getCurrentUserAndRatings();
 			// $myUser = $myUser;
-      // ! still a bit bugged
 			setUserRatingObject();
 		}
 	});
@@ -83,14 +82,16 @@
 
 			// session storage
 
-
-			$myUser = data.user;
 			$token = data.jwt;
+
+			$myUser = await getCurrentUserAndRatings();
+			setUserRatingObject();
 
 			console.log(data);
 
 			console.log(data.jwt);
 			error = false;
+
 			return data;
 		} catch (e) {
 			inputPassword = "";
@@ -122,8 +123,11 @@
 			}
 			let data = await res.json();
 			error = false;
-			$myUser = data;
+
 			$token = data.jwt;
+			$myUser = await getCurrentUserAndRatings();
+			setUserRatingObject();
+
 			return data;
 		} catch (e) {
 			throw e;
