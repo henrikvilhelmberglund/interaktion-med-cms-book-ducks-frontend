@@ -11,7 +11,7 @@
 	// 127.0.0.1:1337/api/users/me?populate[ratings][populate][0]=books
 
 	console.log($myUser);
-	console.table($userRatingObject);
+	// console.table($userRatingObject);
 	async function starPressed(i) {
 		if (!$myUser.username) {
 			if (timeout) clearTimeout(timeout);
