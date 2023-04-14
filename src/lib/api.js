@@ -15,17 +15,18 @@ export const getCurrentUserAndRatings = async () => {
 
 	// console.log("data is " + data);
 	console.log(get(myUser));
-  // myUser.set(data);
-  return data;
+	// myUser.set(data);
+	return data;
 };
 
-// TODO
-export const createUserRating = async (id, newRating) => {
+export const createUserRating = async (book_id, newRating) => {
 	const average_rating = newRating;
 	console.log(average_rating);
-	const data = await sendRequest("PUT", `http://127.0.0.1:1337/api/books/${id}`, {
+	const data = await sendRequest("POST", `http://127.0.0.1:1337/api/ratings/`, {
 		data: {
-			average_rating: average_rating,
+			half_stars: newRating,
+			user: get(myUser),
+			books: book_id,
 		},
 	});
 	return data;
