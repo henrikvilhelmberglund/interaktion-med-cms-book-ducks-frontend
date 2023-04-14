@@ -3,6 +3,8 @@ import presetUno from "@unocss/preset-uno";
 import { presetWebFonts } from "unocss";
 import presetIcons from "@unocss/preset-icons";
 import transformerDirectives from "@unocss/transformer-directives";
+import presetTheme from "unocss-preset-theme";
+import { colors } from "@unocss/preset-mini";
 
 export default defineConfig({
 	shortcuts: {
@@ -10,11 +12,57 @@ export default defineConfig({
 		"star-hover": "hover:(stroke-1 stroke-black fill-orange-500)",
 	},
 	safelist:
-		"font-a font-b font-c font-d font-e font-f font-g font-h font-i font-j font-k font-l font-m font-n font-o font-p font-q font-r font-s font-t font-u font-v font-w font-x font-y font-z top-[0%] top-[1%] top-[2%] top-[3%] top-[4%] top-[5%] top-[6%] top-[7%] top-[8%] top-[9%] top-[10%] top-[11%] top-[12%] top-[13%] top-[14%] top-[15%] top-[16%] top-[17%] top-[18%] top-[19%] top-[20%] top-[21%] top-[22%] top-[23%] top-[24%] top-[25%] top-[26%] top-[27%] top-[28%] top-[29%] top-[30%] top-[31%] top-[32%] top-[33%] top-[34%] top-[35%] top-[36%] top-[37%] top-[38%] top-[39%] top-[40%] top-[41%] top-[42%] top-[43%] top-[44%] top-[45%] top-[46%] top-[47%] top-[48%] top-[49%] top-[50%] top-[51%] top-[52%] top-[53%] top-[54%] top-[55%] top-[56%] top-[57%] top-[58%] top-[59%] top-[60%] top-[61%] top-[62%] top-[63%] top-[64%] top-[65%] top-[66%] top-[67%] top-[68%] top-[69%] top-[70%] top-[71%] top-[72%] top-[73%] top-[74%] top-[75%] top-[76%] top-[77%] top-[78%] top-[79%] top-[80%] top-[81%] top-[82%] top-[83%] top-[84%] top-[85%] top-[86%] top-[87%] top-[88%] top-[89%] top-[90%] top-[91%] top-[92%] top-[93%] top-[94%] top-[95%] top-[96%] top-[97%] top-[98%] top-[99%] top-[100%] font-thin font-extralight font-light font-normal font-medium font-semibold font-bold font-extrabold font-black".split(
+		"font-a font-b font-c font-d font-e font-f font-g font-h font-i font-j font-k font-l font-m font-n font-o font-p font-q font-r font-s font-t font-u font-v font-w font-x font-y font-z top-[0%] top-[1%] top-[2%] top-[3%] top-[4%] top-[5%] top-[6%] top-[7%] top-[8%] top-[9%] top-[10%] top-[11%] top-[12%] top-[13%] top-[14%] top-[15%] top-[16%] top-[17%] top-[18%] top-[19%] top-[20%] top-[21%] top-[22%] top-[23%] top-[24%] top-[25%] top-[26%] top-[27%] top-[28%] top-[29%] top-[30%] top-[31%] top-[32%] top-[33%] top-[34%] top-[35%] top-[36%] top-[37%] top-[38%] top-[39%] top-[40%] top-[41%] top-[42%] top-[43%] top-[44%] top-[45%] top-[46%] top-[47%] top-[48%] top-[49%] top-[50%] top-[51%] top-[52%] top-[53%] top-[54%] top-[55%] top-[56%] top-[57%] top-[58%] top-[59%] top-[60%] top-[61%] top-[62%] top-[63%] top-[64%] top-[65%] top-[66%] top-[67%] top-[68%] top-[69%] top-[70%] top-[71%] top-[72%] top-[73%] top-[74%] top-[75%] top-[76%] top-[77%] top-[78%] top-[79%] top-[80%] top-[81%] top-[82%] top-[83%] top-[84%] top-[85%] top-[86%] top-[87%] top-[88%] top-[89%] top-[90%] top-[91%] top-[92%] top-[93%] top-[94%] top-[95%] top-[96%] top-[97%] top-[98%] top-[99%] top-[100%] font-thin font-extralight font-light font-normal font-medium font-semibold font-bold font-extrabold font-black bg-primary-100 bg-primary-200 bg-primary-300 bg-primary-400 bg-primary-500 bg-primary-600 bg-primary-700 bg-primary-800 bg-primary-900".split(
 			" "
 		),
+	theme: {},
 	presets: [
 		presetUno(),
+		presetTheme({
+			theme: {
+				blue: {
+					colors: {
+						primary: {
+							100: colors.blue["100"],
+							200: colors.blue["200"],
+							300: colors.blue["300"],
+							400: colors.blue["400"],
+							500: colors.blue["500"],
+							600: colors.blue["600"],
+							700: colors.blue["700"],
+							800: colors.blue["800"],
+							900: colors.blue["900"],
+            },
+            gray: {
+							100: colors.pink["100"],
+							200: colors.pink["200"],
+							300: colors.pink["300"],
+							400: colors.pink["400"],
+							500: colors.pink["500"],
+							600: colors.pink["600"],
+							700: colors.pink["700"],
+							800: colors.pink["800"],
+							900: colors.pink["900"],
+						},
+					},
+				},
+				yellow: {
+					colors: {
+						primary: {
+							100: "#66ee66",
+							200: "#66ee66",
+							300: "#66ee66",
+							400: "#66ee66",
+							500: "#66ee66",
+							600: "#66ee66",
+							700: "#66ee66",
+							800: "#66ee66",
+							900: "#66ee66",
+						},
+					},
+				},
+			},
+		}),
 		presetWebFonts({
 			provider: "google", // default provider
 			fonts: {
