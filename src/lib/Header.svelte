@@ -8,8 +8,8 @@
 		<h1 class="text-5xl text-black">Book Ducks</h1>
 	</div>
 	<div class="flex items-center justify-end">
-		{#if $myUser.hasOwnProperty("user")}
-			<p class="mr-4 text-black">{$myUser.user.username}</p>
+		{#if $myUser.username}
+			<p class="mr-4 text-black">{$myUser.username}</p>
 		{:else}
 			<p class="mr-4 text-black">Not logged in</p>
 		{/if}
