@@ -30,7 +30,10 @@
 			$userRatingObject[book_id].userRating = newRating;
 		} else {
 			// no user rating - create it
-			await createUserRating(book_id, newRating);
+			let data = await createUserRating(book_id, newRating);
+			$userRatingObject[book_id] = {};
+			$userRatingObject[book_id].rating_id = data.id;
+			$userRatingObject[book_id].userRating = newRating;
 		}
 		// TODO
 		// update book's average rating here too
