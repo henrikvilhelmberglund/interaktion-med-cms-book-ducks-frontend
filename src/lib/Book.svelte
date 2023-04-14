@@ -122,23 +122,17 @@
 			<div
 				class="translate-y-160 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0">
 				{#key ratingChanged}
-        {#if $myUser.username}
-          
-        <p>
-          Your rating: {$userRatingObject[book_id]?.userRating ??
-							"You haven't rated this book yet."}
-					</p>
-          {/if}
+					{#if $myUser.username}
+						<p>
+							Your rating: {$userRatingObject[book_id]?.userRating ??
+								"You haven't rated this book yet."}
+						</p>
+					{/if}
 				{/key}
 				<p>
-					Average rating: {average_rating ?? "This book has not been rated yet."} {usersWhoRated ? `(${usersWhoRated} users)` : ""}
+					Average rating: {average_rating ?? "This book has not been rated yet."}
+					{usersWhoRated ? `(${usersWhoRated} users)` : ""}
 				</p>
-				<button
-					on:click={async () => {
-						console.log("did something");
-						
-					}}
-					class="btn">Update ratings</button>
 				<Rating {book_id} bind:average_rating bind:usersWhoRated />
 				<ul>
 					<li>{title} was released in {release_date}.</li>
