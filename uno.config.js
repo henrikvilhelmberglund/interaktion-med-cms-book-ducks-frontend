@@ -23,16 +23,16 @@ export default defineConfig({
 				blue: {
 					colors: {
 						base: {
-							50: colors.light["50"],
-							100: colors.light["100"],
-							200: colors.light["200"],
-							300: colors.light["300"],
-							400: colors.light["400"],
-							500: colors.light["500"],
-							600: colors.light["600"],
-							700: colors.light["700"],
-							800: colors.light["800"],
-							900: colors.light["900"],
+							50: colors.dark["900"],
+							100: colors.dark["700"],
+							200: colors.dark["500"],
+							300: colors.dark["200"],
+							400: colors.dark["50"],
+							500: colors.light["900"],
+							600: colors.light["700"],
+							700: colors.light["500"],
+							800: colors.light["200"],
+							900: colors.light["50"],
 						},
 						primary: {
 							50: colors.blue["50"],
@@ -75,15 +75,15 @@ export default defineConfig({
 				bluedark: {
 					colors: {
 						base: {
-							50: colors.dark["50"],
-							100: colors.dark["100"],
-							200: colors.dark["200"],
-							300: colors.dark["300"],
-							400: colors.dark["400"],
-							500: colors.dark["500"],
-							600: colors.dark["600"],
-							700: colors.dark["700"],
-							800: colors.dark["800"],
+							50: colors.light["50"],
+							100: colors.light["200"],
+							200: colors.light["500"],
+							300: colors.light["700"],
+							400: colors.light["900"],
+							500: colors.dark["50"],
+							600: colors.dark["200"],
+							700: colors.dark["500"],
+							800: colors.dark["700"],
 							900: colors.dark["900"],
 						},
 						primary: {
@@ -127,16 +127,16 @@ export default defineConfig({
 				yellow: {
 					colors: {
 						base: {
-							50: colors.light["50"],
-							100: colors.light["100"],
-							200: colors.light["200"],
-							300: colors.light["300"],
-							400: colors.light["400"],
-							500: colors.light["500"],
-							600: colors.light["600"],
-							700: colors.light["700"],
-							800: colors.light["800"],
-							900: colors.light["900"],
+							50: colors.dark["900"],
+							100: colors.dark["700"],
+							200: colors.dark["500"],
+							300: colors.dark["200"],
+							400: colors.dark["50"],
+							500: colors.light["900"],
+							600: colors.light["700"],
+							700: colors.light["500"],
+							800: colors.light["200"],
+							900: colors.light["50"],
 						},
 						primary: {
 							50: colors.yellow["50"],
@@ -179,15 +179,15 @@ export default defineConfig({
 				yellowdark: {
 					colors: {
 						base: {
-							50: colors.dark["50"],
-							100: colors.dark["100"],
-							200: colors.dark["200"],
-							300: colors.dark["300"],
-							400: colors.dark["400"],
-							500: colors.dark["500"],
-							600: colors.dark["600"],
-							700: colors.dark["700"],
-							800: colors.dark["800"],
+							50: colors.light["50"],
+							100: colors.light["200"],
+							200: colors.light["500"],
+							300: colors.light["700"],
+							400: colors.light["900"],
+							500: colors.dark["50"],
+							600: colors.dark["200"],
+							700: colors.dark["500"],
+							800: colors.dark["700"],
 							900: colors.dark["900"],
 						},
 						primary: {
