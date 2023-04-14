@@ -1,5 +1,5 @@
 <script>
-	import { updateUserRating } from "./api";
+	import { createUserRating, updateUserRating } from "./api";
 	import { myUser, userRatingObject } from "./stores";
 	import { fly } from "svelte/transition";
 
@@ -24,15 +24,16 @@
 		}
 		newRating = i + 1;
 
-		if ($userRatingObject) {
+		if ($userRatingObject[book_id]) {
+			// user rating exists - update it
 			await updateUserRating($userRatingObject, book_id, newRating);
 			$userRatingObject[book_id].userRating = newRating;
-			// user rating exists - update it
 		} else {
 			// no user rating - create it
+			await createUserRating(book_id, newRating);
 		}
-    // TODO
-    // update book's average rating here too
+		// TODO
+		// update book's average rating here too
 	}
 </script>
 
