@@ -5,7 +5,7 @@
 	import { marked } from "marked";
 	import Rating from "./Rating.svelte";
 	import { updateAverageRating } from "./api";
-	import { myUser, userRatingObject } from "./stores";
+	import { bookExpanded, myUser, userRatingObject } from "./stores";
 
 	export let book;
 	// console.log(book);
@@ -74,15 +74,13 @@
 	}
 
 	// console.log(titleFontKey);
-
-	let expanded = false;
 </script>
 
 <article class="relative w-72">
 	<button
 		class="hover:(outline-2 outline-solid rounded-sm) outline-black"
 		on:click={() => {
-			expanded = true;
+			$bookExpanded[book_id] = true;
 			event.stopPropagation();
 		}}>
 		<img
@@ -95,11 +93,11 @@
 			<h3 class="font-{authorFontKey} text-center text-xl">{author}</h3>
 		</div>
 	</button>
-	{#if expanded}
+	{#if $bookExpanded[book_id]}
 		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
 		<div
-			use:clickOutside={() => (expanded = false)}
+			use:clickOutside={() => ($bookExpanded = {})}
 			class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min">
 			<div class="h-[690px] w-full md:w-[512px]">
 				<img
@@ -124,13 +122,14 @@
 				{#key ratingChanged}
 					{#if $myUser.username}
 						<p>
-							Your rating: {$userRatingObject[book_id]?.userRating ??
-								"You haven't rated this book yet."}
+							Your rating: {$userRatingObject[book_id]?.userRating !== undefined
+								? $userRatingObject[book_id]?.userRating / 2
+								: "You haven't rated this book yet."}
 						</p>
 					{/if}
 				{/key}
 				<p>
-					Average rating: {average_rating ?? "This book has not been rated yet."}
+					Average rating: {average_rating / 2 ?? "This book has not been rated yet."}
 					{usersWhoRated ? `(${usersWhoRated} users)` : ""}
 				</p>
 				<Rating {book_id} bind:average_rating bind:usersWhoRated />
