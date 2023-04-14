@@ -3,9 +3,10 @@
 	import { onMount } from "svelte";
 	import { clickOutside } from "$lib/actions";
 	import { myUser, token, userRatingObject } from "./stores";
+	import { getCurrentUserAndRatings } from "./api";
 
 	function setUserRatingObject() {
-		$myUser.user.ratings.forEach((rating) => {
+		$myUser.ratings.forEach((rating) => {
 			console.log(rating);
 			if (rating.books[0].id) {
 				// 	console.log(rating.half_stars);
@@ -14,7 +15,7 @@
 					userRating: rating.half_stars,
 				};
 				console.log(
-					`${$myUser.user.username} has rated ${rating.books[0].title} with ${
+					`${$myUser.username} has rated ${rating.books[0].title} with ${
 						$userRatingObject[rating.books[0].id].userRating
 					}`
 				);
@@ -26,19 +27,11 @@
 
 	onMount(async () => {
 		if ($token) {
-			let res = await fetch(
-				"http://127.0.0.1:1337/api/users/me?populate[ratings][populate][0]=books",
-				{
-					headers: {
-						Authorization: `Bearer ${$token}`,
-					},
-				}
-			);
-			let data = await res.json();
-			console.log(data);
-			$myUser.user = data;
+			await getCurrentUserAndRatings();
+			// $myUser = $myUser;
+      // ! still a bit bugged
+			setUserRatingObject();
 		}
-		setUserRatingObject();
 	});
 
 	let showLogin;
@@ -90,7 +83,8 @@
 
 			// session storage
 
-			$myUser = data;
+
+			$myUser = data.user;
 			$token = data.jwt;
 
 			console.log(data);
@@ -256,7 +250,7 @@
 			id="login-popup"
 			class="z-100 absolute left-[50%] top-0 mt-4 translate-x-[-50%] rounded-lg bg-green-500 p-4"
 			transition:fly={{ y: 20 }}>
-			<p>Successfully logged in as {$myUser.user?.username}!</p>
+			<p>Successfully logged in as {$myUser.username}!</p>
 		</div>
 	{/if}
 {/if}
