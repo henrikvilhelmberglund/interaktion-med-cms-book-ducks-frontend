@@ -29,6 +29,7 @@ export const createUserRating = async (book_id, newRating) => {
 			books: book_id,
 		},
 	});
+	console.log("created data was", data);
 	return data;
 };
 
@@ -46,6 +47,13 @@ export const updateUserRating = async (userRatingObject, book_id, newRating) => 
 	return data;
 };
 
+export const removeUserRating = async (rating_id, newRating) => {
+	const average_rating = newRating;
+	console.log(average_rating);
+	const data = await sendRequest("DELETE", `http://127.0.0.1:1337/api/ratings/${rating_id}`);
+	console.log("created data was", data);
+	return data;
+};
 // no axios error??
 // export const updateUserRating = async (userRatingObject, book_id) => {
 // 	console.log(userRatingObject[book_id].rating_id);
