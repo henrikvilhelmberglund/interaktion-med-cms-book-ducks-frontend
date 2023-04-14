@@ -15,8 +15,8 @@ export const getCurrentUserAndRatings = async () => {
 
 	// console.log("data is " + data);
 	console.log(get(myUser));
-	myUser.set(data);
-	// console.log(get(myUser));
+  // myUser.set(data);
+  return data;
 };
 
 // TODO
