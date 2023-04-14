@@ -14,7 +14,7 @@
 	console.log($myUser);
 	console.table($userRatingObject);
 	async function starPressed(i) {
-		if (!Object.keys($myUser).length) {
+		if (!$myUser.username) {
 			if (timeout) clearTimeout(timeout);
 			showPleaseLoginPopup = true;
 			timeout = setTimeout(() => {
