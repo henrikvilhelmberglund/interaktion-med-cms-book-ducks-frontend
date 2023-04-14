@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.1](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v0.0.0...v0.0.1) (2023-04-14)
+
+
+### Features
+
+* :sparkles: 8-användaren-ska-kunna-betygsätta-böcker ([#15](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/issues/15)) ([34a5cb4](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/34a5cb4f6a6fbdd25c9f14caf5a409cd352e4795))
+
 ## 0.0.0 (2023-04-14)
 
 
