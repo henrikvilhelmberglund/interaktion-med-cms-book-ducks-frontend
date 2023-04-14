@@ -86,6 +86,11 @@ export const updateAverageRating = async (id) => {
 	new_average_rating /= Math.round(bookRatings.length);
 	console.log("new average rating", new_average_rating);
 
+	// ? no ratings - set new_average_rating to null as it was by default
+	if (isNaN(new_average_rating)) {
+		new_average_rating = null;
+	}
+
 	const data = await sendRequest("PUT", `http://127.0.0.1:1337/api/books/${id}`, {
 		data: {
 			average_rating: new_average_rating,
