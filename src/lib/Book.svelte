@@ -25,7 +25,8 @@
 	let y_offset = `top-[${book.attributes.font_component?.y_offset}%]`;
 	let font_weight = book.attributes.font_component?.font_weight;
 	let ratings = book.attributes.ratings.data;
-	console.log(ratings);
+	let usersWhoRated = book.attributes.ratings.data.length;
+	if (ratings.length) console.log(ratings);
 	let ratingChanged = false;
 	let newAverageRating = 0;
 
@@ -33,13 +34,6 @@
 	// console.log(title);
 	// console.log(userHasRated);
 	// if (ratings) {
-	// 	Object.values(ratings).forEach((rating) => {
-	// 		// console.log(`${title} has ${rating.attributes.half_stars} half stars`);
-	// 		console.log(rating);
-	// 		newRating += rating.attributes.half_stars;
-	// 	});
-	// 	newRating /= Math.round(ratings.length);
-	// }
 
 	// $: average
 
@@ -138,12 +132,12 @@
           {/if}
 				{/key}
 				<p>
-					Average rating: {average_rating ?? "This book has not been rated yet."}
+					Average rating: {average_rating ?? "This book has not been rated yet."} {usersWhoRated ? `(${usersWhoRated} users)` : ""}
 				</p>
 				<button
-					on:click={() => {
+					on:click={async () => {
 						console.log("did something");
-						updateAverageRating(book_id, newAverageRating);
+						average_rating = await updateAverageRating(book_id, newAverageRating);
 					}}
 					class="btn">Update ratings</button>
 				<Rating {book_id} {average_rating} />
