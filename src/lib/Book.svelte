@@ -28,7 +28,6 @@
 	let usersWhoRated = book.attributes.ratings.data.length;
 	if (ratings.length) console.log(ratings);
 	let ratingChanged = false;
-	let newAverageRating = 0;
 
 	// console.log($myUser.user?.ratings.filter((a) => a.books.id === id));
 	// console.log(title);
@@ -137,10 +136,10 @@
 				<button
 					on:click={async () => {
 						console.log("did something");
-						average_rating = await updateAverageRating(book_id, newAverageRating);
+						
 					}}
 					class="btn">Update ratings</button>
-				<Rating {book_id} {average_rating} />
+				<Rating {book_id} bind:average_rating bind:usersWhoRated />
 				<ul>
 					<li>{title} was released in {release_date}.</li>
 					<li>Page count: {page_count}</li>
