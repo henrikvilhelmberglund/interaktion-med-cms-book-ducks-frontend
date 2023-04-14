@@ -1,8 +1,7 @@
 <script>
-	import { createUserRating, updateUserRating } from "./api";
+	import { createUserRating, removeUserRating, updateUserRating } from "./api";
 	import { myUser, userRatingObject } from "./stores";
 	import { fly } from "svelte/transition";
-
 	export let average_rating;
 	export let book_id;
 	let showPleaseLoginPopup = false;
@@ -66,6 +65,15 @@
 					d="m12 .587 3.668 7.568L24 9.306l-6.064 5.828 1.48 8.279L12 19.446l-7.417 3.967 1.481-8.279L0 9.306l8.332-1.151z" /></svg>
 		</button>
 	{/each}
+	{#if $userRatingObject[book_id]}
+		<button
+			on:click={() => {
+				removeUserRating($userRatingObject[book_id].rating_id);
+				$userRatingObject[book_id] = {};
+			}}
+			class="btn">
+			Remove your rating</button>
+	{/if}
 </div>
 
 <style>
