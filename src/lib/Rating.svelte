@@ -1,8 +1,9 @@
 <script>
-	import { createUserRating, removeUserRating, updateUserRating } from "./api";
+	import { createUserRating, removeUserRating, updateAverageRating, updateUserRating } from "./api";
 	import { myUser, userRatingObject } from "./stores";
 	import { fly } from "svelte/transition";
 	export let average_rating;
+	export let usersWhoRated;
 	export let book_id;
 	let showPleaseLoginPopup = false;
 	let timeout;
@@ -27,12 +28,20 @@
 			// user rating exists - update it
 			await updateUserRating($userRatingObject, book_id, newRating);
 			$userRatingObject[book_id].userRating = newRating;
+			const newAverageRatingObject = await updateAverageRating(book_id);
+			average_rating = newAverageRatingObject.average_rating;
+			usersWhoRated = newAverageRatingObject.usersWhoRated;
+      console.log(average_rating);
 		} else {
 			// no user rating - create it
 			let data = await createUserRating(book_id, newRating);
 			$userRatingObject[book_id] = {};
 			$userRatingObject[book_id].rating_id = data.id;
 			$userRatingObject[book_id].userRating = newRating;
+			const newAverageRatingObject = await updateAverageRating(book_id);
+			average_rating = newAverageRatingObject.average_rating;
+			usersWhoRated = newAverageRatingObject.usersWhoRated;
+      console.log(average_rating);
 		}
 		// TODO
 		// update book's average rating here too
@@ -67,9 +76,15 @@
 	{/each}
 	{#if $userRatingObject[book_id]}
 		<button
-			on:click={() => {
-				removeUserRating($userRatingObject[book_id].rating_id);
-				$userRatingObject[book_id] = {};
+			on:click={async () => {
+				await removeUserRating($userRatingObject[book_id].rating_id);
+				$userRatingObject[book_id] = null;
+				console.log(average_rating);
+
+				const newAverageRatingObject = await updateAverageRating(book_id);
+				average_rating = newAverageRatingObject.average_rating;
+				usersWhoRated = newAverageRatingObject.usersWhoRated;
+				// console.log(average_rating);
 			}}
 			class="btn">
 			Remove your rating</button>

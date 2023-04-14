@@ -91,7 +91,7 @@ export const updateAverageRating = async (id) => {
 			average_rating: new_average_rating,
 		},
 	});
-	return new_average_rating;
+	return { average_rating: new_average_rating, usersWhoRated: bookRatings.length };
 };
 
 // to remember that Me is different for some reason
