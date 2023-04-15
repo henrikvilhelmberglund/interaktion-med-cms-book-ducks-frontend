@@ -4,6 +4,7 @@ import { presetWebFonts } from "unocss";
 import presetIcons from "@unocss/preset-icons";
 import transformerDirectives from "@unocss/transformer-directives";
 import presetTheme from "unocss-preset-theme";
+import { presetHeroPatterns } from "@julr/unocss-preset-heropatterns";
 import { colors } from "@unocss/preset-mini";
 
 export default defineConfig({
@@ -253,6 +254,7 @@ export default defineConfig({
 				},
 			},
 		}),
+		presetHeroPatterns(),
 		presetWebFonts({
 			provider: "google", // default provider
 			fonts: {
@@ -290,6 +292,7 @@ export default defineConfig({
 				p: "Quattrocento Sans",
 				q: "Tinos",
 				r: "Vollkorn",
+				logo: "Fredericka the Great",
 			},
 		}),
 		presetIcons({
