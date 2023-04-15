@@ -95,7 +95,7 @@ export default defineConfig({
 						},
 					},
 				},
-				bluedark: {
+				blueDark: {
 					colors: {
 						base: {
 							50: colors.light["50"],
@@ -199,7 +199,7 @@ export default defineConfig({
 						},
 					},
 				},
-				yellowdark: {
+				yellowDark: {
 					colors: {
 						base: {
 							50: colors.light["50"],
