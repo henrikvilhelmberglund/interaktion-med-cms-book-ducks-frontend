@@ -90,6 +90,7 @@
 			Remove your rating</button>
 	{/if}
 </div>
+<!-- {@debug average_rating, $myUser, usersWhoRated} -->
 
 <style>
 </style>
