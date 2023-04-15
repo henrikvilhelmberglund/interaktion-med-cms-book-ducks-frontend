@@ -1,6 +1,5 @@
 <script>
 	import Header from "$lib/Header.svelte";
-	import ThemeCSS from "$lib/ThemeCSS.svelte";
 	import { getTheme } from "$lib/api";
 	import { activateTheme } from "$lib/helpers";
 	import { activeTheme } from "$lib/stores";
@@ -22,9 +21,9 @@
 
 <Header />
 
-<div class="{$activeTheme}BG h-[100vh] w-[100vw]" />
+<div class="gif-BG h-full w-full" />
 
-<main class="bg-base-900 [&>*]:m-4">
+<main class="bg-base-900 flex [&>*]:m-4">
 	<h1 class="text-base-50 text-3xl">{$activeTheme}</h1>
 	<div class="text-base-50 bg-primary-700 h-32 w-32">primary</div>
 	<div class="text-base-50 bg-primary-500 h-32 w-32">secondary</div>
