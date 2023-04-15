@@ -1,11 +1,15 @@
 <script>
 	import { base } from "$app/paths";
 	import { onMount } from "svelte";
-	import { getBooks } from "$lib/api";
+	import { getBooks, getTheme } from "$lib/api";
 	import { fly } from "svelte/transition";
 	import Footer from "$lib/Footer.svelte";
 	import Header from "$lib/Header.svelte";
 	import Book from "$lib/Book.svelte";
+	import { activateTheme } from "$lib/helpers";
+	import { activeTheme } from "$lib/stores";
+  import "/src/themeCSS.scss";
+	// import ThemeCss from "$lib/ThemeCSS.svelte";
 
 	let books = [];
 	let showNetworkError = false;
@@ -14,6 +18,10 @@
 		try {
 			books = await getBooks();
 			console.log(books);
+			let data = await getTheme();
+			$activeTheme = data.attributes.theme;
+			console.log($activeTheme);
+			$activeTheme = activateTheme($activeTheme);
 		} catch (error) {
 			if (error === "network error") {
 				showNetworkError = true;
