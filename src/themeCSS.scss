@@ -1,0 +1,41 @@
+/* real stuff */
+
+:global(.blueBG) {
+  @apply absolute z-[-100] bg-[url(/giphy.gif)] bg-cover bg-center bg-no-repeat;
+}
+
+:global(.blueDarkBG) {
+  @apply absolute z-[-100]  bg-[url(/giphy2.gif)] bg-cover bg-center bg-no-repeat;
+}
+
+:global(.yellowBG) {
+  @apply absolute z-[-100]  bg-[url(/giphy3.gif)] bg-cover bg-center bg-no-repeat;
+}
+
+:global(.yellowDarkBG) {
+  @apply absolute z-[-100]  bg-[url(/giphy4.gif)] bg-cover bg-center bg-no-repeat;
+}
+
+.blue {
+	#book-ducks-header {
+		@apply bg-hero-bathroom-floor-yellow-200 bg-primary-300;
+	}
+}
+
+.blueDark {
+	#book-ducks-header {
+		@apply bg-hero-bathroom-floor-yellow-200 bg-primary-300;
+	}
+}
+
+.yellow {
+	#book-ducks-header {
+		@apply bg-hero-bathroom-floor-yellow-200 bg-primary-300;
+	}
+}
+
+.yellowDark {
+	#book-ducks-header {
+		@apply bg-hero-formal-invitation-black/90 bg-base-900;
+	}
+}
