@@ -4,12 +4,13 @@
 	import { activateTheme } from "$lib/helpers";
 	import { activeTheme } from "$lib/stores";
 	import { onMount } from "svelte";
-	let themes = ["blue", "blueDark", "yellow", "yellowDark"];
+	let themes = ["blue", "blueDark", "yellow", "yellowDark", "custom", "customDark"];
 
 	onMount(async () => {
 		try {
 			let data = await getTheme();
 			$activeTheme = data.attributes.theme;
+			// TODO if custom theme, get custom colors from strapi and set css variables
 			console.log($activeTheme);
 			$activeTheme = activateTheme($activeTheme);
 		} catch (error) {
