@@ -8,3 +8,4 @@ export const userRatingObject = writable({});
 export const token = persisted("token", null, {
 	storage: "session", // 'session' for sessionStorage, defaults to 'local'
 });
+export const preferredMode = persisted("preferredMode", "");

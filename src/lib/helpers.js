@@ -1,6 +1,6 @@
 import { get } from "svelte/store";
 import { getTheme } from "./api";
-import { activeTheme } from "./stores";
+import { activeTheme, preferredMode } from "./stores";
 
 function toRGB(hex) {
 	// Thanks chatGPT
@@ -51,13 +51,22 @@ export async function activateTheme(override) {
 		activeTheme.set(override);
 	}
 
+	document.documentElement.classList = "";
+
 	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+		if (!get(preferredMode)) {
+			preferredMode.set("dark");
+		}
+	}
+	if (get(preferredMode) === "dark") {
 		// dark mode
 		console.log("I am dark mode");
 		activeTheme.set(get(activeTheme) + "Dark");
+		document.documentElement.classList.add(get(activeTheme));
+		document.documentElement.classList.add("dark");
+	} else {
+		document.documentElement.classList.add(get(activeTheme));
 	}
-	document.documentElement.classList = "";
-	document.documentElement.classList.add(get(activeTheme));
 
 	let customThemeColors = data.attributes.custom_theme_colors;
 	if (get(activeTheme) === "custom") {
