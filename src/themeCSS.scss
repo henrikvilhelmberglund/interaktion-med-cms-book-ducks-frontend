@@ -35,3 +35,15 @@
 		@apply absolute z-[-100]  bg-[url(/giphy4.gif)] bg-cover bg-center bg-no-repeat;
 	}
 }
+
+.custom {
+	#book-ducks-header {
+		@apply bg-primary-300;
+	}
+}
+
+.customDark {
+	#book-ducks-header {
+		@apply bg-hero-formal-invitation-black/90 bg-base-900;
+	}
+}
