@@ -136,15 +136,14 @@
 </script>
 
 {#if !Object.keys($myUser).length}
-	<button on:click={() => (showLogin = true)} class="rounded-md bg-blue-500 p-2 hover:bg-blue-400"
-		>Login</button>
+	<button on:click={() => (showLogin = true)} class="btn-primary">Login</button>
 {:else}
 	<button
 		on:click={() => {
 			$token = null;
 			location.reload();
 		}}
-		class="rounded bg-blue-400 p-2 hover:bg-blue-300">Log out</button>
+		class="btn-primary">Log out</button>
 {/if}
 
 {#if showLogin}
@@ -156,10 +155,9 @@
 			class="z-100 absolute flex flex-col items-center pt-48">
 			<button
 				on:click={() => (mode === "login" ? (mode = "register") : (mode = "login"))}
-				class="mb-4 rounded-md bg-blue-500 p-2 hover:bg-blue-400"
-				>Switch to {mode === "login" ? "register" : "login"}</button>
+				class="btn-secondary mb-4">Switch to {mode === "login" ? "register" : "login"}</button>
 			<form action="">
-				<div class="rounded-lg bg-slate-300 p-6 [&>*]:m-2 [&>*]:p-2">
+				<div class="rounded-lg bg-gray-300 p-6 [&>*]:m-2 [&>*]:p-2">
 					<h1 class="text-3xl">{mode === "login" ? "Login" : "Register"}</h1>
 
 					{#if mode === "login"}
@@ -185,8 +183,7 @@
 								}, 2000);
 							}}
 							disabled={!inputUsername || !inputPassword}
-							class="disabled:hover-bg-blue-400 mt-4 rounded bg-blue-400 p-2 hover:bg-blue-300 disabled:opacity-25"
-							>Log in</button>
+							class="btn-primary disabled:opacity-25">Log in</button>
 					{:else if mode === "register"}
 						<input
 							bind:value={registerEmail}
@@ -220,8 +217,7 @@
 								}
 							}}
 							disabled={!registerUsername || !registerEmail || !registerPassword}
-							class="disabled:hover-bg-blue-400 mt-4 rounded bg-blue-400 p-2 hover:bg-blue-300 disabled:opacity-25"
-							>Register</button>
+							class="btn-primary disabled:opacity-25">Register</button>
 					{/if}
 				</div>
 			</form>
