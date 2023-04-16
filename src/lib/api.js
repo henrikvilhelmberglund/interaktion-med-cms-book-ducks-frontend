@@ -7,6 +7,11 @@ export const getBooks = async () => {
 	return data;
 };
 
+export const getTheme = async () => {
+	const data = await sendRequestNonAuth("GET", "http://127.0.0.1:1337/api/active-theme");
+	return data;
+};
+
 export const getCurrentUserAndRatings = async () => {
 	const data = await sendRequestMe(
 		"GET",

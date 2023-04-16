@@ -1,22 +1,32 @@
 <script>
 	import LoginRegister from "$lib/LoginRegister.svelte";
-	import { bookExpanded, myUser } from "./stores";
-  import { slide } from 'svelte/transition';
-
+	import { activateTheme } from "./helpers";
+	import { activeTheme, bookExpanded, myUser, preferredMode } from "./stores";
+	import { slide } from "svelte/transition";
 </script>
 
 {#if !Object.keys($bookExpanded).length}
-	<header transition:slide class="z-100 sticky left-0 top-0 flex bg-slate-300 p-6 shadow-lg">
-		<div class="flex flex-1 justify-center">
-			<h1 class="text-5xl text-black">Book Ducks</h1>
+	<header
+		id="book-ducks-header"
+		transition:slide
+		class="z-100 sticky left-0 top-0 flex p-6 shadow-lg">
+		<div class="flex flex-1 items-center" />
+		<div class="flex flex-1 items-center justify-center">
+			<h1 class="font-logo text-base-100 text-5xl">Book Ducks</h1>
 		</div>
-		<div class="flex items-center justify-end">
+		<div class="flex flex-1 items-center justify-end">
 			{#if $myUser.username}
-				<p class="mr-4 text-black">{$myUser.username}</p>
+				<p class="text-base-300 mr-4">{$myUser.username}</p>
 			{:else}
-				<p class="mr-4 text-black">Not logged in</p>
+				<p class="text-base-300 mr-4">Not logged in</p>
 			{/if}
 			<LoginRegister />
+			<button
+				on:click={() => {
+					$preferredMode = $preferredMode === "light" ? "dark" : "light";
+					activateTheme();
+				}}
+				class="i-carbon-sun !bg-base-100 dark:i-carbon-moon ml-4 text-3xl" />
 		</div>
 	</header>
 {/if}

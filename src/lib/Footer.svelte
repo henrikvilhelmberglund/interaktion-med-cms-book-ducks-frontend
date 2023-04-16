@@ -2,9 +2,9 @@
 	import { base } from "$app/paths";
 </script>
 
-<footer class="m-4 h-64">
+<footer>
 	<a
-		class="underline-blue-600 fixed bottom-2 right-4 underline hover:text-blue-600"
+		class="underline-blue-600 dark:text-white text-black fixed bottom-2 right-4 underline hover:text-blue-600 dark:hover:text-blue-600"
 		href="https://github.com/henrikvilhelmberglund">
 		made by <img class="inline w-6" src="{base}/Henrik.png" alt="avatar" />henrikvilhelmberglund</a>
 </footer>

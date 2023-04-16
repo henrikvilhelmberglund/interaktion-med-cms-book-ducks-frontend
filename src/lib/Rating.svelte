@@ -86,10 +86,11 @@
 				usersWhoRated = newAverageRatingObject.usersWhoRated;
 				// console.log(average_rating);
 			}}
-			class="btn">
+			class="btn-primary">
 			Remove your rating</button>
 	{/if}
 </div>
+<!-- {@debug average_rating, $myUser, usersWhoRated} -->
 
 <style>
 </style>

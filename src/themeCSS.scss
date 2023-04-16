@@ -1,0 +1,52 @@
+// auto fill screws up dark mode styling
+.dark input {
+  color-scheme: dark;
+}
+
+.blue {
+	#book-ducks-header {
+		@apply bg-hero-diagonal-stripes-blue-200  bg-primary-300;
+	}
+	.gif-BG {
+		@apply absolute z-[-100] bg-[url(/giphy.gif)] bg-cover bg-center bg-no-repeat;
+	}
+}
+
+.blueDark {
+	#book-ducks-header {
+		@apply bg-hero-diagonal-stripes-blue-900/30 bg-dark-900;
+	}
+	.gif-BG {
+		@apply absolute z-[-100]  bg-[url(/giphy2.gif)] bg-cover bg-center bg-no-repeat;
+	}
+}
+
+.yellow {
+	#book-ducks-header {
+		@apply bg-hero-bathroom-floor-yellow-200 bg-primary-300;
+	}
+	.gif-BG {
+		@apply absolute z-[-100]  bg-[url(/giphy3.gif)] bg-cover bg-center bg-no-repeat;
+	}
+}
+
+.yellowDark {
+	#book-ducks-header {
+		@apply bg-hero-bathroom-floor-black/90 bg-base-900;
+	}
+	.gif-BG {
+		@apply absolute z-[-100]  bg-[url(/giphy4.gif)] bg-cover bg-center bg-no-repeat;
+	}
+}
+
+.custom {
+	#book-ducks-header {
+		@apply bg-primary-300;
+	}
+}
+
+.customDark {
+	#book-ducks-header {
+		@apply bg-hero-formal-invitation-black/90 bg-base-900;
+	}
+}
