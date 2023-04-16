@@ -157,10 +157,12 @@
 				on:click={() => (mode === "login" ? (mode = "register") : (mode = "login"))}
 				class="btn-secondary mb-4">Switch to {mode === "login" ? "register" : "login"}</button>
 			<form action="">
-				<div class="rounded-lg bg-gray-300 p-6 [&>*]:m-2 [&>*]:p-2">
-					<h1 class="text-3xl">{mode === "login" ? "Login" : "Register"}</h1>
+				<div class="rounded-lg bg-gray-300 dark:bg-gray-900 p-6 [&>*]:m-2 [&>*]:p-2">
+					<h1 class="text-3xl text-base-100">{mode === "login" ? "Login" : "Register"}</h1>
 
-					{#if mode === "login"}
+          <div class="[&>*]:dark:bg-black [&>*]:dark:text-base-100">
+            
+            {#if mode === "login"}
 						<input
 							bind:value={inputUsername}
 							placeholder="Username or email"
@@ -183,7 +185,7 @@
 								}, 2000);
 							}}
 							disabled={!inputUsername || !inputPassword}
-							class="btn-primary disabled:opacity-25">Log in</button>
+							class="!btn-primary disabled:opacity-25">Log in</button>
 					{:else if mode === "register"}
 						<input
 							bind:value={registerEmail}
@@ -197,8 +199,8 @@
 							id="username"
 							class="rounded border p-2"
 							type="text" />
-
-						<input
+              
+              <input
 							bind:value={registerPassword}
 							placeholder="Password"
 							id="password"
@@ -207,18 +209,19 @@
 						<button
 							on:click={async () => {
 								try {
-									await register();
+                  await register();
 									successfullyRegistered = true;
 									setTimeout(() => {
 										successfullyRegistered = false;
 									}, 2000);
 								} catch (error) {
-									console.log(error);
+                  console.log(error);
 								}
 							}}
 							disabled={!registerUsername || !registerEmail || !registerPassword}
-							class="btn-primary disabled:opacity-25">Register</button>
-					{/if}
+							class="!btn-primary disabled:opacity-25">Register</button>
+              {/if}
+            </div>
 				</div>
 			</form>
 			{#if error}
