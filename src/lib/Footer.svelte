@@ -2,7 +2,7 @@
 	import { base } from "$app/paths";
 </script>
 
-<footer class="m-4 h-64">
+<footer>
 	<a
 		class="underline-blue-600 fixed bottom-2 right-4 underline hover:text-blue-600"
 		href="https://github.com/henrikvilhelmberglund">
