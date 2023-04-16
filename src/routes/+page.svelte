@@ -8,7 +8,8 @@
 	import Book from "$lib/Book.svelte";
 	import { activateTheme } from "$lib/helpers";
 	import { activeTheme } from "$lib/stores";
-  import "/src/themeCSS.scss";
+	import "/src/themeCSS.scss";
+	import ThemeTester from "$lib/ThemeTester.svelte";
 	// import ThemeCss from "$lib/ThemeCSS.svelte";
 
 	let books = [];
@@ -33,7 +34,9 @@
 </script>
 
 <Header />
-<main class="[&>*]:m-4">
+
+<ThemeTester />
+<main class="bg-primary-100 dark:bg-base-900 pb-64 pt-4 [&>*]:m-4 [&>*]:mt-0">
 	{#if showNetworkError}
 		<div class="flex justify-center">
 			<p class="rounded bg-red-400 p-2 text-2xl">
