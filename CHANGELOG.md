@@ -2,6 +2,62 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.2](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v0.0.1...v0.0.2) (2023-04-16)
+
+
+### Features
+
+* **themes:** :lipstick: add darkmode stuff ([404af03](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/404af036eff3d07a51e0a309cdceb47a719a7ecd))
+* :lipstick: add some dark mode stuff in shortcuts ([57e3ebd](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/57e3ebda3344aab1a18fc9ed2854b7ca8b945c19))
+* :package: add iconify-json/carbon ([f8192c2](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/f8192c201ea372ebefc145f18987521ec5ac9855))
+* **themes:** :sparkles: add ThemeTester to index so it's easier to change themes ([14ec86e](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/14ec86e1e31b7351d85bf5b35a3b2cacfaf3ce4b))
+* :sparkles: use store to set dark mode in local storage, use local storage (to be able to override) ([d624f56](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/d624f5680e00a55d78cb09ad13028cefb8523b74))
+* :sparkles: use functions to create most of the safelist ([c5fb078](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/c5fb078a9f27663135c1c4a7ff5f8f66d5724b7a))
+* **themes:** :sparkles: break out ThemeTester into its own component ([37f4d65](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/37f4d65cca7e7ab900a084fe386fae9963d8cdf8))
+* **themes:** :lipstick: replace some styling with shortcuts ([2e2459b](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/2e2459b16c834930be010f5ddc438f7f7aa937aa))
+* **themes:** :sparkles: add theme helper functions ([111734a](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/111734aa1b631e35a25bb60fee6e84b321c13de0))
+* **themes:** :lipstick: add header style for custom themes ([e275ec5](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/e275ec5f8b508c89ede7f63908f65ab132dd986e))
+* **themes:** :sparkles: add JSON example of custom colors for giving to chatGPT ([07f962b](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/07f962b149f7e55ef4b267e578c91ee88607710d))
+* **themes:** :sparkles: add custom and customDark themes (WIP) ([d2545c9](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/d2545c907be08e350d985b8682362e8aaff21fef))
+* **themes:** :lipstick: add backgrounds (... temporary) ([f4db96e](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/f4db96eb0bae4aa2e5a7cecfe87eb0a237058d5a))
+* **themes:** :sparkles: set the active theme to a variable on mount ([2fc4248](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/2fc424896743a23a5d10d836d759a802a540849f))
+* **themes:** :lipstick: add some theme styling for Header ([d7d0381](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/d7d03812564ffffed64abef4356767f834c6d978))
+* **themes:** :sparkles: add activeTheme store ([c1e01d4](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/c1e01d40530090d1485accbdc09e0bbc85a5acd8))
+* **themes:** :sparkles: add activateTheme function ([17b8fa8](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/17b8fa887720846ff28b65de0e62210bd7597731))
+* **themes:** :lipstick: import and use themeCSS.scss ([d0dc0f5](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/d0dc0f51ae5a242d3b90ade420fc85ae33997b36))
+* :wrench: add presetHeroPatterns and logo font ([d02d425](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/d02d4256ff4431a619b6a300495d99990dc20d80))
+* **themes:** :package: add unocss-preset-heropatterns and sass ([623a442](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/623a4424e79f207c70b911e00f0a8d54af3749b0))
+* **themes:** :sparkles: add onMount, use ThemeCSS CSS in a div ([5a49c4a](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/5a49c4a8089c272f2463fefca90e1bf4c4b5acfe))
+* **themes:** :sparkles: add ThemeCSS with global CSS and a bunch of gifs for testing ([673ace5](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/673ace50251598a2e60d11759e5e38b2d75602ba))
+* **components:** :sparkles: add {[@debug](https://github.com/debug)} thingy (commented out now) ([aecafa3](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/aecafa3af626544979602b119e85f69f20931576))
+* **api:** :sparkles: add getTheme() ([e887e24](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/e887e2473a4b3c227bac5de664baa35b344c1c07))
+* :art: rearrange safelist, add a few shortcuts ([392e7f0](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/392e7f041c2abc51b3e8101bb27a9aae40ee60d1))
+* **themes:** :sparkles: use new base colors in themes ([210c153](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/210c15372b9f440b8369efcadd2bd729e16305b2))
+* **themes:** :sparkles: split base color into light and dark parts so they can easily be used for both text and backgrounds if needed ([393fba7](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/393fba7bf26da09d9c657622788d6c427fa572ce))
+* **themes:** :sparkles: add some placeholder colors for the themes ([6bdaea0](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/6bdaea05a0a1ae9c84d2863946ba18e2386279fd))
+* :sparkles: add mode 2 to enumCreator for creating safelist strings ([ad87965](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/ad87965b6f0f503eff023cc9b21b57ea8c01c66a))
+* **themes:** :sparkles: add themetesting route for testing theme stuff ([b0d75fb](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/b0d75fb33404192838aa55bf6c180230736119ef))
+* :sparkles: add themes scope for conventional commits ([a2d0506](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/a2d05061fd6e966af70033473cb86214a61e8afa))
+* **themes:** :wrench: add some themes using presetTheme, import colors from unocss colors file ([a7bf596](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/a7bf5967b65597f83ad9205fbd619fea70a2d119))
+* :sparkles: add enumCreator.js for spitting out a bunch of enums for use with incrementor ([2b467a1](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/2b467a18999f0329d753e5f8f80ca6fb88ccba45))
+* **themes:** :package: add unocss-preset-theme ([492a494](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/492a494e65a2cfc9238f20eda01acff08d754ea6))
+
+
+### Bug Fixes
+
+* **themes:** :lipstick: improve header styles ([3b8ecc1](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/3b8ecc1b236df8e6db92fe03a4867beea124a262))
+* :bug: change inspector to use only shift instead of ctrl shift because it changes language for me ([21551ca](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/21551ca565cb0b8b2fc831668187c7d252a6e102))
+* **themes:** :lipstick: update styling for ThemeTester ([163aecc](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/163aecc80768bc1b730556aaa1efc77887b62307))
+* **components:** :lipstick: center the logo ([b43dc34](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/b43dc34393d701465821fec048b7dfe5afed4d8b))
+* **components:** :lipstick: remove margin and height from footer so it has the same background color ([c73dc5b](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/c73dc5b4bfdddda0bd59837b6dd645816a23b921))
+* :art: rename enumCreator to safelist.js ([5edf9cd](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/5edf9cd5add9dcee4db2849e5994851c38449dba))
+* **themes:** :lipstick: replace remove rating style ([bc996d6](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/bc996d63b55258024f093873a9e7aa60786a0c28))
+* :zap: move unocss config to vite config again because having it restart on changes was better when adding shortcuts ([808f4d8](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/808f4d80b8ef696f608fa0844392060815e4b578))
+* **themes:** :fire: remove ThemeCSS.svelte, use flex for main ([2534591](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/2534591a37103c3eef1a49ee5e1e2ba4f61890a1))
+* **themes:** :fire: remove ThemeCSS.svelte in favor of .scss file for better HMR ([b0d63f0](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/b0d63f0a39c281c0f3ae697f5b5ea109d6f3bede))
+* :zap: change theme names ([5d6cfdb](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/5d6cfdbe803e0fff70d440a578846f43351308b7))
+* :fire: remove old unocss fix (only needed for higher unocss version) ([83961e3](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/83961e30a79ec3a1f8e512e4039806a3130e47a0))
+
 ## [0.0.1](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v0.0.0...v0.0.1) (2023-04-14)
 
 
