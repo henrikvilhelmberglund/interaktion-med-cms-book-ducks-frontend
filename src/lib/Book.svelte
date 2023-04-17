@@ -24,7 +24,7 @@
 	let font_weight = book.attributes.font_component?.font_weight;
 	let ratings = book.attributes.ratings.data;
 	let usersWhoRated = book.attributes.ratings.data.length;
-	if (ratings.length) console.log(ratings);
+	// if (ratings.length) console.log(ratings);
 	let ratingChanged = false;
 
 	// console.log($myUser.user?.ratings.filter((a) => a.books.id === id));
