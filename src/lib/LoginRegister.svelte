@@ -5,33 +5,7 @@
 	import { myUser, token, userRatingObject } from "./stores";
 	import { getCurrentUserAndRatings } from "./api";
 
-	function setUserRatingObject() {
-		$myUser.ratings.forEach((rating) => {
-			// console.log(rating);
-			if (rating.books[0].id) {
-				// 	console.log(rating.half_stars);
-				$userRatingObject[rating.books[0].id] = {
-					rating_id: rating.id,
-					userRating: rating.half_stars,
-				};
-				// console.log(
-				// 	`${$myUser.username} has rated ${rating.books[0].title} with ${
-				// 		$userRatingObject[rating.books[0].id].userRating
-				// 	}`
-				// );
-			} else {
-				console.log("uh what");
-			}
-		});
-	}
 
-	onMount(async () => {
-		if ($token) {
-			$myUser = await getCurrentUserAndRatings();
-			// $myUser = $myUser;
-			setUserRatingObject();
-		}
-	});
 
 	let showLogin;
 	let error = false;
