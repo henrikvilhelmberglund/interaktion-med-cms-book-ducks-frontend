@@ -118,7 +118,7 @@
 		class:bg-red-500={isAddedToReadLater}
 		class:i-mdi-add-circle={!isAddedToReadLater}
 		class:bg-green-500={!isAddedToReadLater}
-		class="hover:(h-20 w-20) absolute bottom-0 right-0 h-16 w-16"
+		class="hover:(h-18 w-18 opacity-100) absolute bottom-0 right-0 h-8 w-8 opacity-50 transition-all"
 		on:click={async () => {
 			if (!isAddedToReadLater) {
 				if ($myUser.to_read_list?.id) {
@@ -126,7 +126,7 @@
 					await updateReadLaterList(book_id);
 					$myUser = await getCurrentUserAndRatings();
 				} else {
-          // ! pretty stupid
+					// ! pretty stupid
 					await createReadLaterList();
 					$myUser = await getCurrentUserAndRatings();
 					await updateReadLaterList(book_id);
