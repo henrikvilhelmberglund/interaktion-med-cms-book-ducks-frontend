@@ -5,7 +5,7 @@ export async function load() {
 	let books;
 	try {
 		books = await getBooks();
-		console.log(books);
+		// console.log(books);
 
 	} catch (error) {
 		if (error === "network error") {
