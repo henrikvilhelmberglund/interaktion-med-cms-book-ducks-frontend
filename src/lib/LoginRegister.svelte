@@ -111,12 +111,16 @@
 {#if !Object.keys($myUser).length}
 	<button on:click={() => (showLogin = true)} class="btn-primary">Login</button>
 {:else}
-	<button on:click={() => (showUserModal = !showUserModal)} class="btn-secondary mr-4">
+	<button on:mousedown|stopPropagation={() => (showUserModal = true)} class="btn-secondary mr-4">
 		{$myUser.username}
 	</button>
 
 	{#if showUserModal}
-		<div class="absolute right-20 top-20">
+		<div
+			use:clickOutside={() => {
+				showUserModal = false;
+			}}
+			class="absolute right-20 top-20">
 			<UserModal />
 		</div>
 	{/if}
