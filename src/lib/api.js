@@ -15,11 +15,10 @@ export const getTheme = async () => {
 export const getCurrentUserAndRatings = async () => {
 	const data = await sendRequestMe(
 		"GET",
-		"http://127.0.0.1:1337/api/users/me?populate[ratings][populate][0]=books"
+		"http://127.0.0.1:1337/api/users/me?populate[ratings][populate][0]=books&populate[to_read_list][populate][0]=books"
 	);
 
 	// console.log("data is " + data);
-	console.log(get(myUser));
 	// myUser.set(data);
 	return data;
 };
