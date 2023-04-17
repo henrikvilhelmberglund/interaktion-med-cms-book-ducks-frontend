@@ -4,8 +4,14 @@
 	import DOMPurify from "dompurify";
 	import { marked } from "marked";
 	import Rating from "./Rating.svelte";
-	import { updateAverageRating } from "./api";
+	import {
+		createReadLaterList,
+		updateReadLaterList,
+		updateAverageRating,
+		getCurrentUserAndRatings,
+	} from "./api";
 	import { bookExpanded, myUser, userRatingObject } from "./stores";
+	import { afterUpdate } from "svelte";
 
 	export let book;
 	let book_id = book.id;
@@ -15,7 +21,6 @@
 	let average_rating = book.attributes.average_rating;
 	let release_date = book.attributes.release_date;
 	let cover_image = book.attributes.cover_image.data.attributes.url;
-	// console.log(cover_image);
 	let cover_image_alt = book.attributes.cover_image;
 	let synopsis = book.attributes.synopsis;
 	let title_font = book.attributes.font_component?.title_font;
@@ -26,6 +31,22 @@
 	let usersWhoRated = book.attributes.ratings.data.length;
 	// if (ratings.length) console.log(ratings);
 	let ratingChanged = false;
+	let isAddedToReadLater;
+
+	afterUpdate(() => {
+		let toReadBooks = $myUser.to_read_list?.books;
+		if (!toReadBooks) {
+			return;
+		}
+
+		// console.log(toReadBooks);
+		let toReadBooksIDs = toReadBooks.map((book) => book.id);
+		let filteredBook = Array(book).filter((book) => {
+			return toReadBooksIDs.includes(book_id);
+		});
+		isAddedToReadLater = filteredBook.length ? true : false;
+		// console.log(isAddedToReadLater);
+	});
 
 	// console.log($myUser.user?.ratings.filter((a) => a.books.id === id));
 	// console.log(title);
@@ -91,6 +112,35 @@
 			<h3 class="font-{authorFontKey} text-center text-xl">{author}</h3>
 		</div>
 	</button>
+
+	<button
+		class:i-mdi-remove-circle={isAddedToReadLater}
+		class:bg-red-500={isAddedToReadLater}
+		class:i-mdi-add-circle={!isAddedToReadLater}
+		class:bg-green-500={!isAddedToReadLater}
+		class="hover:(h-20 w-20) absolute bottom-0 right-0 h-16 w-16"
+		on:click={async () => {
+			if (!isAddedToReadLater) {
+				if ($myUser.to_read_list?.id) {
+					console.log($myUser.to_read_list.id);
+					await updateReadLaterList(book_id);
+					$myUser = await getCurrentUserAndRatings();
+				} else {
+          // ! pretty stupid
+					await createReadLaterList();
+					$myUser = await getCurrentUserAndRatings();
+					await updateReadLaterList(book_id);
+					$myUser = await getCurrentUserAndRatings();
+				}
+				console.log($myUser);
+			} else {
+				if ($myUser.to_read_list?.id) {
+					console.log($myUser.to_read_list.id);
+					await updateReadLaterList(book_id, "remove");
+					$myUser = await getCurrentUserAndRatings();
+				}
+			}
+		}} />
 	{#if $bookExpanded[book_id]}
 		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
