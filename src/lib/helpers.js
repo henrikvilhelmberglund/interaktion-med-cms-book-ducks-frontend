@@ -81,5 +81,22 @@ export async function activateTheme(override) {
 		document.documentElement.style = "";
 	}
 
-	return get(activeTheme);
+export function setUserRatingObject() {
+	get(myUser).ratings.forEach((rating) => {
+		// console.log(rating);
+		if (rating.books[0].id) {
+			// 	console.log(rating.half_stars);
+			get(userRatingObject)[rating.books[0].id] = {
+				rating_id: rating.id,
+				userRating: rating.half_stars,
+			};
+			// console.log(
+			// 	`${$myUser.username} has rated ${rating.books[0].title} with ${
+			// 		$userRatingObject[rating.books[0].id].userRating
+			// 	}`
+			// );
+		} else {
+			console.log("uh what");
+		}
+	});
 }
