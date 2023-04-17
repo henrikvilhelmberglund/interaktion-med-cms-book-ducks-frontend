@@ -26,13 +26,14 @@
 </script>
 
 <main class="bg-primary-100 dark:bg-base-900 pb-64 pt-4 [&>*]:m-4 [&>*]:mt-0">
+	<h2 class="text-4xl">Welcome, {$myUser.username}!</h2>
 	{#if toReadBooks}
-		<h2 class="text-base-100 text-3xl">To read list</h2>
+		<h3 class="text-base-100 text-3xl">To read list</h3>
 		{#each filteredBooks as book (book.id)}
 			<Book {book} />
 		{/each}
 	{:else}
-		<h2 class="text-base-100 text-3xl">You need to be logged in to view your To read list.</h2>
+		<h3 class="text-base-100 text-3xl">You need to be logged in to view your To read list.</h3>
 		<LoginRegister />
 	{/if}
 </main>
