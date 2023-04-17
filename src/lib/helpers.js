@@ -1,6 +1,7 @@
 import { get } from "svelte/store";
 import { getTheme } from "./api";
-import { activeTheme, preferredMode } from "./stores";
+import { activeTheme, myUser, preferredMode, userRatingObject } from "./stores";
+import { browser } from "$app/environment";
 
 function toRGB(hex) {
 	// Thanks chatGPT
@@ -44,42 +45,47 @@ function setCustomCSSColors(colors) {
 }
 
 export async function activateTheme(override) {
-	let data = await getTheme();
-	if (!override) {
-		activeTheme.set(data.attributes.theme);
-	} else {
-		activeTheme.set(override);
-	}
-
-	document.documentElement.classList = "";
-
-	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-		if (!get(preferredMode)) {
-			preferredMode.set("dark");
+	if (browser) {
+		let data = await getTheme();
+		if (!override) {
+			activeTheme.set(data.attributes.theme);
+		} else {
+			activeTheme.set(override);
 		}
-	}
-	if (get(preferredMode) === "dark") {
-		// dark mode
-		console.log("I am dark mode");
-		activeTheme.set(get(activeTheme) + "Dark");
-		document.documentElement.classList.add(get(activeTheme));
-		document.documentElement.classList.add("dark");
-	} else {
-		document.documentElement.classList.add(get(activeTheme));
-	}
 
-	let customThemeColors = data.attributes.custom_theme_colors;
-	if (get(activeTheme) === "custom") {
-		customThemeColors = customThemeColors.custom;
-		console.log(customThemeColors);
-		setCustomCSSColors(customThemeColors);
-	} else if (get(activeTheme) === "customDark") {
-		customThemeColors = customThemeColors.customDark;
-		console.log(customThemeColors);
-		setCustomCSSColors(customThemeColors);
-	} else {
-		document.documentElement.style = "";
+		document.documentElement.classList = "";
+
+		if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			if (!get(preferredMode)) {
+				preferredMode.set("dark");
+			}
+		}
+		if (get(preferredMode) === "dark") {
+			// dark mode
+			console.log("I am dark mode");
+			activeTheme.set(get(activeTheme) + "Dark");
+			document.documentElement.classList.add(get(activeTheme));
+			document.documentElement.classList.add("dark");
+		} else {
+			document.documentElement.classList.add(get(activeTheme));
+		}
+
+		let customThemeColors = data.attributes.custom_theme_colors;
+		if (get(activeTheme) === "custom") {
+			customThemeColors = customThemeColors.custom;
+			console.log(customThemeColors);
+			setCustomCSSColors(customThemeColors);
+		} else if (get(activeTheme) === "customDark") {
+			customThemeColors = customThemeColors.customDark;
+			console.log(customThemeColors);
+			setCustomCSSColors(customThemeColors);
+		} else {
+			document.documentElement.style = "";
+		}
+
+		return get(activeTheme);
 	}
+}
 
 export function setUserRatingObject() {
 	get(myUser).ratings.forEach((rating) => {
