@@ -1,6 +1,7 @@
 <script>
 	import { browser } from "$app/environment";
 	import Book from "$lib/Book.svelte";
+	import LoginRegister from "$lib/LoginRegister.svelte";
 	import { myUser } from "$lib/stores";
 	import { afterUpdate } from "svelte";
 	export let data;
@@ -26,10 +27,13 @@
 
 <main class="bg-primary-100 dark:bg-base-900 pb-64 pt-4 [&>*]:m-4 [&>*]:mt-0">
 	{#if toReadBooks}
-		<p>hi</p>
-		{#each filteredBooks as book}
+		<h2 class="text-base-100 text-3xl">To read list</h2>
+		{#each filteredBooks as book (book.id)}
 			<Book {book} />
 		{/each}
+	{:else}
+		<h2 class="text-base-100 text-3xl">You need to be logged in to view your To read list.</h2>
+		<LoginRegister />
 	{/if}
 </main>
 
