@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.3](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v0.0.2...v0.0.3) (2023-04-17)
+
+
+### Features
+
+* :sparkles: add ability to login when you're trying to view the to read list while not logged in ([4e09863](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/4e09863a7499fdea9887815c5aec396082376484))
+* **components:** :sparkles: add buttons for adding/removing to read books ([23dc70c](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/23dc70ca1c511dcfa52fa35c9d7663cac2715225))
+* **api:** :sparkles: add createReadLaterList() and updateReadLaterList() ([2d50cfa](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/2d50cfa746380084357cd3b54ea5fd209070a59a))
+* :package: add @iconify-json/mdi ([dbbc6f7](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/dbbc6f7c3e30d55a3ef66e810c5aaaf20614138f))
+* :sparkles: add to-read-list route ([065c726](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/065c7261a26a0754e234477391ba3d639f5e099f))
+* :sparkles: set theme stuff from layout instead of index page ([8b44196](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/8b441962ed605085b90704e9bee724f813974cb2))
+* **components:** :sparkles: add clickOutside for closing modal ([d33804c](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/d33804cd8c79257d078c05661eb45c206f2ac84e))
+* :sparkles: add Header and ThemeTester to layout so they are visible in to-read-list route as well ([d377aca](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/d377aca22b3395dc74528c29be422efd1b4dc075))
+* **components:** :sparkles: add UserModal, show UserModal when clicking on user name ([40680ce](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/40680cef267c7a8802ebbd3a3fc14a6f700c550e))
+* **components:** :sparkles: add link to main page to logo ([feac22e](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/feac22e44190c3499d3a6ec4b4d6e4bd80760162))
+* :sparkles: move setUserRatingObject to helpers.js because it is used in 2 places ([39b1071](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/39b1071a643eee97106fc7b31444827540919a5b))
+* :sparkles: add load function in +page.js that loads the books and returns them for use later in page store ([8605178](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/8605178ca69820117752a50dd1d52b8cb7dd9c30))
+* :sparkles: add +layout.js with load function that checks token and if there sets myUser store ([deb4e14](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/deb4e140dc210111d0bf07918f57d07af1a81ab6))
+* **api:** :sparkles: populate to read list as well ([6a53868](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/6a5386850b15932d164ac2ba4c7137a6c804d31d))
+
+
+### Bug Fixes
+
+* **components:** :lipstick: improve styling, change text ([6559af4](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/6559af4802bce570b869c43e614cc0e5420a6eb8))
+* **components:** :lipstick: improve add to to read list button styling ([a60081e](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/a60081e4ad21c212cc22e357b36819b87b32f888))
+* :art: rename route to profile ([0fb087a](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/0fb087aedeaa695ffc4993ee628c3c2095397d7c))
+* :fire: remove console log ([ff3182c](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/ff3182cff76977982218a8040dc84cec4d447cfd))
+* **components:** :fire: remove console log ([4094ee8](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/4094ee84c773a37fc8e07d14e6e377662ef385bd))
+* **components:** :fire: remove console logs ([3f9f377](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/3f9f377062b6abab931a7b6913b7055b1882c5e5))
+* :ambulance: remove myUser stores from load functions ([f263c11](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/f263c11af56132a27b38252ddeb2f626f865e4e3))
+* :fire: remove onMount, move Header to layout ([708357e](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/708357e3abd5420e85e7728c0e85bd1fc42b8e70))
+* **components:** :fire: remove onMount and function that was moved ([1c3848d](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/1c3848de004cbbd2743689430743d8871d5344dc))
+* :bug: check for browser in theme function because it needs to use document ([6087c40](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/6087c40d0c741d29481b5294b891aac0ba432e77))
+
 ## [0.0.2](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v0.0.1...v0.0.2) (2023-04-16)
 
 
