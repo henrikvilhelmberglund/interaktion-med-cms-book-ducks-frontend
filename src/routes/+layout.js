@@ -1,3 +1,4 @@
+export const prerender = true;
 import { getBooks } from "$lib/api";
 
 /** @type {import('./$types').PageLoad} */

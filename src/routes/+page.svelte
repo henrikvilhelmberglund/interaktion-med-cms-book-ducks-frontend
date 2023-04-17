@@ -8,7 +8,6 @@
 	import Book from "$lib/Book.svelte";
 	import { activateTheme } from "$lib/helpers";
 	import { activeTheme } from "$lib/stores";
-	import "/src/themeCSS.scss";
 	import ThemeTester from "$lib/ThemeTester.svelte";
 	// import ThemeCss from "$lib/ThemeCSS.svelte";
   export let data;

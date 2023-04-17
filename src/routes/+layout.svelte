@@ -6,6 +6,7 @@
 	import { activeTheme } from "$lib/stores";
 	import "@unocss/reset/tailwind.css";
 	import { onMount } from "svelte";
+  import "/src/lib/themeCSS.scss";
 
 	onMount(async () => {
 		let data = await getTheme();
