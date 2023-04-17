@@ -23,15 +23,13 @@
 
 	let successfullyRegistered = false;
 
-	// set from actual functions instead
-	// $: {
-	//   if (myUser.hasOwnProperty("user")) {
-	//     showLoginPopup = true;
-	//     setTimeout(() => {
-	//       showLoginPopup = false;
-	//     }, 1500);
-	//   }
-	// }
+	onMount(async () => {
+		if ($token) {
+			$myUser = await getCurrentUserAndRatings();
+			console.log($myUser);
+		}
+	});
+
 	function nicefyError(string) {
 		return `${string[0].toUpperCase()}${string.slice(1)}.`;
 	}

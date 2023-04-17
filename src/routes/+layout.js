@@ -1,22 +1,19 @@
-import { getCurrentUserAndRatings } from "$lib/api";
-import { setUserRatingObject } from "$lib/helpers";
-import { myUser, token, userRatingObject } from "$lib/stores";
-import { get } from "svelte/store";
-
-export const prerender = true;
-userRatingObject;
-
-async function setMyUser() {
-	if (get(token)) {
-		let currentUser;
-		currentUser = await getCurrentUserAndRatings();
-		myUser.set(currentUser);
-		// $myUser = $myUser;
-		setUserRatingObject();
-	}
-}
+import { getBooks } from "$lib/api";
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {
-	await setMyUser();
+	let books;
+	try {
+		books = await getBooks();
+		console.log(books);
+
+	} catch (error) {
+		if (error === "network error") {
+			// showNetworkError = true;
+		}
+		console.log(error);
+		// throw error;
+		return { error };
+	}
+	return { books };
 }
