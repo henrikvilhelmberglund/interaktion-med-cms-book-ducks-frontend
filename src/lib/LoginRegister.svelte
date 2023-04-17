@@ -4,34 +4,8 @@
 	import { clickOutside } from "$lib/actions";
 	import { myUser, token, userRatingObject } from "./stores";
 	import { getCurrentUserAndRatings } from "./api";
-
-	function setUserRatingObject() {
-		$myUser.ratings.forEach((rating) => {
-			// console.log(rating);
-			if (rating.books[0].id) {
-				// 	console.log(rating.half_stars);
-				$userRatingObject[rating.books[0].id] = {
-					rating_id: rating.id,
-					userRating: rating.half_stars,
-				};
-				// console.log(
-				// 	`${$myUser.username} has rated ${rating.books[0].title} with ${
-				// 		$userRatingObject[rating.books[0].id].userRating
-				// 	}`
-				// );
-			} else {
-				console.log("uh what");
-			}
-		});
-	}
-
-	onMount(async () => {
-		if ($token) {
-			$myUser = await getCurrentUserAndRatings();
-			// $myUser = $myUser;
-			setUserRatingObject();
-		}
-	});
+	import UserModal from "./UserModal.svelte";
+	import { setUserRatingObject } from "./helpers";
 
 	let showLogin;
 	let error = false;
@@ -45,18 +19,17 @@
 	let registerEmail;
 
 	let showLoginPopup = false;
+	let showUserModal = false;
 
 	let successfullyRegistered = false;
 
-	// set from actual functions instead
-	// $: {
-	//   if (myUser.hasOwnProperty("user")) {
-	//     showLoginPopup = true;
-	//     setTimeout(() => {
-	//       showLoginPopup = false;
-	//     }, 1500);
-	//   }
-	// }
+	onMount(async () => {
+		if ($token) {
+			$myUser = await getCurrentUserAndRatings();
+			console.log($myUser);
+		}
+	});
+
 	function nicefyError(string) {
 		return `${string[0].toUpperCase()}${string.slice(1)}.`;
 	}
@@ -138,12 +111,19 @@
 {#if !Object.keys($myUser).length}
 	<button on:click={() => (showLogin = true)} class="btn-primary">Login</button>
 {:else}
-	<button
-		on:click={() => {
-			$token = null;
-			location.reload();
-		}}
-		class="btn-primary">Log out</button>
+	<button on:mousedown|stopPropagation={() => (showUserModal = true)} class="btn-secondary mr-4">
+		{$myUser.username}
+	</button>
+
+	{#if showUserModal}
+		<div
+			use:clickOutside={() => {
+				showUserModal = false;
+			}}
+			class="absolute right-20 top-20">
+			<UserModal />
+		</div>
+	{/if}
 {/if}
 
 {#if showLogin}
@@ -157,71 +137,70 @@
 				on:click={() => (mode === "login" ? (mode = "register") : (mode = "login"))}
 				class="btn-secondary mb-4">Switch to {mode === "login" ? "register" : "login"}</button>
 			<form action="">
-				<div class="rounded-lg bg-gray-300 dark:bg-gray-900 p-6 [&>*]:m-2 [&>*]:p-2">
-					<h1 class="text-3xl text-base-100">{mode === "login" ? "Login" : "Register"}</h1>
+				<div class="rounded-lg bg-gray-300 p-6 dark:bg-gray-900 [&>*]:m-2 [&>*]:p-2">
+					<h1 class="text-base-100 text-3xl">{mode === "login" ? "Login" : "Register"}</h1>
 
-          <div class="[&>*]:dark:bg-black [&>*]:dark:text-base-100">
-            
-            {#if mode === "login"}
-						<input
-							bind:value={inputUsername}
-							placeholder="Username or email"
-							id="username"
-							class="rounded border p-2"
-							type="text" />
-						<input
-							bind:value={inputPassword}
-							on:input={() => (error = false)}
-							placeholder="Password"
-							id="password"
-							class="rounded border p-2"
-							type="password" />
-						<button
-							on:click={async () => {
-								await login();
-								showLoginPopup = true;
-								setTimeout(() => {
-									showLoginPopup = false;
-								}, 2000);
-							}}
-							disabled={!inputUsername || !inputPassword}
-							class="!btn-primary disabled:opacity-25">Log in</button>
-					{:else if mode === "register"}
-						<input
-							bind:value={registerEmail}
-							placeholder="Email"
-							id="email"
-							class="rounded border p-2"
-							type="email" />
-						<input
-							bind:value={registerUsername}
-							placeholder="Username"
-							id="username"
-							class="rounded border p-2"
-							type="text" />
-              
-              <input
-							bind:value={registerPassword}
-							placeholder="Password"
-							id="password"
-							class="rounded border p-2"
-							type="password" />
-						<button
-							on:click={async () => {
-								try {
-                  await register();
-									successfullyRegistered = true;
+					<div class="[&>*]:dark:text-base-100 [&>*]:dark:bg-black">
+						{#if mode === "login"}
+							<input
+								bind:value={inputUsername}
+								placeholder="Username or email"
+								id="username"
+								class="rounded border p-2"
+								type="text" />
+							<input
+								bind:value={inputPassword}
+								on:input={() => (error = false)}
+								placeholder="Password"
+								id="password"
+								class="rounded border p-2"
+								type="password" />
+							<button
+								on:click={async () => {
+									await login();
+									showLoginPopup = true;
 									setTimeout(() => {
-										successfullyRegistered = false;
+										showLoginPopup = false;
 									}, 2000);
-								} catch (error) {
-                  console.log(error);
-								}
-							}}
-							disabled={!registerUsername || !registerEmail || !registerPassword}
-							class="!btn-primary disabled:opacity-25">Register</button>
-              {/if}
-            </div>
+								}}
+								disabled={!inputUsername || !inputPassword}
+								class="!btn-primary disabled:opacity-25">Log in</button>
+						{:else if mode === "register"}
+							<input
+								bind:value={registerEmail}
+								placeholder="Email"
+								id="email"
+								class="rounded border p-2"
+								type="email" />
+							<input
+								bind:value={registerUsername}
+								placeholder="Username"
+								id="username"
+								class="rounded border p-2"
+								type="text" />
+
+							<input
+								bind:value={registerPassword}
+								placeholder="Password"
+								id="password"
+								class="rounded border p-2"
+								type="password" />
+							<button
+								on:click={async () => {
+									try {
+										await register();
+										successfullyRegistered = true;
+										setTimeout(() => {
+											successfullyRegistered = false;
+										}, 2000);
+									} catch (error) {
+										console.log(error);
+									}
+								}}
+								disabled={!registerUsername || !registerEmail || !registerPassword}
+								class="!btn-primary disabled:opacity-25">Register</button>
+						{/if}
+					</div>
 				</div>
 			</form>
 			{#if error}

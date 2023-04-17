@@ -7,6 +7,38 @@ export const getBooks = async () => {
 	return data;
 };
 
+export const createReadLaterList = async (book_id) => {
+	const data = await sendRequest("POST", `http://127.0.0.1:1337/api/to-read-lists/`, {
+		data: {
+			user: get(myUser),
+			books: book_id,
+		},
+	});
+	console.log("created data was", data);
+	return data;
+};
+
+export const updateReadLaterList = async (book_id, remove) => {
+	const existingIDs = get(myUser).to_read_list.books.map((book) => book.id);
+	console.log(existingIDs);
+	if (remove) {
+		console.log("click on ", existingIDs.indexOf(book_id));
+		existingIDs.splice(existingIDs.indexOf(book_id), 1);
+	}
+	const data = await sendRequest(
+		"PUT",
+		`http://127.0.0.1:1337/api/to-read-lists/${get(myUser).to_read_list.id}`,
+		{
+			data: {
+				user: get(myUser),
+				books: remove ? [...existingIDs] : [...existingIDs, book_id],
+			},
+		}
+	);
+	console.log("updated data was", data);
+	return data;
+};
+
 export const getTheme = async () => {
 	const data = await sendRequestNonAuth("GET", "http://127.0.0.1:1337/api/active-theme");
 	return data;
@@ -15,11 +47,10 @@ export const getTheme = async () => {
 export const getCurrentUserAndRatings = async () => {
 	const data = await sendRequestMe(
 		"GET",
-		"http://127.0.0.1:1337/api/users/me?populate[ratings][populate][0]=books"
+		"http://127.0.0.1:1337/api/users/me?populate[ratings][populate][0]=books&populate[to_read_list][populate][0]=books"
 	);
 
 	// console.log("data is " + data);
-	console.log(get(myUser));
 	// myUser.set(data);
 	return data;
 };

@@ -4,20 +4,23 @@
 	import DOMPurify from "dompurify";
 	import { marked } from "marked";
 	import Rating from "./Rating.svelte";
-	import { updateAverageRating } from "./api";
+	import {
+		createReadLaterList,
+		updateReadLaterList,
+		updateAverageRating,
+		getCurrentUserAndRatings,
+	} from "./api";
 	import { bookExpanded, myUser, userRatingObject } from "./stores";
+	import { afterUpdate } from "svelte";
 
 	export let book;
-	// console.log(book);
 	let book_id = book.id;
-	// console.log(id);
 	let title = book.attributes.title;
 	let author = book.attributes.author;
 	let page_count = book.attributes.page_count;
 	let average_rating = book.attributes.average_rating;
 	let release_date = book.attributes.release_date;
 	let cover_image = book.attributes.cover_image.data.attributes.url;
-	// console.log(cover_image);
 	let cover_image_alt = book.attributes.cover_image;
 	let synopsis = book.attributes.synopsis;
 	let title_font = book.attributes.font_component?.title_font;
@@ -26,8 +29,24 @@
 	let font_weight = book.attributes.font_component?.font_weight;
 	let ratings = book.attributes.ratings.data;
 	let usersWhoRated = book.attributes.ratings.data.length;
-	if (ratings.length) console.log(ratings);
+	// if (ratings.length) console.log(ratings);
 	let ratingChanged = false;
+	let isAddedToReadLater;
+
+	afterUpdate(() => {
+		let toReadBooks = $myUser.to_read_list?.books;
+		if (!toReadBooks) {
+			return;
+		}
+
+		// console.log(toReadBooks);
+		let toReadBooksIDs = toReadBooks.map((book) => book.id);
+		let filteredBook = Array(book).filter((book) => {
+			return toReadBooksIDs.includes(book_id);
+		});
+		isAddedToReadLater = filteredBook.length ? true : false;
+		// console.log(isAddedToReadLater);
+	});
 
 	// console.log($myUser.user?.ratings.filter((a) => a.books.id === id));
 	// console.log(title);
@@ -93,12 +112,41 @@
 			<h3 class="font-{authorFontKey} text-center text-xl">{author}</h3>
 		</div>
 	</button>
+
+	<button
+		class:i-mdi-remove-circle={isAddedToReadLater}
+		class:bg-red-500={isAddedToReadLater}
+		class:i-mdi-add-circle={!isAddedToReadLater}
+		class:bg-green-500={!isAddedToReadLater}
+		class="hover:(h-18 w-18 opacity-100) absolute bottom-0 right-0 h-8 w-8 opacity-50 transition-all"
+		on:click={async () => {
+			if (!isAddedToReadLater) {
+				if ($myUser.to_read_list?.id) {
+					console.log($myUser.to_read_list.id);
+					await updateReadLaterList(book_id);
+					$myUser = await getCurrentUserAndRatings();
+				} else {
+					// ! pretty stupid
+					await createReadLaterList();
+					$myUser = await getCurrentUserAndRatings();
+					await updateReadLaterList(book_id);
+					$myUser = await getCurrentUserAndRatings();
+				}
+				console.log($myUser);
+			} else {
+				if ($myUser.to_read_list?.id) {
+					console.log($myUser.to_read_list.id);
+					await updateReadLaterList(book_id, "remove");
+					$myUser = await getCurrentUserAndRatings();
+				}
+			}
+		}} />
 	{#if $bookExpanded[book_id]}
 		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
 		<div
 			use:clickOutside={() => ($bookExpanded = {})}
-			class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min [&>*]:dark:text-base-100">
+			class="z-100 w-100vw [&>*]:dark:text-base-100 absolute left-0 top-0 p-12 md:fixed md:w-min">
 			<div class="h-[690px] w-full md:w-[512px]">
 				<img
 					class="absolute shadow-xl shadow-black/80 md:min-w-[512px] md:translate-x-0"
@@ -113,12 +161,12 @@
 				</div>
 			</div>
 			<div
-				class="font-e translate-y-175 absolute right-0 top-12 bg-[#F9D8A7] dark:bg-gray-900 text-base-400 p-4 py-8 text-lg md:translate-x-[120%] md:translate-y-0 md:translate-y-0">
+				class="font-e translate-y-175 text-base-400 absolute right-0 top-12 bg-[#F9D8A7] p-4 py-8 text-lg dark:bg-gray-900 md:translate-x-[120%] md:translate-y-0 md:translate-y-0">
 				<h3 class="text-2xl">Synopsis</h3>
 				{@html DOMPurify.sanitize(marked.parse(synopsis))}
 			</div>
 			<div
-				class="translate-y-160 absolute bottom-0 left-0 bg-slate-300 dark:bg-gray-900 p-4 pb-12 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0">
+				class="translate-y-160 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 dark:bg-gray-900 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0">
 				{#key ratingChanged}
 					{#if $myUser.username}
 						<p>
