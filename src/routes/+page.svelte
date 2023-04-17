@@ -11,31 +11,13 @@
 	import "/src/themeCSS.scss";
 	import ThemeTester from "$lib/ThemeTester.svelte";
 	// import ThemeCss from "$lib/ThemeCSS.svelte";
+  export let data;
 
-	let books = [];
 	let showNetworkError = false;
 
-	onMount(async () => {
-		try {
-			books = await getBooks();
-			console.log(books);
-			let data = await getTheme();
-			$activeTheme = data.attributes.theme;
-			console.log($activeTheme);
-			$activeTheme = activateTheme($activeTheme);
-		} catch (error) {
-			if (error === "network error") {
-				showNetworkError = true;
-			}
-			console.log(error);
-			throw error;
-		}
-	});
+
 </script>
 
-<Header />
-
-<ThemeTester />
 <main class="bg-primary-100 dark:bg-base-900 pb-64 pt-4 [&>*]:m-4 [&>*]:mt-0">
 	{#if showNetworkError}
 		<div class="flex justify-center">
@@ -45,7 +27,7 @@
 		</div>
 	{/if}
 	<div class="flex flex-wrap justify-end gap-4 md:justify-start">
-		{#each Object.values(books) as book}
+		{#each Object.values(data.books) as book}
 			<Book {book} />
 		{/each}
 	</div>
