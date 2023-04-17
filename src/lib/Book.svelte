@@ -8,9 +8,7 @@
 	import { bookExpanded, myUser, userRatingObject } from "./stores";
 
 	export let book;
-	// console.log(book);
 	let book_id = book.id;
-	// console.log(id);
 	let title = book.attributes.title;
 	let author = book.attributes.author;
 	let page_count = book.attributes.page_count;
@@ -98,7 +96,7 @@
 
 		<div
 			use:clickOutside={() => ($bookExpanded = {})}
-			class="z-100 w-100vw absolute left-0 top-0 p-12 md:fixed md:w-min [&>*]:dark:text-base-100">
+			class="z-100 w-100vw [&>*]:dark:text-base-100 absolute left-0 top-0 p-12 md:fixed md:w-min">
 			<div class="h-[690px] w-full md:w-[512px]">
 				<img
 					class="absolute shadow-xl shadow-black/80 md:min-w-[512px] md:translate-x-0"
@@ -113,12 +111,12 @@
 				</div>
 			</div>
 			<div
-				class="font-e translate-y-175 absolute right-0 top-12 bg-[#F9D8A7] dark:bg-gray-900 text-base-400 p-4 py-8 text-lg md:translate-x-[120%] md:translate-y-0 md:translate-y-0">
+				class="font-e translate-y-175 text-base-400 absolute right-0 top-12 bg-[#F9D8A7] p-4 py-8 text-lg dark:bg-gray-900 md:translate-x-[120%] md:translate-y-0 md:translate-y-0">
 				<h3 class="text-2xl">Synopsis</h3>
 				{@html DOMPurify.sanitize(marked.parse(synopsis))}
 			</div>
 			<div
-				class="translate-y-160 absolute bottom-0 left-0 bg-slate-300 dark:bg-gray-900 p-4 pb-12 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0">
+				class="translate-y-160 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 dark:bg-gray-900 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0">
 				{#key ratingChanged}
 					{#if $myUser.username}
 						<p>
