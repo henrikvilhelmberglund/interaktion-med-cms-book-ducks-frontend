@@ -106,3 +106,39 @@ export function setUserRatingObject() {
 		}
 	});
 }
+
+/**
+ * ## Sorts a list
+ * @param {Array<string>} array - An array of books.
+ * @param {string} mode - How to sort the list..
+ * @returns {Array<string>} An array of a sorted list.
+ */
+
+function sortListCallback(bookA, bookB, property, type) {
+	if (property === "Rating") property = "average_rating";
+	let a = bookA.attributes[property.toLowerCase()];
+	let b = bookB.attributes[property.toLowerCase()];
+	if (type === "Asc") {
+		if (a < b) {
+			return -1;
+		}
+		if (a > b) {
+			return 1;
+		}
+	} else {
+		if (a < b) {
+			return 1;
+		}
+		if (a > b) {
+			return -1;
+		}
+	}
+}
+
+export function sortList(array, mode) {
+	if (mode === "normal") return array;
+	if (mode !== "normal") {
+		const [property, type] = mode.split(" ");
+		return array.sort((bookA, bookB) => sortListCallback(bookA, bookB, property, type));
+	}
+}
