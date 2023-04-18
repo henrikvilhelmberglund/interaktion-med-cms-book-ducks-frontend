@@ -1,5 +1,4 @@
 <script>
-	import { base } from "$app/paths";
 	import { clickOutside } from "$lib/actions";
 	import DOMPurify from "dompurify";
 	import { marked } from "marked";
@@ -7,12 +6,10 @@
 	import {
 		createReadLaterList,
 		updateReadLaterList,
-		updateAverageRating,
 		getCurrentUserAndRatings,
 	} from "./api";
 	import { bookExpanded, myUser, userRatingObject } from "./stores";
 	import { afterUpdate } from "svelte";
-	import { createEventDispatcher } from "svelte";
 
 	export let book;
 	let book_id = book.id;
@@ -32,8 +29,9 @@
 	let usersWhoRated = book.attributes.ratings.data.length;
 	// if (ratings.length) console.log(ratings);
 	let ratingChanged = false;
+	export let updatedRating = false;
+	export let isProfilePage = false;
 	let isAddedToReadLater;
-	const dispatch = createEventDispatcher();
 
 	afterUpdate(() => {
 		let toReadBooks = $myUser.to_read_list?.books;
@@ -144,10 +142,11 @@
 			}
 		}} />
 	{#if $bookExpanded[book_id]}
-		<div class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
+		<div class:invisible={updatedRating} class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
 		<div
 			use:clickOutside={() => ($bookExpanded = {})}
+			class:invisible={updatedRating}
 			class="z-100 w-100vw [&>*]:dark:text-base-100 absolute left-0 top-0 p-12 md:fixed md:w-min">
 			<div class="h-[690px] w-full md:w-[512px]">
 				<img
@@ -182,7 +181,12 @@
 					Average rating: {average_rating / 2 ?? "This book has not been rated yet."}
 					{usersWhoRated ? `(${usersWhoRated} users)` : ""}
 				</p>
-				<Rating {book_id} bind:average_rating bind:usersWhoRated />
+				<Rating
+					{book_id}
+					{isProfilePage}
+					bind:updatedRating
+					bind:average_rating
+					bind:usersWhoRated />
 				<ul>
 					<li>{title} was released in {release_date}.</li>
 					<li>Page count: {page_count}</li>
