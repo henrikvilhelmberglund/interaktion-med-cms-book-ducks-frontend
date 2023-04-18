@@ -43,14 +43,16 @@
 			// ! this is SSR and triggered an error because $myUser is not defined yet
 			return;
 		}
-		// console.log(toReadBooks);
+		updateList();
+	});
+
+	function updateList() {
 		if (mode === "To read list") {
 			let toReadBooksIDs = toReadBooks.map((book) => book.id);
 			filteredBooks = data.books.filter((book) => {
 				return toReadBooksIDs.includes(book.id);
 			});
 			// console.log(filteredBooks);
-			filteredBooks = sortList(filteredBooks, activeFilterMode);
 			// console.log(filteredBooks);
 		} else if (mode === "Rated books list") {
 			let ratedBooksIDs = $myUser.ratings.map((book) => book.books[0].id);
@@ -58,11 +60,9 @@
 			filteredBooks = data.books.filter((book) => {
 				return ratedBooksIDs.includes(book.id);
 			});
-			filteredBooks = sortList(filteredBooks, activeFilterMode);
-			// console.log($myUser);
 		}
-		console.log(Object.values($userRatingObject));
-	});
+		filteredBooks = sortList(filteredBooks, activeFilterMode);
+	}
 </script>
 
 <main class="bg-primary-100 dark:bg-base-900 pb-64 pt-4 [&>*]:m-4 [&>*]:mt-0">
@@ -92,12 +92,14 @@
 		<button
 			on:click={() => {
 				activeFilterMode = "normal";
+				// updateList();
 			}}
 			class="btn-primary">Clear sort</button>
 		{#each filterModes as filterMode}
 			<button
 				on:click={() => {
 					activeFilterMode = filterMode;
+					// updateList();
 				}}
 				class="btn-primary">{filterMode}</button>
 		{/each}
