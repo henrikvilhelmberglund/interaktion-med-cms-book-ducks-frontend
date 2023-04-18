@@ -1,13 +1,25 @@
 <script>
-	import { createUserRating, removeUserRating, updateAverageRating, updateUserRating } from "./api";
-	import { myUser, userRatingObject } from "./stores";
+	import {
+		createUserRating,
+		getBooks,
+		getCurrentUserAndRatings,
+		removeUserRating,
+		updateAverageRating,
+		updateUserRating,
+	} from "./api";
+	import { books, myUser, userRatingObject } from "./stores";
 	import { fly } from "svelte/transition";
+	import { createEventDispatcher } from "svelte";
+	import { setUserRatingObject } from "./helpers";
+	const dispatch = createEventDispatcher();
 	export let average_rating;
 	export let usersWhoRated;
 	export let book_id;
+	export let updatedRating = false;
 	let showPleaseLoginPopup = false;
 	let timeout;
 	let newRating = 0;
+	export let isProfilePage;
 	// 127.0.0.1:1337/api/books?populate[ratings][populate][0]=user
 	// 127.0.0.1:1337/api/users/me?populate[ratings][populate][0]=books
 
@@ -31,7 +43,17 @@
 			const newAverageRatingObject = await updateAverageRating(book_id);
 			average_rating = newAverageRatingObject.average_rating;
 			usersWhoRated = newAverageRatingObject.usersWhoRated;
-      console.log(average_rating);
+			$userRatingObject[book_id].average_rating = average_rating / usersWhoRated;
+			$myUser = await getCurrentUserAndRatings();
+			setUserRatingObject();
+			$books = await getBooks();
+			console.log(average_rating);
+			if (isProfilePage) {
+				updatedRating = true;
+				setTimeout(() => {
+					updatedRating = false;
+				}, 1020);
+			}
 		} else {
 			// no user rating - create it
 			let data = await createUserRating(book_id, newRating);
@@ -41,10 +63,9 @@
 			const newAverageRatingObject = await updateAverageRating(book_id);
 			average_rating = newAverageRatingObject.average_rating;
 			usersWhoRated = newAverageRatingObject.usersWhoRated;
-      console.log(average_rating);
+			$userRatingObject[book_id].average_rating = average_rating / usersWhoRated;
+			console.log(average_rating);
 		}
-		// TODO
-		// update book's average rating here too
 	}
 </script>
 
@@ -90,6 +111,7 @@
 			Remove your rating</button>
 	{/if}
 </div>
+
 <!-- {@debug average_rating, $myUser, usersWhoRated} -->
 
 <style>

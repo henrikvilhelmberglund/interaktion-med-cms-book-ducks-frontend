@@ -26,7 +26,8 @@
 	onMount(async () => {
 		if ($token) {
 			$myUser = await getCurrentUserAndRatings();
-			console.log($myUser);
+			setUserRatingObject();
+			// console.log($myUser);
 		}
 	});
 
