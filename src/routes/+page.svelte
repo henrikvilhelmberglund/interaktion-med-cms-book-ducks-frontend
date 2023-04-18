@@ -7,11 +7,9 @@
 	import Header from "$lib/Header.svelte";
 	import Book from "$lib/Book.svelte";
 	import { activateTheme } from "$lib/helpers";
-	import { activeTheme } from "$lib/stores";
+	import { activeTheme, books } from "$lib/stores";
 	import ThemeTester from "$lib/ThemeTester.svelte";
 	// import ThemeCss from "$lib/ThemeCSS.svelte";
-  export let data;
-
 	let showNetworkError = false;
 
 
@@ -26,7 +24,7 @@
 		</div>
 	{/if}
 	<div class="flex flex-wrap justify-end gap-4 md:justify-start">
-		{#each Object.values(data.books) as book}
+		{#each Object.values($books) as book}
 			<Book {book} />
 		{/each}
 	</div>
