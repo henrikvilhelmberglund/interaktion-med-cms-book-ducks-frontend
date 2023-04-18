@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.4](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v0.0.3...v0.0.4) (2023-04-18)
+
+
+### Features
+
+* :sparkles: add filtering buttons and logic ([3debd78](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/3debd78799c86dc6144db753828556e24e45d9cc))
+* **components:** :lipstick: hide expanded book view when the stars are clicked from the profile page ([279d3b0](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/279d3b00e6dfdfde12a549128dee05e963973fca))
+* :sparkles: get books on layout mount ([bedf676](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/bedf6765dcc496dd3c1b94aba0ee75cead5b662a))
+* **stores:** :sparkles: add books store ([19739c4](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/19739c4f2c952003d19d185835c68c12d57d2d71))
+* :lipstick: add support for outline in buttons ([cc699c8](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/cc699c872ce4bd4f226d89c26dae71c1d5ca3053))
+* :sparkles: breakt out update list thing into function ([1958dd4](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/1958dd4b6459bba452bf860a1d38505b4f4dabc7))
+* :sparkles: add sorting functionality for to read list and rated book list ([024e9a4](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/024e9a49d65ee99015e6dbc7f1bb28c87511f68d))
+* **components:** :sparkles: add event dispatchers to try to update the list when ranked, but doesn't work ([de92a69](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/de92a6948274fc5c99cfa015adb0d94c9d80dbcb))
+* :sparkles: add sort functions to helpers.js ([7fb15d5](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/7fb15d500e6cb39d81efe9b707f112f5b3c0cd67))
+* :package: test vite beta ([3a60e6f](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/3a60e6fbe37d9818e652e5b7d7956b6815903f60))
+
+
+### Bug Fixes
+
+* :bug: use store instead of load function ([eaddf1e](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/eaddf1e16525b043ed767d9110523dd0f8a05849))
+* :fire: remove load function ([340739e](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/340739eb393a8b4cb63c968019f023274386276c))
+* :bug: remove console log ([29b4c1d](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/29b4c1dee01458a16d75b838daa4ed3737798c31))
+* **components:** :fire: scrap this approach ([eb6ce2b](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/eb6ce2b4eba4343819332da24d165db173c96605))
+* :fire: comment out ThemeTester for now ([32f530a](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/32f530a9c57f3611280c6a0987c38e51427329b7))
+* **components:** :fire: remove console log ([49fecab](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/49fecabe7f591d555c3a62872d5c17210aebabd0))
+* **components:** :bug: fix ratings not being set upon refresh ([603e46b](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/603e46b58ce64439fa7d288f8af2f2e4feab8163))
+* :green_heart: fix build ([b8d2123](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/b8d21238472b776ae327edea0b6bbce0a7b6b55d))
+* :bug: move themeCSS.scss to lib folder ([043aa98](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/043aa98867d407e4ac669a2febd4a6bb44f3288f))
+
 ## [0.0.3](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v0.0.2...v0.0.3) (2023-04-17)
 
 
