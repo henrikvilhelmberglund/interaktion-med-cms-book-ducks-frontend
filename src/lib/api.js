@@ -111,7 +111,7 @@ export const updateAverageRating = async (id) => {
 		`http://127.0.0.1:1337/api/books/${id}?populate=*`
 	);
 	let new_average_rating = 0;
-	console.log(bookData);
+	// console.log(bookData);
 
 	const bookRatings = bookData.attributes.ratings.data;
 
