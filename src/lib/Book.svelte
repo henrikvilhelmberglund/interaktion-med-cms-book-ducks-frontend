@@ -12,6 +12,7 @@
 	} from "./api";
 	import { bookExpanded, myUser, userRatingObject } from "./stores";
 	import { afterUpdate } from "svelte";
+	import { createEventDispatcher } from "svelte";
 
 	export let book;
 	let book_id = book.id;
@@ -32,6 +33,7 @@
 	// if (ratings.length) console.log(ratings);
 	let ratingChanged = false;
 	let isAddedToReadLater;
+	const dispatch = createEventDispatcher();
 
 	afterUpdate(() => {
 		let toReadBooks = $myUser.to_read_list?.books;
@@ -180,7 +182,13 @@
 					Average rating: {average_rating / 2 ?? "This book has not been rated yet."}
 					{usersWhoRated ? `(${usersWhoRated} users)` : ""}
 				</p>
-				<Rating {book_id} bind:average_rating bind:usersWhoRated />
+				<Rating
+					on:userRatingChanged={(e) => {
+						dispatch("pleaseUpdateFilteredList", average_rating);
+					}}
+					{book_id}
+					bind:average_rating
+					bind:usersWhoRated />
 				<ul>
 					<li>{title} was released in {release_date}.</li>
 					<li>Page count: {page_count}</li>
