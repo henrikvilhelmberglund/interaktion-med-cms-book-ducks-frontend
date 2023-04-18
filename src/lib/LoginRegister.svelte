@@ -27,7 +27,7 @@
 		if ($token) {
 			$myUser = await getCurrentUserAndRatings();
 			setUserRatingObject();
-			console.log($myUser);
+			// console.log($myUser);
 		}
 	});
 
