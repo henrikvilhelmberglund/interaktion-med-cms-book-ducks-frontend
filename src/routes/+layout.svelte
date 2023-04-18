@@ -18,7 +18,7 @@
 
 <Header />
 
-<ThemeTester />
+<!-- <ThemeTester /> -->
 
 <slot />
 
