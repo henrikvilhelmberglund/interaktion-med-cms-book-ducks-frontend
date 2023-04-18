@@ -33,8 +33,8 @@
 			const newAverageRatingObject = await updateAverageRating(book_id);
 			average_rating = newAverageRatingObject.average_rating;
 			usersWhoRated = newAverageRatingObject.usersWhoRated;
+			$userRatingObject[book_id].average_rating = average_rating / usersWhoRated;
 			console.log(average_rating);
-			dispatch("userRatingChanged", newRating);
 		} else {
 			// no user rating - create it
 			let data = await createUserRating(book_id, newRating);
@@ -44,8 +44,8 @@
 			const newAverageRatingObject = await updateAverageRating(book_id);
 			average_rating = newAverageRatingObject.average_rating;
 			usersWhoRated = newAverageRatingObject.usersWhoRated;
+			$userRatingObject[book_id].average_rating = average_rating / usersWhoRated;
 			console.log(average_rating);
-			dispatch("userRatingChanged", average_rating / usersWhoRated / 2);
 		}
 	}
 </script>

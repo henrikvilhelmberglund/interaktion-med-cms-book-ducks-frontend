@@ -182,13 +182,7 @@
 					Average rating: {average_rating / 2 ?? "This book has not been rated yet."}
 					{usersWhoRated ? `(${usersWhoRated} users)` : ""}
 				</p>
-				<Rating
-					on:userRatingChanged={(e) => {
-						dispatch("pleaseUpdateFilteredList", average_rating);
-					}}
-					{book_id}
-					bind:average_rating
-					bind:usersWhoRated />
+				<Rating {book_id} bind:average_rating bind:usersWhoRated />
 				<ul>
 					<li>{title} was released in {release_date}.</li>
 					<li>Page count: {page_count}</li>

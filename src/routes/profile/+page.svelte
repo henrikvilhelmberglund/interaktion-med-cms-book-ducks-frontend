@@ -61,6 +61,7 @@
 			filteredBooks = sortList(filteredBooks, activeFilterMode);
 			// console.log($myUser);
 		}
+		console.log(Object.values($userRatingObject));
 	});
 </script>
 
@@ -118,13 +119,7 @@
 						in:receive={{ key: book.id }}
 						out:send={{ key: book.id }}
 						animate:flip={{ duration: 1000 }}>
-						<Book
-							on:pleaseUpdateFilteredList={(e) => {
-								// ! this doesn't work :(
-								filteredBooks = sortList(filteredBooks, activeFilterMode);
-								console.log(e.detail);
-							}}
-							{book} />
+						<Book {book} />
 					</div>
 				{/each}
 			</div>
