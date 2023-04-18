@@ -2,5 +2,19 @@
 Todo:
   ✔ Create font selector thingy in Strapi (for each book) @done(23-04-12 11:24)
   ✔ Come up with a way to change the text location per book (maybe in Strapi as well) @done(23-04-12 11:24)
-  ☐ Use https://github.com/Dunqing/unocss-preset-theme with lightmode/darkmode for each theme and set vars for "custom" light and dark theme using JS
+  ✔ Use https://github.com/Dunqing/unocss-preset-theme with lightmode/darkmode for each theme and set vars for "custom" light and dark theme using JS @done(23-04-18 22:09)
 
+Tests:
+  ☐ Register user
+  ☐ Log in
+  ☐ Log out
+  ☐ View all books
+  ☐ Clearly see who is logged in
+  ☐ Give a rating for a book
+  ☐ Save a book in a personal to read list
+  ☐ View the to read list in the profile page
+  ☐ Select from minimum two themes in the Strapi interface
+  ☐ View the rated books list in the profile page
+  ☐ Sort the rated books (title, author, rating)
+  ☐ Somewhat professional look
+  ☐ Things work
