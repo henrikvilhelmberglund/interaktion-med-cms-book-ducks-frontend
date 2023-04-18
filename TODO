@@ -5,6 +5,7 @@ Todo:
   ✔ Use https://github.com/Dunqing/unocss-preset-theme with lightmode/darkmode for each theme and set vars for "custom" light and dark theme using JS @done(23-04-18 22:09)
 
 Tests:
+  ☐ Check Strapi permissions
   ☐ Register user
   ☐ Log in
   ☐ Log out
