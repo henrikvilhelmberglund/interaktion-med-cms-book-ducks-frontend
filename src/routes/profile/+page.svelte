@@ -81,14 +81,14 @@
 </script>
 
 <svelte:head>
-	<title>{$myUser.username}'s profile page</title>
+	<title>{$myUser.username ?? "Unknown user"}'s profile page</title>
 	<meta
 		name="description"
 		content="This is the profile page for {$myUser.username} which contains his/her lists." />
 </svelte:head>
 
 <main class="bg-primary-100 dark:bg-base-900 pb-80 pt-4 [&>*]:m-4 [&>*]:mt-0">
-	<h2 class="text-base-100 text-4xl">Welcome, {$myUser.username}!</h2>
+	<h2 class="text-base-100 text-4xl">Welcome, {$myUser.username ?? "unknown user"}!</h2>
 	<button
 		on:click={async () => {
 			if (mode === "To read list") {
@@ -148,7 +148,13 @@
 			{/if}
 		</div>
 	{:else if !$token}
-		<h3 class="text-base-100 text-3xl">You need to be logged in to view your To read list.</h3>
+		{#if mode === "To read list"}
+			<h3 class="text-base-100 text-3xl">You need to be logged in to view your To read list.</h3>
+		{:else}
+			<h3 class="text-base-100 text-3xl">
+				You need to be logged in to view your Rated books list.
+			</h3>
+		{/if}
 		<LoginRegister />
 	{:else if mode === "To read list" && !toReadBooks.length}
 		<h3 class="text-base-100 text-3xl">You don't have any books in your To read list.</h3>
