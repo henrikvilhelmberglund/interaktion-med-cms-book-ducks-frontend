@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.0](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v0.0.4...v1.0.0) (2023-04-19)
+
+
+### Features
+
+* :lipstick: add gap ([d615bae](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/d615baedad31573b2a498fcb2101ce6b83040722))
+* :lipstick: increase padding at bottom so the background stays the same even when the header disappears ([b37425c](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/b37425cf39675ec1a4093efde72ed5585b695a52))
+* :mag: SEO ([bf780b2](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/bf780b28f907838012a5f5ca2e897c589280b87d))
+* **themes:** :sparkles: add light to classList so I can use light:  if needed ([3ed862e](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/3ed862ef50ab112e706abae3755682e51274a833))
+* **components:** :lipstick: improve styling ([903b53b](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/903b53b45562e2fb7ca75957d3b2a6fba2154e85))
+* **components:** :sparkles: only show footer near the bottom of the page ([56f926a](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/56f926a9df1f1067836fb6920ce2896ad570ecc9))
+* :memo: add strapi login info ([60904d5](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/60904d5af2b5b46dd34727a33be0a6ad7e0b40f1))
+* :sparkles: add +error.svelte for other errors ([bf73863](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/bf73863679a52e8c67e0d8c151987e98aeaf8ace))
+* :sparkles: show network error in layout ([a6eb8b7](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/a6eb8b753affd158ba3a414e4f2a9170e2ec6de8))
+* :memo: add project report (WIP) ([939ed0e](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/939ed0ef24bdeb5cd812d2ce6e189ad17e5bdcfe))
+* :memo: add another test ([34443fd](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/34443fd7bd61f3a8ef26b911e27c0cc2da6e3977))
+* :memo: add Tests to TODO ([6c5afb0](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/6c5afb08d29e22c5ac8dc30a224f9a1093c18c3e))
+
+
+### Bug Fixes
+
+* :sparkles: add commented out console log ([c6d139d](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/c6d139df1159fcbbc9f506823debca2d459168a2))
+* :fire: comment out console logs ([6213bac](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/6213bac7392322ecf16640a72dd7908789db9c24))
+* :fire: comment out console logs ([e1b227a](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/e1b227aaefa62a0c525d8b30bb9720c7ca13d0a7))
+* :bug: fix themetesting route ([bd6aa1a](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/bd6aa1ab5bbf094d0b1a5c747b211b3356086557))
+* :memo: update TODO ([7895957](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/789595757339c735ac2c818c84f6ec165179a745))
+* :memo: update TODO ([fbe5408](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/fbe540840a43b2ce448a56b8e699150b98249b6d))
+* **components:** :lipstick: fix styling ([e656ac5](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/e656ac51cc9a52f3dcd9c890173ce56e3da75bc8))
+* :fire: comment out console logs ([f26252c](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/f26252c1db13d85c5b437b709573dd7fd3bb518f))
+* **components:** :bug: remove a few decimal points from average rating ([5348d09](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/5348d09c1507404734e1f4884d2f08b3de4b64fc))
+* **components:** :lipstick: improve styling ([0641828](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/0641828497954f47c6fae01ab28d3dff0589f757))
+* **components:** :lipstick: improve styling ([5de0d88](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/5de0d88d825d6d5df8c874ceb0790bf749bab0c7))
+* :art: DRY ([8b64046](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/8b64046722f63dac52aa6bb6ba2fd185ec56bf20))
+* :bug: fix if statement, add lines when you don't have to read books/rated books ([8afbf9e](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/8afbf9eccc2764e2d36049db1b567a95295c4ab5))
+* **components:** :bug: load index instead of reloading on log out ([409aa11](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/409aa11050cbd442aed59363060c39e03046868f))
+* **components:** :lipstick: improve styling ([f677e21](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/f677e211d756a4c0c6466544cbd46dc40a1be86b))
+* **components:** :lipstick: improve styling ([238eb56](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/238eb560fdd91b475dae807dcb4b57b9b7e30b2d))
+* **components:** :bug: use on:mousedown instead of on:click ([1399b2d](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/1399b2d121683a54daeeba506a8a30c1d795d63f))
+* **components:** :lipstick: make button a bit smaller ([4251887](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/42518871c9ce086122e1cfe3964b6bbf38c2c628))
+* **components:** :lipstick: improve styling ([964b0db](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/964b0dbcbfcb57d7b4ecb44f719bc8e3d90912e4))
+* **components:** :bug: only show add to read list buttons if user is logged in ([7d602a6](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/7d602a646361340d3039fc57f6503215faf3dff3))
+* :art: prettier ([c89f0c7](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/c89f0c7e697ff747f1e0ab61f52f2dbad59af2d0))
+* **api:** :fire: comment out console log ([abea160](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/abea1606849fcaa4e25b79d491bd4c324611660f))
+* :fire: comment out console log ([a448a43](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/a448a4310c6e00e23a03a1a91789bbc8c6e09f10))
+
 ## [0.0.4](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v0.0.3...v0.0.4) (2023-04-18)
 
 
