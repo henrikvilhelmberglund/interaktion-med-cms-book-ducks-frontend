@@ -3,12 +3,8 @@
 	import DOMPurify from "dompurify";
 	import { marked } from "marked";
 	import Rating from "./Rating.svelte";
-	import {
-		createReadLaterList,
-		updateReadLaterList,
-		getCurrentUserAndRatings,
-	} from "./api";
-	import { bookExpanded, myUser, userRatingObject } from "./stores";
+	import { createReadLaterList, updateReadLaterList, getCurrentUserAndRatings } from "./api";
+	import { bookExpanded, myUser, token, userRatingObject } from "./stores";
 	import { afterUpdate } from "svelte";
 
 	export let book;
@@ -112,35 +108,36 @@
 			<h3 class="font-{authorFontKey} text-center text-xl">{author}</h3>
 		</div>
 	</button>
-
-	<button
-		class:i-mdi-remove-circle={isAddedToReadLater}
-		class:bg-red-500={isAddedToReadLater}
-		class:i-mdi-add-circle={!isAddedToReadLater}
-		class:bg-green-500={!isAddedToReadLater}
-		class="hover:(h-18 w-18 opacity-100) absolute bottom-0 right-0 h-8 w-8 opacity-50 transition-all"
-		on:click={async () => {
-			if (!isAddedToReadLater) {
-				if ($myUser.to_read_list?.id) {
-					console.log($myUser.to_read_list.id);
-					await updateReadLaterList(book_id);
-					$myUser = await getCurrentUserAndRatings();
+	{#if $token}
+		<button
+			class:i-mdi-remove-circle={isAddedToReadLater}
+			class:bg-red-500={isAddedToReadLater}
+			class:i-mdi-add-circle={!isAddedToReadLater}
+			class:bg-green-500={!isAddedToReadLater}
+			class="hover:(h-18 w-18 opacity-100) absolute bottom-0 right-0 h-8 w-8 opacity-50 transition-all"
+			on:click={async () => {
+				if (!isAddedToReadLater) {
+					if ($myUser.to_read_list?.id) {
+						// console.log($myUser.to_read_list.id);
+						await updateReadLaterList(book_id);
+						$myUser = await getCurrentUserAndRatings();
+					} else {
+						// ! pretty stupid
+						await createReadLaterList();
+						$myUser = await getCurrentUserAndRatings();
+						await updateReadLaterList(book_id);
+						$myUser = await getCurrentUserAndRatings();
+					}
+					console.log($myUser);
 				} else {
-					// ! pretty stupid
-					await createReadLaterList();
-					$myUser = await getCurrentUserAndRatings();
-					await updateReadLaterList(book_id);
-					$myUser = await getCurrentUserAndRatings();
+					if ($myUser.to_read_list?.id) {
+						// console.log($myUser.to_read_list.id);
+						await updateReadLaterList(book_id, "remove");
+						$myUser = await getCurrentUserAndRatings();
+					}
 				}
-				console.log($myUser);
-			} else {
-				if ($myUser.to_read_list?.id) {
-					console.log($myUser.to_read_list.id);
-					await updateReadLaterList(book_id, "remove");
-					$myUser = await getCurrentUserAndRatings();
-				}
-			}
-		}} />
+			}} />
+	{/if}
 	{#if $bookExpanded[book_id]}
 		<div class:invisible={updatedRating} class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
 
