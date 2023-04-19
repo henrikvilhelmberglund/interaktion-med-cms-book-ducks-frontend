@@ -8,6 +8,8 @@
 	import { afterUpdate } from "svelte";
 
 	export let book;
+	export let updatedRating = false;
+	export let isProfilePage = false;
 	let book_id = book.id;
 	let title = book.attributes.title;
 	let author = book.attributes.author;
@@ -21,12 +23,8 @@
 	let author_font = book.attributes.font_component?.author_font;
 	let y_offset = `top-[${book.attributes.font_component?.y_offset}%]`;
 	let font_weight = book.attributes.font_component?.font_weight;
-	let ratings = book.attributes.ratings.data;
 	let usersWhoRated = book.attributes.ratings.data.length;
-	// if (ratings.length) console.log(ratings);
 	let ratingChanged = false;
-	export let updatedRating = false;
-	export let isProfilePage = false;
 	let isAddedToReadLater;
 
 	afterUpdate(() => {
@@ -35,21 +33,12 @@
 			return;
 		}
 
-		// console.log(toReadBooks);
 		let toReadBooksIDs = toReadBooks.map((book) => book.id);
 		let filteredBook = Array(book).filter((book) => {
-			return toReadBooksIDs.includes(book_id);
+			return toReadBooksIDs.includes(book.id);
 		});
 		isAddedToReadLater = filteredBook.length ? true : false;
-		// console.log(isAddedToReadLater);
 	});
-
-	// console.log($myUser.user?.ratings.filter((a) => a.books.id === id));
-	// console.log(title);
-	// console.log(userHasRated);
-	// if (ratings) {
-
-	// $: average
 
 	const fonts = {
 		a: "Playfair Display",
@@ -87,8 +76,6 @@
 			break;
 		}
 	}
-
-	// console.log(titleFontKey);
 </script>
 
 <article class="relative md:w-72">
@@ -119,7 +106,6 @@
 			on:click={async () => {
 				if (!isAddedToReadLater) {
 					if ($myUser.to_read_list?.id) {
-						// console.log($myUser.to_read_list.id);
 						await updateReadLaterList(book_id);
 						$myUser = await getCurrentUserAndRatings();
 					} else {
@@ -132,7 +118,6 @@
 					console.log($myUser);
 				} else {
 					if ($myUser.to_read_list?.id) {
-						// console.log($myUser.to_read_list.id);
 						await updateReadLaterList(book_id, "remove");
 						$myUser = await getCurrentUserAndRatings();
 					}
@@ -179,7 +164,9 @@
 					{/if}
 				{/key}
 				<p>
-					Average rating: {average_rating / 2 ?? "This book has not been rated yet."}
+					Average rating: {average_rating / 2 === 0
+						? "This book has not been rated yet."
+						: (average_rating / 2).toFixed(2)}
 					{usersWhoRated ? `(${usersWhoRated} users)` : ""}
 				</p>
 				<Rating
