@@ -85,6 +85,13 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{$myUser.username}'s profile page</title>
+	<meta
+		name="description"
+		content="This is the profile page for {$myUser.username} which contains his/her lists." />
+</svelte:head>
+
 <main class="bg-primary-100 dark:bg-base-900 pb-64 pt-4 [&>*]:m-4 [&>*]:mt-0">
 	<h2 class="text-base-100 text-4xl">Welcome, {$myUser.username}!</h2>
 	<button

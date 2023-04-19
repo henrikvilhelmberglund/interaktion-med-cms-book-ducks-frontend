@@ -11,9 +11,14 @@
 	import ThemeTester from "$lib/ThemeTester.svelte";
 	// import ThemeCss from "$lib/ThemeCSS.svelte";
 	let showNetworkError = false;
-
-
 </script>
+
+<svelte:head>
+	<title>Book Ducks</title>
+	<meta
+		name="description"
+		content="This is Book Ducks! Browse to find your favorite book, then give us all your money. :)" />
+</svelte:head>
 
 <main class="bg-primary-100 dark:bg-base-900 pb-64 pt-4 [&>*]:m-4 [&>*]:mt-0">
 	<div class="flex flex-wrap justify-end gap-4 md:justify-start">
