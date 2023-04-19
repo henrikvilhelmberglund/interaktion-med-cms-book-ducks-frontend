@@ -115,7 +115,7 @@
 			class:i-mdi-add-circle={!isAddedToReadLater}
 			class:bg-green-500={!isAddedToReadLater}
 			aria-label="add to read later list button"
-			class="hover:(h-18 w-18 opacity-100) absolute bottom-0 right-0 h-8 w-8 opacity-50 transition-all"
+			class="hover:(h-18 w-18 opacity-100) absolute bottom-0 right-0 h-12 w-12 opacity-20 transition-all"
 			on:click={async () => {
 				if (!isAddedToReadLater) {
 					if ($myUser.to_read_list?.id) {
@@ -148,7 +148,7 @@
 			class="z-100 [&>*]:dark:text-base-100 absolute inset-0 left-0 top-0 pr-0 md:fixed md:w-min md:p-12">
 			<div class="w-full md:h-[690px] md:w-[512px]">
 				<img
-					class="absolute shadow-xl md:shadow-black/100 md:min-w-[512px] md:translate-x-0"
+					class="absolute shadow-xl md:min-w-[512px] md:translate-x-0 md:shadow-black/100"
 					src="http://127.0.0.1:1337{cover_image}"
 					alt={cover_image_alt} />
 				<div
@@ -161,14 +161,14 @@
 				</div>
 			</div>
 			<div
-				class="font-e translate-y-190 text-base-400 p-4 absolute right-0 top-12 mt-24 light:bg-[url(paper.jpg)]  bg-cover text-lg dark:bg-gray-900 md:absolute md:m-0 md:translate-x-[120%] md:translate-y-0 md:p-4 md:py-8">
+				class="font-e translate-y-190 text-base-400 light:bg-[url(/paper.jpg)] absolute right-0 top-12 mt-24 bg-cover p-4 text-lg dark:bg-gray-900 md:absolute md:m-0 md:translate-x-[120%] md:translate-y-0 md:p-4 md:py-8">
 				<h3 class="pb-4 text-3xl">Synopsis</h3>
 				<div class="[&>*]:text-xl">
 					{@html DOMPurify.sanitize(marked.parse(synopsis))}
 				</div>
 			</div>
 			<div
-				class="translate-y-65 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 dark:bg-gray-900 md:fixed md:left-12 md:w-[512px] md:translate-y-0  md:pb-2">
+				class="translate-y-65 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 dark:bg-gray-900 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:pb-2">
 				{#key ratingChanged}
 					{#if $myUser.username}
 						<p>
