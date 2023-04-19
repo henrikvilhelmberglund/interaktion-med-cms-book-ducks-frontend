@@ -67,7 +67,8 @@ export async function activateTheme(override) {
 			document.documentElement.classList.add(get(activeTheme));
 			document.documentElement.classList.add("dark");
 		} else {
-			document.documentElement.classList.add(get(activeTheme));
+      document.documentElement.classList.add(get(activeTheme));
+			document.documentElement.classList.add("light");
 		}
 
 		let customThemeColors = data.attributes.custom_theme_colors;
