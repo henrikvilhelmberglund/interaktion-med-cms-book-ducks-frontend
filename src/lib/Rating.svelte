@@ -107,7 +107,7 @@
 				usersWhoRated = newAverageRatingObject.usersWhoRated;
 				// console.log(average_rating);
 			}}
-			class="btn-primary">
+			class="btn-primary !p-px">
 			Remove your rating</button>
 	{/if}
 </div>
