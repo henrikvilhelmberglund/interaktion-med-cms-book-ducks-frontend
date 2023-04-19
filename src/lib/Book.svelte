@@ -91,7 +91,7 @@
 	// console.log(titleFontKey);
 </script>
 
-<article class="relative w-72">
+<article class="relative md:w-72">
 	<button
 		class="hover:(outline-2 outline-solid rounded-sm) outline-black dark:outline-white"
 		on:click={() => {
@@ -139,32 +139,35 @@
 			}} />
 	{/if}
 	{#if $bookExpanded[book_id]}
-		<div class:invisible={updatedRating} class="fixed inset-0 z-50 !m-0 backdrop-blur-lg" />
+		<div class:invisible={updatedRating} class="fixed inset-0 z-50 !m-0 md:backdrop-blur-lg" />
 
 		<div
 			use:clickOutside={() => ($bookExpanded = {})}
 			class:invisible={updatedRating}
-			class="z-100 w-100vw [&>*]:dark:text-base-100 absolute left-0 top-0 p-12 md:fixed md:w-min">
-			<div class="h-[690px] w-full md:w-[512px]">
+			class="z-100 [&>*]:dark:text-base-100 absolute inset-0 left-0 top-0 pr-0 md:fixed md:w-min md:p-12">
+			<div class="w-full md:h-[690px] md:w-[512px]">
 				<img
-					class="absolute shadow-xl shadow-black/80 md:min-w-[512px] md:translate-x-0"
+					class="invisible absolute shadow-xl shadow-black/80 md:visible md:min-w-[512px] md:translate-x-0"
 					src="http://127.0.0.1:1337{cover_image}"
 					alt={cover_image_alt} />
 				<div
-					class="absolute left-0 font-{font_weight} {y_offset} w-full translate-x-0 pt-0 md:left-[50%] md:w-full md:translate-x-[-50%] md:p-12 md:pt-12">
-					<h2 class="font-{titleFontKey} pt-4 text-center text-5xl text-black md:pt-4 md:text-5xl">
+					class="invisible absolute left-0 md:visible font-{font_weight} {y_offset} w-full translate-x-0 pt-0 md:left-[50%] md:w-full md:translate-x-[-50%] md:p-12 md:pt-0">
+					<h2
+						class="font-{titleFontKey} pt-4 text-center text-5xl text-black md:px-2 md:pt-4 md:text-5xl">
 						{title}
 					</h2>
 					<h3 class="font-{authorFontKey} text-center text-2xl text-black md:text-3xl">{author}</h3>
 				</div>
 			</div>
 			<div
-				class="font-e translate-y-175 text-base-400 absolute right-0 top-12 bg-[#F9D8A7] p-4 py-8 text-lg dark:bg-gray-900 md:translate-x-[120%] md:translate-y-0 md:translate-y-0">
-				<h3 class="text-2xl">Synopsis</h3>
-				{@html DOMPurify.sanitize(marked.parse(synopsis))}
+				class="font-e translate-y-190 text-base-400 absolute right-0 top-12 mt-24 bg-[url(paper.jpg)] bg-cover text-lg dark:bg-gray-900 md:absolute md:m-0 md:translate-x-[120%] md:translate-y-0 md:translate-y-0 md:translate-y-0 md:p-4 md:py-8">
+				<h3 class="pb-4 text-3xl">Synopsis</h3>
+				<div class="[&>*]:text-xl">
+					{@html DOMPurify.sanitize(marked.parse(synopsis))}
+				</div>
 			</div>
 			<div
-				class="translate-y-160 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 dark:bg-gray-900 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0">
+				class="translate-y-65 absolute bottom-0 left-0 bg-slate-300 p-4 pb-12 dark:bg-gray-900 md:fixed md:left-12 md:w-[512px] md:translate-y-0 md:translate-y-0 md:pb-2">
 				{#key ratingChanged}
 					{#if $myUser.username}
 						<p>
