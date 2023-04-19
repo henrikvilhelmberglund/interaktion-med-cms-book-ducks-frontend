@@ -30,11 +30,11 @@ function toRGB(hex) {
 
 function setCustomCSSColors(colors) {
 	Object.values(colors).forEach((type) => {
-		console.log(type);
+		// console.log(type);
 		Object.entries(type).forEach((shade) => {
-			console.log(shade);
+			// console.log(shade);
 			Object.entries(shade[1]).forEach((color) => {
-				console.log(`--un-preset-theme-colors-${shade[0]}-${color[0]}`, color[1]);
+				// console.log(`--un-preset-theme-colors-${shade[0]}-${color[0]}`, color[1]);
 				document.documentElement.style.setProperty(
 					`--un-preset-theme-colors-${shade[0]}-${color[0]}`,
 					toRGB(color[1])
@@ -62,23 +62,23 @@ export async function activateTheme(override) {
 		}
 		if (get(preferredMode) === "dark") {
 			// dark mode
-			console.log("I am dark mode");
+			// console.log("I am dark mode");
 			activeTheme.set(get(activeTheme) + "Dark");
 			document.documentElement.classList.add(get(activeTheme));
 			document.documentElement.classList.add("dark");
 		} else {
-      document.documentElement.classList.add(get(activeTheme));
+			document.documentElement.classList.add(get(activeTheme));
 			document.documentElement.classList.add("light");
 		}
 
 		let customThemeColors = data.attributes.custom_theme_colors;
 		if (get(activeTheme) === "custom") {
 			customThemeColors = customThemeColors.custom;
-			console.log(customThemeColors);
+			// console.log(customThemeColors);
 			setCustomCSSColors(customThemeColors);
 		} else if (get(activeTheme) === "customDark") {
 			customThemeColors = customThemeColors.customDark;
-			console.log(customThemeColors);
+			// console.log(customThemeColors);
 			setCustomCSSColors(customThemeColors);
 		} else {
 			document.documentElement.style = "";
