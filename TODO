@@ -5,17 +5,18 @@ Todo:
   ✔ Use https://github.com/Dunqing/unocss-preset-theme with lightmode/darkmode for each theme and set vars for "custom" light and dark theme using JS @done(23-04-18 22:09)
 
 Tests:
-  ☐ Check Strapi permissions
-  ☐ Register user
-  ☐ Log in
-  ☐ Log out
-  ☐ View all books
-  ☐ Clearly see who is logged in
-  ☐ Give a rating for a book
-  ☐ Save a book in a personal to read list
-  ☐ View the to read list in the profile page
-  ☐ Select from minimum two themes in the Strapi interface
-  ☐ View the rated books list in the profile page
-  ☐ Sort the rated books (title, author, rating)
-  ☐ Somewhat professional look
-  ☐ Things work
+  ✔ Check Strapi permissions @done(23-04-19 14:28)
+  ✔ Register user @done(23-04-19 14:29)
+  ✔ Log in @done(23-04-19 14:50)
+  ✔ Log out @done(23-04-19 14:50)
+  ✔ View all books @done(23-04-19 14:50)
+  ✔ Clearly see who is logged in @done(23-04-19 14:50)
+  ✔ Give a rating for a book @done(23-04-19 14:53)
+  ✔ Save a book in a personal to read list @done(23-04-19 14:53)
+  ✔ View the to read list in the profile page @done(23-04-19 14:59)
+  ✔ Select from minimum two themes in the Strapi interface @done(23-04-19 15:19)
+  ✔ View the rated books list in the profile page @done(23-04-19 15:21)
+  ✔ Sort the rated books (title, author, rating) @done(23-04-19 15:22)
+  ✔ Somewhat professional look @done(23-04-19 15:33)
+  ✔ Things work @done(23-04-19 15:56)
+  ☐ Finish project report
