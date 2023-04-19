@@ -9,7 +9,7 @@
 {#if !Object.keys($bookExpanded).length}
 	<header
 		id="book-ducks-header"
-		transition:slide
+		transition:slide|local
 		class="z-100 sticky left-0 top-0 flex p-2 shadow-lg md:p-6">
 		<div class="flex flex-1 items-center" />
 		<div class="flex flex-1 items-center justify-center">
