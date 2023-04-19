@@ -2,6 +2,10 @@
 
 ## 🦆
 
+Strapi-inloggning:
+admin@admin.se
+Test1234
+
 <!-- Output copied to clipboard! -->
 
 <!-----
