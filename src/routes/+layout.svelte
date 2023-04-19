@@ -25,7 +25,7 @@
 
 		let data = await getTheme();
 		$activeTheme = data.attributes.theme;
-		console.log($activeTheme);
+		// console.log($activeTheme);
 		$activeTheme = activateTheme($activeTheme);
 	});
 </script>
