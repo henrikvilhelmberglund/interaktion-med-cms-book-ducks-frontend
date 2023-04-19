@@ -1,16 +1,7 @@
 <script>
-	import { base } from "$app/paths";
-	import { onMount } from "svelte";
-	import { getBooks, getTheme } from "$lib/api";
-	import { fly } from "svelte/transition";
 	import Footer from "$lib/Footer.svelte";
-	import Header from "$lib/Header.svelte";
 	import Book from "$lib/Book.svelte";
-	import { activateTheme } from "$lib/helpers";
-	import { activeTheme, books } from "$lib/stores";
-	import ThemeTester from "$lib/ThemeTester.svelte";
-	// import ThemeCss from "$lib/ThemeCSS.svelte";
-	let showNetworkError = false;
+	import { books } from "$lib/stores";
 </script>
 
 <svelte:head>
