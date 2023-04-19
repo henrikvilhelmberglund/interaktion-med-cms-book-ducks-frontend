@@ -11,7 +11,7 @@
 		<button
 			on:click={() => {
 				$token = null;
-				location.reload();
+				location.href = "/";
 			}}
 			class="btn-primary !border-0">Log out</button>
 	</div>
