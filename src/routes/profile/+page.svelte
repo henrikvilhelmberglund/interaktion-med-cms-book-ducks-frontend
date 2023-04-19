@@ -127,7 +127,7 @@
 			class="btn-primary">{filterMode}</button>
 	{/each}
 	{#if (mode === "To read list" && toReadBooks.length) || (mode === "Rated books list" && ratedBooks.length)}
-		<div class="flex flex-wrap">
+		<div class="flex flex-wrap gap-4">
 			{#if filteredBooks}
 				{#each filteredBooks as book, i (book.id)}
 					<div
