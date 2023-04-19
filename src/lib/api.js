@@ -22,7 +22,7 @@ export const updateReadLaterList = async (book_id, remove) => {
 	const existingIDs = get(myUser).to_read_list.books.map((book) => book.id);
 	console.log(existingIDs);
 	if (remove) {
-		console.log("click on ", existingIDs.indexOf(book_id));
+		// console.log("clicked on ", existingIDs.indexOf(book_id));
 		existingIDs.splice(existingIDs.indexOf(book_id), 1);
 	}
 	const data = await sendRequest(
