@@ -54,6 +54,7 @@
 			updateList();
 		} catch (error) {
 			// ! this is SSR and triggered an error because $myUser is not defined yet
+			// console.log(error);
 			return;
 		}
 	});
