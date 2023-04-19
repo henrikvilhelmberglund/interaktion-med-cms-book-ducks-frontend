@@ -110,7 +110,7 @@
 </script>
 
 {#if !Object.keys($myUser).length}
-	<button on:click={() => (showLogin = true)} class="btn-primary">Login</button>
+	<button on:mousedown|stopPropagation={() => (showLogin = true)} class="btn-primary">Login</button>
 {:else}
 	<button on:mousedown|stopPropagation={() => (showUserModal = true)} class="btn-secondary mr-4">
 		{$myUser.username}
@@ -133,7 +133,7 @@
 			use:clickOutside={() => {
 				showLogin = false;
 			}}
-			class="z-100 absolute flex flex-col items-center pt-48">
+			class="z-100 md:absolute fixed translate-y-100 md:translate-y-36 md:translate-x-0 -translate-x-40 h-min items-center">
 			<button
 				on:click={() => (mode === "login" ? (mode = "register") : (mode = "login"))}
 				class="btn-secondary mb-4">Switch to {mode === "login" ? "register" : "login"}</button>
