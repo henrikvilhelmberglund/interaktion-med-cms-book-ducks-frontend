@@ -37,7 +37,6 @@
 
 	async function login() {
 		try {
-			console.log("test");
 			let res = await fetch("http://127.0.0.1:1337/api/auth/local", {
 				method: "POST",
 				body: JSON.stringify({ identifier: inputUsername, password: inputPassword }),
@@ -61,9 +60,9 @@
 			$myUser = await getCurrentUserAndRatings();
 			setUserRatingObject();
 
-			console.log(data);
+			// console.log(data);
 
-			console.log(data.jwt);
+			// console.log(data.jwt);
 			error = false;
 
 			return data;

@@ -115,7 +115,7 @@
 						await updateReadLaterList(book_id);
 						$myUser = await getCurrentUserAndRatings();
 					}
-					console.log($myUser);
+					// console.log($myUser);
 				} else {
 					if ($myUser.to_read_list?.id) {
 						await updateReadLaterList(book_id, "remove");
