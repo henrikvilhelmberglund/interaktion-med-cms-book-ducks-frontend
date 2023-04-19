@@ -28,7 +28,7 @@
 					activateTheme();
 				}}
 				aria-label="dark mode toggle"
-				class="i-carbon-sun !bg-base-100 dark:i-carbon-moon ml-4 text-3xl" />
+				class="absolute top-0 right-0 md:relative i-carbon-sun !bg-base-100 dark:i-carbon-moon ml-4 text-3xl" />
 		</div>
 	</header>
 {/if}
