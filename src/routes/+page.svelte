@@ -16,13 +16,6 @@
 </script>
 
 <main class="bg-primary-100 dark:bg-base-900 pb-64 pt-4 [&>*]:m-4 [&>*]:mt-0">
-	{#if showNetworkError}
-		<div class="flex justify-center">
-			<p class="rounded bg-red-400 p-2 text-2xl">
-				It seems like the Strapi server is not running. Please start it and try again!
-			</p>
-		</div>
-	{/if}
 	<div class="flex flex-wrap justify-end gap-4 md:justify-start">
 		{#each Object.values($books) as book}
 			<Book {book} />
