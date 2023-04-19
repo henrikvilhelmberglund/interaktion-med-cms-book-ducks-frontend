@@ -9,6 +9,7 @@
 	import "/src/lib/themeCSS.scss";
 
 	let showNetworkError;
+  let finishedLoading = false;
 
 	onMount(async () => {
 		try {
@@ -26,11 +27,16 @@
 		let data = await getTheme();
 		$activeTheme = data.attributes.theme;
 		// console.log($activeTheme);
-		$activeTheme = activateTheme($activeTheme);
+		$activeTheme = await activateTheme($activeTheme);
+    finishedLoading = true;
 	});
 </script>
 
+{#if finishedLoading}
 <Header />
+
+<slot />
+{/if}
 
 <!-- <ThemeTester /> -->
 
@@ -42,6 +48,5 @@
 	</div>
 {/if}
 
-<slot />
 
 <style uno:preflights uno:safelist global></style>
