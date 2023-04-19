@@ -1,17 +1,17 @@
 export function clickOutside(element, callbackFunction) {
 	function onEsc(event) {
 		if (event.key === "Escape") {
-      console.log("pressed esc - closing!");
+			// console.log("pressed esc - closing!");
 			callbackFunction();
 		}
 	}
 
 	function onClick(event) {
-    if (!element.contains(event.target)) {
-      console.log("clicked outside of modal - closing!");
+		if (!element.contains(event.target)) {
+			// console.log("clicked outside of modal - closing!");
 			callbackFunction();
 		} else {
-			console.log("clicked in modal");
+			// console.log("clicked in modal");
 		}
 	}
 	document.body.addEventListener("mousedown", onClick);

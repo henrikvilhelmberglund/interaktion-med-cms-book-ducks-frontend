@@ -14,13 +14,13 @@ export const createReadLaterList = async (book_id) => {
 			books: book_id,
 		},
 	});
-	console.log("created data was", data);
+	// console.log("created data was", data);
 	return data;
 };
 
 export const updateReadLaterList = async (book_id, remove) => {
 	const existingIDs = get(myUser).to_read_list.books.map((book) => book.id);
-	console.log(existingIDs);
+	// console.log(existingIDs);
 	if (remove) {
 		// console.log("clicked on ", existingIDs.indexOf(book_id));
 		existingIDs.splice(existingIDs.indexOf(book_id), 1);
@@ -35,7 +35,7 @@ export const updateReadLaterList = async (book_id, remove) => {
 			},
 		}
 	);
-	console.log("updated data was", data);
+	// console.log("updated data was", data);
 	return data;
 };
 
@@ -57,7 +57,7 @@ export const getCurrentUserAndRatings = async () => {
 
 export const createUserRating = async (book_id, newRating) => {
 	const average_rating = newRating;
-	console.log(average_rating);
+	// console.log(average_rating);
 	const data = await sendRequest("POST", `http://127.0.0.1:1337/api/ratings/`, {
 		data: {
 			half_stars: newRating,
@@ -65,12 +65,12 @@ export const createUserRating = async (book_id, newRating) => {
 			books: book_id,
 		},
 	});
-	console.log("created data was", data);
+	// console.log("created data was", data);
 	return data;
 };
 
 export const updateUserRating = async (userRatingObject, book_id, newRating) => {
-	console.log(userRatingObject[book_id].rating_id);
+	// console.log(userRatingObject[book_id].rating_id);
 	const data = await sendRequest(
 		"PUT",
 		`http://127.0.0.1:1337/api/ratings/${userRatingObject[book_id].rating_id}`,
@@ -85,25 +85,11 @@ export const updateUserRating = async (userRatingObject, book_id, newRating) => 
 
 export const removeUserRating = async (rating_id, newRating) => {
 	const average_rating = newRating;
-	console.log(average_rating);
+	// console.log(average_rating);
 	const data = await sendRequest("DELETE", `http://127.0.0.1:1337/api/ratings/${rating_id}`);
-	console.log("created data was", data);
+	// console.log("created data was", data);
 	return data;
 };
-// no axios error??
-// export const updateUserRating = async (userRatingObject, book_id) => {
-// 	console.log(userRatingObject[book_id].rating_id);
-// 	const data = await sendRequest(
-// 		"PUT",
-// 		`http://127.0.0.1:1337/api/ratings/${userRatingObject[book_id].rating_id}`,
-// 		{
-// 			data: {
-// 				half_stars: userRatingObject.userRating,
-// 			},
-// 		}
-// 	);
-// 	return data;
-// };
 
 export const updateAverageRating = async (id) => {
 	const bookData = await sendRequestNonAuth(
@@ -120,7 +106,7 @@ export const updateAverageRating = async (id) => {
 		new_average_rating += rating.attributes.half_stars;
 	});
 	new_average_rating /= Math.round(bookRatings.length);
-	console.log("new average rating", new_average_rating);
+	// console.log("new average rating", new_average_rating);
 
 	// ? no ratings - set new_average_rating to null as it was by default
 	if (isNaN(new_average_rating)) {

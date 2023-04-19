@@ -23,7 +23,7 @@
 	// 127.0.0.1:1337/api/books?populate[ratings][populate][0]=user
 	// 127.0.0.1:1337/api/users/me?populate[ratings][populate][0]=books
 
-	console.log($myUser);
+	// console.log($myUser);
 	// console.table($userRatingObject);
 	async function starPressed(i) {
 		if (!$myUser.username) {
@@ -47,7 +47,7 @@
 			$myUser = await getCurrentUserAndRatings();
 			setUserRatingObject();
 			$books = await getBooks();
-			console.log(average_rating);
+			// console.log(average_rating);
 			if (isProfilePage) {
 				updatedRating = true;
 				setTimeout(() => {
@@ -64,7 +64,7 @@
 			average_rating = newAverageRatingObject.average_rating;
 			usersWhoRated = newAverageRatingObject.usersWhoRated;
 			$userRatingObject[book_id].average_rating = average_rating / usersWhoRated;
-			console.log(average_rating);
+			// console.log(average_rating);
 		}
 	}
 </script>
@@ -100,7 +100,7 @@
 			on:click={async () => {
 				await removeUserRating($userRatingObject[book_id].rating_id);
 				$userRatingObject[book_id] = null;
-				console.log(average_rating);
+				// console.log(average_rating);
 
 				const newAverageRatingObject = await updateAverageRating(book_id);
 				average_rating = newAverageRatingObject.average_rating;
