@@ -2,7 +2,7 @@
 	import Book from "$lib/Book.svelte";
 	import LoginRegister from "$lib/LoginRegister.svelte";
 	import { sortList } from "$lib/helpers.js";
-	import { books, myUser } from "$lib/stores";
+	import { books, myUser, token } from "$lib/stores";
 	import { beforeUpdate } from "svelte";
 	import { quintOut } from "svelte/easing";
 	import { crossfade } from "svelte/transition";
@@ -26,20 +26,12 @@
 		},
 	});
 
-	let toReadBooks;
+	let toReadBooks = [];
 	let filteredBooks;
-	let ratedBooks;
-	// let mode = "To read list";
-	let mode = "Rated books list";
-	// let filterModes = ["Title Asc", "Title Desc", "Author Asc", "Author Desc"];
-	let filterModes = [
-		"Title Asc",
-		"Title Desc",
-		"Author Asc",
-		"Author Desc",
-		"Rating Asc",
-		"Rating Desc",
-	];
+	let ratedBooks = [];
+	let mode = "To read list";
+	let filterModes = ["Title Asc", "Title Desc", "Author Asc", "Author Desc"];
+
 	let activeFilterMode = "normal";
 
 	// beforeUpdate(async () => {
@@ -57,6 +49,8 @@
 				// console.log(ratings);
 				return ratings;
 			});
+			// console.log(toReadBooks);
+			// console.log(ratedBooks);
 			updateList();
 		} catch (error) {
 			// ! this is SSR and triggered an error because $myUser is not defined yet
@@ -65,7 +59,7 @@
 	});
 
 	function updateList() {
-		console.log("ran updateList");
+		// console.log("ran updateList");
 		if (mode === "To read list") {
 			let toReadBooksIDs = toReadBooks.map((book) => book.id);
 			filteredBooks = Object.values($books).filter((book) => {
@@ -115,57 +109,59 @@
 		class="btn-secondary"
 		>Switch to {mode === "To read list" ? "Rated books list" : "To read list"}</button>
 
-	{#if toReadBooks}
-		<h3 class="text-base-100 text-3xl">{mode}</h3>
+	<h3 class="text-base-100 text-3xl">{mode}</h3>
+	<button
+		on:click={() => {
+			activeFilterMode = "normal";
+			// updateList();
+		}}
+		class:outline-solid={activeFilterMode === "normal"}
+		class="btn-primary">Clear sort</button>
+	{#each filterModes as filterMode}
 		<button
 			on:click={() => {
-				activeFilterMode = "normal";
+				activeFilterMode = filterMode;
 				// updateList();
 			}}
-			class:outline-solid={activeFilterMode === "normal"}
-			class="btn-primary">Clear sort</button>
-		{#each filterModes as filterMode}
-			<button
-				on:click={() => {
-					activeFilterMode = filterMode;
-					// updateList();
-				}}
-				class:outline-solid={activeFilterMode === filterMode}
-				class="btn-primary">{filterMode}</button>
-		{/each}
-		{#if mode === "To read list"}
-			<div class="flex flex-wrap">
-				{#if filteredBooks}
-					{#each filteredBooks as book, i (book.id)}
-						<div
-							in:receive={{ key: book.id }}
-							out:send={{ key: book.id }}
-							animate:flip={{ duration: 1000 }}>
-							<Book {book} />
-						</div>
-					{/each}
-				{/if}
-			</div>
-		{:else if mode === "Rated books list"}
-			<div class="flex flex-wrap">
-				{#if filteredBooks}
-					{#each filteredBooks as book, i (book.id)}
-						<div
-							in:receive={{ key: book.id }}
-							out:send={{ key: book.id }}
-							animate:flip={{ duration: 1000 }}>
-							<Book
-								{book}
-								isProfilePage={activeFilterMode === "Rating Desc" ||
-									activeFilterMode === "Rating Asc"} />
-						</div>
-					{/each}
-				{/if}
-			</div>
-		{/if}
-	{:else}
+			class:outline-solid={activeFilterMode === filterMode}
+			class="btn-primary">{filterMode}</button>
+	{/each}
+	{#if mode === "To read list" && toReadBooks.length}
+		<div class="flex flex-wrap">
+			{#if filteredBooks}
+				{#each filteredBooks as book, i (book.id)}
+					<div
+						in:receive={{ key: book.id }}
+						out:send={{ key: book.id }}
+						animate:flip={{ duration: 1000 }}>
+						<Book {book} />
+					</div>
+				{/each}
+			{/if}
+		</div>
+	{:else if mode === "Rated books list" && ratedBooks.length}
+		<div class="flex flex-wrap">
+			{#if filteredBooks}
+				{#each filteredBooks as book, i (book.id)}
+					<div
+						in:receive={{ key: book.id }}
+						out:send={{ key: book.id }}
+						animate:flip={{ duration: 1000 }}>
+						<Book
+							{book}
+							isProfilePage={activeFilterMode === "Rating Desc" ||
+								activeFilterMode === "Rating Asc"} />
+					</div>
+				{/each}
+			{/if}
+		</div>
+	{:else if !$token}
 		<h3 class="text-base-100 text-3xl">You need to be logged in to view your To read list.</h3>
 		<LoginRegister />
+	{:else if mode === "To read list" && !toReadBooks.length}
+		<h3 class="text-base-100 text-3xl">You don't have any books in your To read list.</h3>
+	{:else if mode === "Rated books list" && !ratedBooks.length}
+		<h3 class="text-base-100 text-3xl">You don't have any books rated.</h3>
 	{/if}
 </main>
 
