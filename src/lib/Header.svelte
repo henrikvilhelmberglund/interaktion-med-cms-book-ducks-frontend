@@ -10,7 +10,7 @@
 	<header
 		id="book-ducks-header"
 		transition:slide
-		class="z-100 sticky left-0 top-0 flex p-6 shadow-lg">
+		class="z-100 sticky left-0 top-0 flex p-2 md:p-6 shadow-lg">
 		<div class="flex flex-1 items-center" />
 		<div class="flex flex-1 items-center justify-center">
 			<h1 class="font-logo text-base-100 text-5xl">
