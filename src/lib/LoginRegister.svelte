@@ -205,7 +205,7 @@
 				</div>
 			</form>
 			{#if error}
-				<div class="absolute top-[424px] mt-4 rounded-lg bg-red-500 p-4" transition:fly={{ y: 20 }}>
+				<div class="absolute mt-4 rounded-lg bg-red-500 p-4" transition:fly={{ y: 20 }}>
 					{#if typeof error === "string"}
 						<p class="">{error}</p>
 						<p class="">Please try again.</p>
