@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.1.0](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v1.0.0...v1.1.0) (2023-04-19)
+
+
+### Features
+
+* :sparkles: add loading spinner ([db9a7aa](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/db9a7aa0217deff66f96af637bfc41db26fdfe8a))
+* :sparkles: only display contents when loading is finished ([877f5de](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/877f5dea1fa09e618d35ae5d1de7c6c88ff3a396))
+
+
+### Bug Fixes
+
+* :fire: remove unused stuff ([acdf255](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/acdf25532b056934b13f882e8bac30d1e4974491))
+* **components:** :bug: add |local to transition to prevent it from running on page load ([1bb034d](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/1bb034dfb154d3c1e34cafa2bd3fbdfcc9bae079))
+* :bug: check for undefined, add mode check ([db18ff3](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/db18ff3f0bddfc63ccf7ebc8c4400df1718caec0))
+
 ## [1.0.0](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v0.0.4...v1.0.0) (2023-04-19)
 
 
