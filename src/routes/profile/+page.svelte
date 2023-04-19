@@ -86,7 +86,7 @@
 		content="This is the profile page for {$myUser.username} which contains his/her lists." />
 </svelte:head>
 
-<main class="bg-primary-100 dark:bg-base-900 pb-64 pt-4 [&>*]:m-4 [&>*]:mt-0">
+<main class="bg-primary-100 dark:bg-base-900 pb-80 pt-4 [&>*]:m-4 [&>*]:mt-0">
 	<h2 class="text-base-100 text-4xl">Welcome, {$myUser.username}!</h2>
 	<button
 		on:click={async () => {
@@ -126,7 +126,7 @@
 			class:outline-solid={activeFilterMode === filterMode}
 			class="btn-primary">{filterMode}</button>
 	{/each}
-	{#if mode === "To read list" && toReadBooks.length}
+	{#if (mode === "To read list" && toReadBooks.length) || (mode === "Rated books list" && ratedBooks.length)}
 		<div class="flex flex-wrap">
 			{#if filteredBooks}
 				{#each filteredBooks as book, i (book.id)}
@@ -134,23 +134,14 @@
 						in:receive={{ key: book.id }}
 						out:send={{ key: book.id }}
 						animate:flip={{ duration: 1000 }}>
-						<Book {book} />
-					</div>
-				{/each}
-			{/if}
-		</div>
-	{:else if mode === "Rated books list" && ratedBooks.length}
-		<div class="flex flex-wrap">
-			{#if filteredBooks}
-				{#each filteredBooks as book, i (book.id)}
-					<div
-						in:receive={{ key: book.id }}
-						out:send={{ key: book.id }}
-						animate:flip={{ duration: 1000 }}>
-						<Book
-							{book}
-							isProfilePage={activeFilterMode === "Rating Desc" ||
-								activeFilterMode === "Rating Asc"} />
+						{#if mode === "To read list" && toReadBooks.length}
+							<Book {book} />
+						{:else if mode === "Rated books list" && ratedBooks.length}
+							<Book
+								{book}
+								isProfilePage={activeFilterMode === "Rating Desc" ||
+									activeFilterMode === "Rating Asc"} />
+						{/if}
 					</div>
 				{/each}
 			{/if}
