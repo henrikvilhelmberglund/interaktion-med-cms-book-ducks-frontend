@@ -34,14 +34,12 @@
 
 	let activeFilterMode = "normal";
 
-	// beforeUpdate(async () => {
-	// });
-
 	// * beforeUpdate is nice!
 	beforeUpdate(async () => {
 		try {
-			toReadBooks = $myUser.to_read_list.books;
+			toReadBooks = $myUser.to_read_list?.books;
 			ratedBooks = $myUser.ratings;
+			// console.log(ratedBooks);
 			ratedBooks = ratedBooks.map((ratings) => {
 				ratings = ratings.books[0];
 				// console.log(ratings);
@@ -61,14 +59,14 @@
 
 	function updateList() {
 		// console.log("ran updateList");
-		if (mode === "To read list") {
+		if (mode === "To read list" && toReadBooks) {
 			let toReadBooksIDs = toReadBooks.map((book) => book.id);
 			filteredBooks = Object.values($books).filter((book) => {
 				return toReadBooksIDs.includes(book.id);
 			});
 			// console.log(filteredBooks);
 			// console.log(filteredBooks);
-		} else if (mode === "Rated books list") {
+		} else if (mode === "Rated books list" && ratedBooks) {
 			let ratedBooksIDs = ratedBooks.map((book) => book.id);
 			// console.log(ratedBooksIDs);
 
@@ -127,7 +125,7 @@
 			class:outline-solid={activeFilterMode === filterMode}
 			class="btn-primary">{filterMode}</button>
 	{/each}
-	{#if (mode === "To read list" && toReadBooks.length) || (mode === "Rated books list" && ratedBooks.length)}
+	{#if (mode === "To read list" && toReadBooks) || (mode === "Rated books list" && ratedBooks)}
 		<div class="flex flex-wrap gap-4">
 			{#if filteredBooks}
 				{#each filteredBooks as book, i (book.id)}
@@ -156,7 +154,7 @@
 			</h3>
 		{/if}
 		<LoginRegister />
-	{:else if mode === "To read list" && !toReadBooks.length}
+	{:else if mode === "To read list" && !toReadBooks}
 		<h3 class="text-base-100 text-3xl">You don't have any books in your To read list.</h3>
 	{:else if mode === "Rated books list" && !ratedBooks.length}
 		<h3 class="text-base-100 text-3xl">You don't have any books rated.</h3>
