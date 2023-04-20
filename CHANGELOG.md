@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.1.1](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v1.1.0...v1.1.1) (2023-04-20)
+
+
+### Bug Fixes
+
+* :ambulance: check if defined and also the length of the array to show the correct thing ([69519e1](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/69519e1cb9cc47e2d912dc07bf037de8120840b6))
+* :ambulance: fix bug where nothing is shown when only one of the lists have a book ([716b194](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/commit/716b194561fe5a8c6329dcd59082aaf7d77ccaf8))
+
 ## [1.1.0](https://github.com/henrikvilhelmberglund/interaktion-med-cms-book-ducks-frontend/compare/v1.0.0...v1.1.0) (2023-04-19)
 
 
