@@ -125,7 +125,7 @@
 			class:outline-solid={activeFilterMode === filterMode}
 			class="btn-primary">{filterMode}</button>
 	{/each}
-	{#if (mode === "To read list" && toReadBooks) || (mode === "Rated books list" && ratedBooks)}
+	{#if (mode === "To read list" && toReadBooks && toReadBooks.length) || (mode === "Rated books list" && ratedBooks && ratedBooks.length)}
 		<div class="flex flex-wrap gap-4">
 			{#if filteredBooks}
 				{#each filteredBooks as book, i (book.id)}
@@ -154,9 +154,9 @@
 			</h3>
 		{/if}
 		<LoginRegister />
-	{:else if mode === "To read list" && !toReadBooks}
+	{:else if mode === "To read list" && toReadBooks && !toReadBooks.length}
 		<h3 class="text-base-100 text-3xl">You don't have any books in your To read list.</h3>
-	{:else if mode === "Rated books list" && !ratedBooks.length}
+	{:else if mode === "Rated books list" && ratedBooks && !ratedBooks.length}
 		<h3 class="text-base-100 text-3xl">You don't have any books rated.</h3>
 	{/if}
 </main>
